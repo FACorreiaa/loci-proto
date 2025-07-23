@@ -1221,6 +1221,7 @@ type StartChatRequest struct {
 	InitialMessage string                 `protobuf:"bytes,3,opt,name=initial_message,json=initialMessage,proto3" json:"initial_message,omitempty"`
 	ContextType    ChatContextType        `protobuf:"varint,4,opt,name=context_type,json=contextType,proto3,enum=ai_poi.chat.v1.ChatContextType" json:"context_type,omitempty"`
 	Metadata       map[string]string      `protobuf:"bytes,5,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Request        *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1290,12 +1291,20 @@ func (x *StartChatRequest) GetMetadata() map[string]string {
 	return nil
 }
 
+func (x *StartChatRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type ContinueChatRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
 	ContextType   ChatContextType        `protobuf:"varint,4,opt,name=context_type,json=contextType,proto3,enum=ai_poi.chat.v1.ChatContextType" json:"context_type,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1358,11 +1367,19 @@ func (x *ContinueChatRequest) GetContextType() ChatContextType {
 	return ChatContextType_CHAT_CONTEXT_TYPE_UNSPECIFIED
 }
 
+func (x *ContinueChatRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type FreeChatRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
 	SessionToken  string                 `protobuf:"bytes,2,opt,name=session_token,json=sessionToken,proto3" json:"session_token,omitempty"` // For session continuity without auth
 	ContextType   ChatContextType        `protobuf:"varint,3,opt,name=context_type,json=contextType,proto3,enum=ai_poi.chat.v1.ChatContextType" json:"context_type,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1418,12 +1435,20 @@ func (x *FreeChatRequest) GetContextType() ChatContextType {
 	return ChatContextType_CHAT_CONTEXT_TYPE_UNSPECIFIED
 }
 
+func (x *FreeChatRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetChatSessionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1486,10 +1511,18 @@ func (x *GetChatSessionsRequest) GetOffset() int32 {
 	return 0
 }
 
+func (x *GetChatSessionsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetChatSessionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sessions      []*ChatSession         `protobuf:"bytes,1,rep,name=sessions,proto3" json:"sessions,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1536,6 +1569,13 @@ func (x *GetChatSessionsResponse) GetTotalCount() int32 {
 		return x.TotalCount
 	}
 	return 0
+}
+
+func (x *GetChatSessionsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
 }
 
 type ChatSession struct {
@@ -1646,6 +1686,7 @@ type SaveItineraryRequest struct {
 	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	ItineraryData *ItineraryResponse     `protobuf:"bytes,5,opt,name=itinerary_data,json=itineraryData,proto3" json:"itinerary_data,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1715,11 +1756,19 @@ func (x *SaveItineraryRequest) GetItineraryData() *ItineraryResponse {
 	return nil
 }
 
+func (x *SaveItineraryRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SaveItineraryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ItineraryId   string                 `protobuf:"bytes,1,opt,name=itinerary_id,json=itineraryId,proto3" json:"itinerary_id,omitempty"`
 	Success       bool                   `protobuf:"varint,2,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1775,11 +1824,19 @@ func (x *SaveItineraryResponse) GetMessage() string {
 	return ""
 }
 
+func (x *SaveItineraryResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetSavedItinerariesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1835,10 +1892,18 @@ func (x *GetSavedItinerariesRequest) GetOffset() int32 {
 	return 0
 }
 
+func (x *GetSavedItinerariesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetSavedItinerariesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Itineraries   []*UserSavedItinerary  `protobuf:"bytes,1,rep,name=itineraries,proto3" json:"itineraries,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1885,6 +1950,13 @@ func (x *GetSavedItinerariesResponse) GetTotalCount() int32 {
 		return x.TotalCount
 	}
 	return 0
+}
+
+func (x *GetSavedItinerariesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
 }
 
 type UserSavedItinerary struct {
@@ -1991,6 +2063,7 @@ type RemoveItineraryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ItineraryId   string                 `protobuf:"bytes,2,opt,name=itinerary_id,json=itineraryId,proto3" json:"itinerary_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2039,10 +2112,18 @@ func (x *RemoveItineraryRequest) GetItineraryId() string {
 	return ""
 }
 
+func (x *RemoveItineraryRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type RemoveItineraryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2091,12 +2172,20 @@ func (x *RemoveItineraryResponse) GetMessage() string {
 	return ""
 }
 
+func (x *RemoveItineraryResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // POI details request
 type GetPOIDetailsRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	PoiId          string                 `protobuf:"bytes,1,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
 	IncludeReviews bool                   `protobuf:"varint,2,opt,name=include_reviews,json=includeReviews,proto3" json:"include_reviews,omitempty"`
 	IncludePhotos  bool                   `protobuf:"varint,3,opt,name=include_photos,json=includePhotos,proto3" json:"include_photos,omitempty"`
+	Request        *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2152,9 +2241,17 @@ func (x *GetPOIDetailsRequest) GetIncludePhotos() bool {
 	return false
 }
 
+func (x *GetPOIDetailsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetPOIDetailsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Poi           *POIDetailedInfo       `protobuf:"bytes,1,opt,name=poi,proto3" json:"poi,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2192,6 +2289,13 @@ func (*GetPOIDetailsResponse) Descriptor() ([]byte, []int) {
 func (x *GetPOIDetailsResponse) GetPoi() *POIDetailedInfo {
 	if x != nil {
 		return x.Poi
+	}
+	return nil
+}
+
+func (x *GetPOIDetailsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -2345,6 +2449,118 @@ func (x *POIDetailedInfo) GetMetadata() map[string]string {
 	return nil
 }
 
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_chat_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_chat_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_chat_proto protoreflect.FileDescriptor
 
 const file_chat_proto_rawDesc = "" +
@@ -2451,37 +2667,42 @@ const file_chat_proto_rawDesc = "" +
 	"\rCostBreakdown\x12\x1a\n" +
 	"\bcategory\x18\x01 \x01(\tR\bcategory\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x01R\x06amount\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xc0\x02\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xf7\x02\n" +
 	"\x10StartChatRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x02 \x01(\tR\tprofileId\x12'\n" +
 	"\x0finitial_message\x18\x03 \x01(\tR\x0einitialMessage\x12B\n" +
 	"\fcontext_type\x18\x04 \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\x12J\n" +
-	"\bmetadata\x18\x05 \x03(\v2..ai_poi.chat.v1.StartChatRequest.MetadataEntryR\bmetadata\x1a;\n" +
+	"\bmetadata\x18\x05 \x03(\v2..ai_poi.chat.v1.StartChatRequest.MetadataEntryR\bmetadata\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xab\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xe2\x01\n" +
 	"\x13ContinueChatRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12B\n" +
-	"\fcontext_type\x18\x04 \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\"\x94\x01\n" +
+	"\fcontext_type\x18\x04 \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\xcb\x01\n" +
 	"\x0fFreeChatRequest\x12\x18\n" +
 	"\amessage\x18\x01 \x01(\tR\amessage\x12#\n" +
 	"\rsession_token\x18\x02 \x01(\tR\fsessionToken\x12B\n" +
-	"\fcontext_type\x18\x03 \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\"~\n" +
+	"\fcontext_type\x18\x03 \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\xb5\x01\n" +
 	"\x16GetChatSessionsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x02 \x01(\tR\tprofileId\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x04 \x01(\x05R\x06offset\"s\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\xad\x01\n" +
 	"\x17GetChatSessionsResponse\x127\n" +
 	"\bsessions\x18\x01 \x03(\v2\x1b.ai_poi.chat.v1.ChatSessionR\bsessions\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xca\x02\n" +
+	"totalCount\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.chat.v1.BaseResponseR\bresponse\"\xca\x02\n" +
 	"\vChatSession\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
@@ -2493,26 +2714,30 @@ const file_chat_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12#\n" +
 	"\rmessage_count\x18\a \x01(\x05R\fmessageCount\x12B\n" +
-	"\fcontext_type\x18\b \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\"\xd0\x01\n" +
+	"\fcontext_type\x18\b \x01(\x0e2\x1f.ai_poi.chat.v1.ChatContextTypeR\vcontextType\"\x87\x02\n" +
 	"\x14SaveItineraryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x02 \x01(\tR\tsessionId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12H\n" +
-	"\x0eitinerary_data\x18\x05 \x01(\v2!.ai_poi.chat.v1.ItineraryResponseR\ritineraryData\"n\n" +
+	"\x0eitinerary_data\x18\x05 \x01(\v2!.ai_poi.chat.v1.ItineraryResponseR\ritineraryData\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\xa8\x01\n" +
 	"\x15SaveItineraryResponse\x12!\n" +
 	"\fitinerary_id\x18\x01 \x01(\tR\vitineraryId\x12\x18\n" +
 	"\asuccess\x18\x02 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"c\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.chat.v1.BaseResponseR\bresponse\"\x9a\x01\n" +
 	"\x1aGetSavedItinerariesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"\x84\x01\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\xbe\x01\n" +
 	"\x1bGetSavedItinerariesResponse\x12D\n" +
 	"\vitineraries\x18\x01 \x03(\v2\".ai_poi.chat.v1.UserSavedItineraryR\vitineraries\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xb1\x02\n" +
+	"totalCount\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.chat.v1.BaseResponseR\bresponse\"\xb1\x02\n" +
 	"\x12UserSavedItinerary\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
@@ -2524,19 +2749,23 @@ const file_chat_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"T\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x8b\x01\n" +
 	"\x16RemoveItineraryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
-	"\fitinerary_id\x18\x02 \x01(\tR\vitineraryId\"M\n" +
+	"\fitinerary_id\x18\x02 \x01(\tR\vitineraryId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\x87\x01\n" +
 	"\x17RemoveItineraryResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"}\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.chat.v1.BaseResponseR\bresponse\"\xb4\x01\n" +
 	"\x14GetPOIDetailsRequest\x12\x15\n" +
 	"\x06poi_id\x18\x01 \x01(\tR\x05poiId\x12'\n" +
 	"\x0finclude_reviews\x18\x02 \x01(\bR\x0eincludeReviews\x12%\n" +
-	"\x0einclude_photos\x18\x03 \x01(\bR\rincludePhotos\"J\n" +
+	"\x0einclude_photos\x18\x03 \x01(\bR\rincludePhotos\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.chat.v1.BaseRequestR\arequest\"\x84\x01\n" +
 	"\x15GetPOIDetailsResponse\x121\n" +
-	"\x03poi\x18\x01 \x01(\v2\x1f.ai_poi.chat.v1.POIDetailedInfoR\x03poi\"\xf3\x03\n" +
+	"\x03poi\x18\x01 \x01(\v2\x1f.ai_poi.chat.v1.POIDetailedInfoR\x03poi\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.chat.v1.BaseResponseR\bresponse\"\xf3\x03\n" +
 	"\x0fPOIDetailedInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
@@ -2556,7 +2785,18 @@ const file_chat_proto_rawDesc = "" +
 	"\bmetadata\x18\x0e \x03(\v2-.ai_poi.chat.v1.POIDetailedInfo.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*\x81\x02\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status*\x81\x02\n" +
 	"\x0fChatContextType\x12!\n" +
 	"\x1dCHAT_CONTEXT_TYPE_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19CHAT_CONTEXT_TYPE_GENERAL\x10\x01\x12&\n" +
@@ -2587,7 +2827,7 @@ func file_chat_proto_rawDescGZIP() []byte {
 }
 
 var file_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
 var file_chat_proto_goTypes = []any{
 	(ChatContextType)(0),                // 0: ai_poi.chat.v1.ChatContextType
 	(*ChatEvent)(nil),                   // 1: ai_poi.chat.v1.ChatEvent
@@ -2620,23 +2860,25 @@ var file_chat_proto_goTypes = []any{
 	(*GetPOIDetailsRequest)(nil),        // 28: ai_poi.chat.v1.GetPOIDetailsRequest
 	(*GetPOIDetailsResponse)(nil),       // 29: ai_poi.chat.v1.GetPOIDetailsResponse
 	(*POIDetailedInfo)(nil),             // 30: ai_poi.chat.v1.POIDetailedInfo
-	nil,                                 // 31: ai_poi.chat.v1.ErrorEvent.DetailsEntry
-	nil,                                 // 32: ai_poi.chat.v1.StartChatRequest.MetadataEntry
-	nil,                                 // 33: ai_poi.chat.v1.POIDetailedInfo.MetadataEntry
-	(*timestamppb.Timestamp)(nil),       // 34: google.protobuf.Timestamp
+	(*BaseRequest)(nil),                 // 31: ai_poi.chat.v1.BaseRequest
+	(*BaseResponse)(nil),                // 32: ai_poi.chat.v1.BaseResponse
+	nil,                                 // 33: ai_poi.chat.v1.ErrorEvent.DetailsEntry
+	nil,                                 // 34: ai_poi.chat.v1.StartChatRequest.MetadataEntry
+	nil,                                 // 35: ai_poi.chat.v1.POIDetailedInfo.MetadataEntry
+	(*timestamppb.Timestamp)(nil),       // 36: google.protobuf.Timestamp
 }
 var file_chat_proto_depIdxs = []int32{
-	34, // 0: ai_poi.chat.v1.ChatEvent.timestamp:type_name -> google.protobuf.Timestamp
+	36, // 0: ai_poi.chat.v1.ChatEvent.timestamp:type_name -> google.protobuf.Timestamp
 	2,  // 1: ai_poi.chat.v1.ChatEvent.message:type_name -> ai_poi.chat.v1.ChatMessage
 	3,  // 2: ai_poi.chat.v1.ChatEvent.thinking:type_name -> ai_poi.chat.v1.ThinkingEvent
 	4,  // 3: ai_poi.chat.v1.ChatEvent.error:type_name -> ai_poi.chat.v1.ErrorEvent
 	5,  // 4: ai_poi.chat.v1.ChatEvent.complete:type_name -> ai_poi.chat.v1.CompleteEvent
 	6,  // 5: ai_poi.chat.v1.ChatEvent.city_response:type_name -> ai_poi.chat.v1.CityResponse
 	7,  // 6: ai_poi.chat.v1.ChatEvent.itinerary_response:type_name -> ai_poi.chat.v1.ItineraryResponse
-	34, // 7: ai_poi.chat.v1.ChatMessage.created_at:type_name -> google.protobuf.Timestamp
+	36, // 7: ai_poi.chat.v1.ChatMessage.created_at:type_name -> google.protobuf.Timestamp
 	0,  // 8: ai_poi.chat.v1.ChatMessage.context_type:type_name -> ai_poi.chat.v1.ChatContextType
-	31, // 9: ai_poi.chat.v1.ErrorEvent.details:type_name -> ai_poi.chat.v1.ErrorEvent.DetailsEntry
-	34, // 10: ai_poi.chat.v1.CompleteEvent.completed_at:type_name -> google.protobuf.Timestamp
+	33, // 9: ai_poi.chat.v1.ErrorEvent.details:type_name -> ai_poi.chat.v1.ErrorEvent.DetailsEntry
+	36, // 10: ai_poi.chat.v1.CompleteEvent.completed_at:type_name -> google.protobuf.Timestamp
 	10, // 11: ai_poi.chat.v1.CityResponse.pois:type_name -> ai_poi.chat.v1.POIReference
 	11, // 12: ai_poi.chat.v1.CityResponse.weather:type_name -> ai_poi.chat.v1.WeatherInfo
 	12, // 13: ai_poi.chat.v1.CityResponse.cultural_info:type_name -> ai_poi.chat.v1.CulturalInfo
@@ -2647,40 +2889,53 @@ var file_chat_proto_depIdxs = []int32{
 	10, // 18: ai_poi.chat.v1.ItineraryActivity.poi_reference:type_name -> ai_poi.chat.v1.POIReference
 	14, // 19: ai_poi.chat.v1.EstimatedCosts.breakdown:type_name -> ai_poi.chat.v1.CostBreakdown
 	0,  // 20: ai_poi.chat.v1.StartChatRequest.context_type:type_name -> ai_poi.chat.v1.ChatContextType
-	32, // 21: ai_poi.chat.v1.StartChatRequest.metadata:type_name -> ai_poi.chat.v1.StartChatRequest.MetadataEntry
-	0,  // 22: ai_poi.chat.v1.ContinueChatRequest.context_type:type_name -> ai_poi.chat.v1.ChatContextType
-	0,  // 23: ai_poi.chat.v1.FreeChatRequest.context_type:type_name -> ai_poi.chat.v1.ChatContextType
-	20, // 24: ai_poi.chat.v1.GetChatSessionsResponse.sessions:type_name -> ai_poi.chat.v1.ChatSession
-	34, // 25: ai_poi.chat.v1.ChatSession.created_at:type_name -> google.protobuf.Timestamp
-	34, // 26: ai_poi.chat.v1.ChatSession.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 27: ai_poi.chat.v1.ChatSession.context_type:type_name -> ai_poi.chat.v1.ChatContextType
-	7,  // 28: ai_poi.chat.v1.SaveItineraryRequest.itinerary_data:type_name -> ai_poi.chat.v1.ItineraryResponse
-	25, // 29: ai_poi.chat.v1.GetSavedItinerariesResponse.itineraries:type_name -> ai_poi.chat.v1.UserSavedItinerary
-	34, // 30: ai_poi.chat.v1.UserSavedItinerary.created_at:type_name -> google.protobuf.Timestamp
-	34, // 31: ai_poi.chat.v1.UserSavedItinerary.updated_at:type_name -> google.protobuf.Timestamp
-	30, // 32: ai_poi.chat.v1.GetPOIDetailsResponse.poi:type_name -> ai_poi.chat.v1.POIDetailedInfo
-	33, // 33: ai_poi.chat.v1.POIDetailedInfo.metadata:type_name -> ai_poi.chat.v1.POIDetailedInfo.MetadataEntry
-	15, // 34: ai_poi.chat.v1.ChatService.StartChatStream:input_type -> ai_poi.chat.v1.StartChatRequest
-	16, // 35: ai_poi.chat.v1.ChatService.ContinueChatStream:input_type -> ai_poi.chat.v1.ContinueChatRequest
-	17, // 36: ai_poi.chat.v1.ChatService.FreeChatStream:input_type -> ai_poi.chat.v1.FreeChatRequest
-	18, // 37: ai_poi.chat.v1.ChatService.GetChatSessions:input_type -> ai_poi.chat.v1.GetChatSessionsRequest
-	21, // 38: ai_poi.chat.v1.ChatService.SaveItinerary:input_type -> ai_poi.chat.v1.SaveItineraryRequest
-	23, // 39: ai_poi.chat.v1.ChatService.GetSavedItineraries:input_type -> ai_poi.chat.v1.GetSavedItinerariesRequest
-	26, // 40: ai_poi.chat.v1.ChatService.RemoveItinerary:input_type -> ai_poi.chat.v1.RemoveItineraryRequest
-	28, // 41: ai_poi.chat.v1.ChatService.GetPOIDetails:input_type -> ai_poi.chat.v1.GetPOIDetailsRequest
-	1,  // 42: ai_poi.chat.v1.ChatService.StartChatStream:output_type -> ai_poi.chat.v1.ChatEvent
-	1,  // 43: ai_poi.chat.v1.ChatService.ContinueChatStream:output_type -> ai_poi.chat.v1.ChatEvent
-	1,  // 44: ai_poi.chat.v1.ChatService.FreeChatStream:output_type -> ai_poi.chat.v1.ChatEvent
-	19, // 45: ai_poi.chat.v1.ChatService.GetChatSessions:output_type -> ai_poi.chat.v1.GetChatSessionsResponse
-	22, // 46: ai_poi.chat.v1.ChatService.SaveItinerary:output_type -> ai_poi.chat.v1.SaveItineraryResponse
-	24, // 47: ai_poi.chat.v1.ChatService.GetSavedItineraries:output_type -> ai_poi.chat.v1.GetSavedItinerariesResponse
-	27, // 48: ai_poi.chat.v1.ChatService.RemoveItinerary:output_type -> ai_poi.chat.v1.RemoveItineraryResponse
-	29, // 49: ai_poi.chat.v1.ChatService.GetPOIDetails:output_type -> ai_poi.chat.v1.GetPOIDetailsResponse
-	42, // [42:50] is the sub-list for method output_type
-	34, // [34:42] is the sub-list for method input_type
-	34, // [34:34] is the sub-list for extension type_name
-	34, // [34:34] is the sub-list for extension extendee
-	0,  // [0:34] is the sub-list for field type_name
+	34, // 21: ai_poi.chat.v1.StartChatRequest.metadata:type_name -> ai_poi.chat.v1.StartChatRequest.MetadataEntry
+	31, // 22: ai_poi.chat.v1.StartChatRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	0,  // 23: ai_poi.chat.v1.ContinueChatRequest.context_type:type_name -> ai_poi.chat.v1.ChatContextType
+	31, // 24: ai_poi.chat.v1.ContinueChatRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	0,  // 25: ai_poi.chat.v1.FreeChatRequest.context_type:type_name -> ai_poi.chat.v1.ChatContextType
+	31, // 26: ai_poi.chat.v1.FreeChatRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	31, // 27: ai_poi.chat.v1.GetChatSessionsRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	20, // 28: ai_poi.chat.v1.GetChatSessionsResponse.sessions:type_name -> ai_poi.chat.v1.ChatSession
+	32, // 29: ai_poi.chat.v1.GetChatSessionsResponse.response:type_name -> ai_poi.chat.v1.BaseResponse
+	36, // 30: ai_poi.chat.v1.ChatSession.created_at:type_name -> google.protobuf.Timestamp
+	36, // 31: ai_poi.chat.v1.ChatSession.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 32: ai_poi.chat.v1.ChatSession.context_type:type_name -> ai_poi.chat.v1.ChatContextType
+	7,  // 33: ai_poi.chat.v1.SaveItineraryRequest.itinerary_data:type_name -> ai_poi.chat.v1.ItineraryResponse
+	31, // 34: ai_poi.chat.v1.SaveItineraryRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	32, // 35: ai_poi.chat.v1.SaveItineraryResponse.response:type_name -> ai_poi.chat.v1.BaseResponse
+	31, // 36: ai_poi.chat.v1.GetSavedItinerariesRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	25, // 37: ai_poi.chat.v1.GetSavedItinerariesResponse.itineraries:type_name -> ai_poi.chat.v1.UserSavedItinerary
+	32, // 38: ai_poi.chat.v1.GetSavedItinerariesResponse.response:type_name -> ai_poi.chat.v1.BaseResponse
+	36, // 39: ai_poi.chat.v1.UserSavedItinerary.created_at:type_name -> google.protobuf.Timestamp
+	36, // 40: ai_poi.chat.v1.UserSavedItinerary.updated_at:type_name -> google.protobuf.Timestamp
+	31, // 41: ai_poi.chat.v1.RemoveItineraryRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	32, // 42: ai_poi.chat.v1.RemoveItineraryResponse.response:type_name -> ai_poi.chat.v1.BaseResponse
+	31, // 43: ai_poi.chat.v1.GetPOIDetailsRequest.request:type_name -> ai_poi.chat.v1.BaseRequest
+	30, // 44: ai_poi.chat.v1.GetPOIDetailsResponse.poi:type_name -> ai_poi.chat.v1.POIDetailedInfo
+	32, // 45: ai_poi.chat.v1.GetPOIDetailsResponse.response:type_name -> ai_poi.chat.v1.BaseResponse
+	35, // 46: ai_poi.chat.v1.POIDetailedInfo.metadata:type_name -> ai_poi.chat.v1.POIDetailedInfo.MetadataEntry
+	15, // 47: ai_poi.chat.v1.ChatService.StartChatStream:input_type -> ai_poi.chat.v1.StartChatRequest
+	16, // 48: ai_poi.chat.v1.ChatService.ContinueChatStream:input_type -> ai_poi.chat.v1.ContinueChatRequest
+	17, // 49: ai_poi.chat.v1.ChatService.FreeChatStream:input_type -> ai_poi.chat.v1.FreeChatRequest
+	18, // 50: ai_poi.chat.v1.ChatService.GetChatSessions:input_type -> ai_poi.chat.v1.GetChatSessionsRequest
+	21, // 51: ai_poi.chat.v1.ChatService.SaveItinerary:input_type -> ai_poi.chat.v1.SaveItineraryRequest
+	23, // 52: ai_poi.chat.v1.ChatService.GetSavedItineraries:input_type -> ai_poi.chat.v1.GetSavedItinerariesRequest
+	26, // 53: ai_poi.chat.v1.ChatService.RemoveItinerary:input_type -> ai_poi.chat.v1.RemoveItineraryRequest
+	28, // 54: ai_poi.chat.v1.ChatService.GetPOIDetails:input_type -> ai_poi.chat.v1.GetPOIDetailsRequest
+	1,  // 55: ai_poi.chat.v1.ChatService.StartChatStream:output_type -> ai_poi.chat.v1.ChatEvent
+	1,  // 56: ai_poi.chat.v1.ChatService.ContinueChatStream:output_type -> ai_poi.chat.v1.ChatEvent
+	1,  // 57: ai_poi.chat.v1.ChatService.FreeChatStream:output_type -> ai_poi.chat.v1.ChatEvent
+	19, // 58: ai_poi.chat.v1.ChatService.GetChatSessions:output_type -> ai_poi.chat.v1.GetChatSessionsResponse
+	22, // 59: ai_poi.chat.v1.ChatService.SaveItinerary:output_type -> ai_poi.chat.v1.SaveItineraryResponse
+	24, // 60: ai_poi.chat.v1.ChatService.GetSavedItineraries:output_type -> ai_poi.chat.v1.GetSavedItinerariesResponse
+	27, // 61: ai_poi.chat.v1.ChatService.RemoveItinerary:output_type -> ai_poi.chat.v1.RemoveItineraryResponse
+	29, // 62: ai_poi.chat.v1.ChatService.GetPOIDetails:output_type -> ai_poi.chat.v1.GetPOIDetailsResponse
+	55, // [55:63] is the sub-list for method output_type
+	47, // [47:55] is the sub-list for method input_type
+	47, // [47:47] is the sub-list for extension type_name
+	47, // [47:47] is the sub-list for extension extendee
+	0,  // [0:47] is the sub-list for field type_name
 }
 
 func init() { file_chat_proto_init() }
@@ -2702,7 +2957,7 @@ func file_chat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_chat_proto_rawDesc), len(file_chat_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   33,
+			NumMessages:   35,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

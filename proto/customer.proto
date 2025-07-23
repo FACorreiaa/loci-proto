@@ -21,13 +21,7 @@ message GetCustomerReq {
   // Be explicit with what you want to get, don't just"ID"
   string public_id    = 1;
 
-  // Include the caller of the request to aid with quickly filtering through
-  // structured logs.
-  string downstream   = 998;
-
-  // It's good practice to include a request ID all requests to help with
-  // tracing and debugging.
-  string request_id   = 999;
+  BaseRequest request = 100;
 }
 
 message GetCustomerRes {
@@ -37,20 +31,14 @@ message GetCustomerRes {
   // The customer object
   XCustomer customer   = 3;
 
-  // Return the service that handled the request. This is useful when handling
-  // switchovers from legacy services and you're still throttling
-  string upstream     = 998;
-
-  // Return the request ID so we know the response is idempotent
-  string request_id   = 999;
+  BaseResponse response = 100;
 }
 
 message CreateCustomerReq {
   // The customer object
   XCustomer customer = 1;
 
-  string downstream = 998;
-  string request_id = 999;
+  BaseRequest request = 100;
 }
 
 message CreateCustomerRes {
@@ -60,8 +48,7 @@ message CreateCustomerRes {
   // The customer object
   XCustomer customer   = 3;
 
-  string upstream     = 998;
-  string request_id   = 999;
+  BaseResponse response = 100;
 }
 
 message UpdateCustomerReq {
@@ -72,8 +59,7 @@ message UpdateCustomerReq {
   // returned (so we can't just dump the entire object into the DB).
   repeated XDiff updates  = 2;
 
-  string downstream       = 998;
-  string request_id       = 999;
+  BaseRequest request = 100;
 }
 
 message UpdateCustomerRes {
@@ -83,22 +69,21 @@ message UpdateCustomerRes {
   // The customer object
   XCustomer customer    = 3;
 
-  string    upstream    = 998;
-  string    request_id  = 999;
+  BaseResponse response = 100;
 }
 
 message DeleteCustomerReq {
   string  customer_id   = 1;
   bool    hard_delete   = 2; // soft delete by default
 
-  string  downstream    = 998;
-  string  request_id    = 999;
+  BaseRequest request = 100;
 }
 
 // NilRes effectively mirrors google.protobuf.Empty, we use our own type though
 // as the google.protobuf.Empty type is not available in all languages that we
 // support.
 message NilRes {
+  BaseResponse response = 100;
 }
 
 // -- Subtype messages
@@ -133,4 +118,15 @@ message XDiff {
   string field      = 1;
   string old_value  = 2;
   string new_value  = 3;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

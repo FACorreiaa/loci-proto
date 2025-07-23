@@ -297,26 +297,31 @@ message SystemAlert {
 message GetMainPageStatisticsRequest {
   bool include_trends = 1;
   string time_range = 2; // "24h", "7d", "30d"
+  BaseRequest request = 100;
 }
 
 message GetMainPageStatisticsResponse {
   MainPageStatistics statistics = 1;
+  BaseResponse response = 100;
 }
 
 message StreamMainPageStatisticsRequest {
   int32 update_interval_seconds = 1; // Default: 30 seconds
   repeated string metric_filters = 2; // Which metrics to include
+  BaseRequest request = 100;
 }
 
 message GetDetailedPOIStatisticsRequest {
   string user_id = 1;
   string time_range = 2; // "7d", "30d", "90d", "1y"
   bool include_predictions = 3;
+  BaseRequest request = 100;
 }
 
 message GetDetailedPOIStatisticsResponse {
   DetailedPOIStatistics statistics = 1;
   repeated Prediction predictions = 2;
+  BaseResponse response = 100;
 }
 
 message Prediction {
@@ -328,10 +333,12 @@ message Prediction {
 
 message GetLandingPageStatisticsRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message GetLandingPageStatisticsResponse {
   LandingPageUserStats statistics = 1;
+  BaseResponse response = 100;
 }
 
 message GetUserActivityAnalyticsRequest {
@@ -339,11 +346,13 @@ message GetUserActivityAnalyticsRequest {
   google.protobuf.Timestamp start_date = 2;
   google.protobuf.Timestamp end_date = 3;
   string granularity = 4; // "hour", "day", "week", "month"
+  BaseRequest request = 100;
 }
 
 message GetUserActivityAnalyticsResponse {
   repeated ActivityDataPoint activity_data = 1;
   ActivitySummary summary = 2;
+  BaseResponse response = 100;
 }
 
 message ActivityDataPoint {
@@ -365,8 +374,21 @@ message ActivitySummary {
 message GetSystemAnalyticsRequest {
   string time_range = 1; // "24h", "7d", "30d"
   repeated string metric_categories = 2; // "users", "performance", "errors", etc.
+  BaseRequest request = 100;
 }
 
 message GetSystemAnalyticsResponse {
   SystemAnalytics analytics = 1;
+  BaseResponse response = 100;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

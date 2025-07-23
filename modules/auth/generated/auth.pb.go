@@ -114,6 +114,7 @@ type RegisterRequest struct {
 	Email           string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
 	Password        string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 	ConfirmPassword string                 `protobuf:"bytes,4,opt,name=confirm_password,json=confirmPassword,proto3" json:"confirm_password,omitempty"`
+	Request         *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -176,11 +177,19 @@ func (x *RegisterRequest) GetConfirmPassword() string {
 	return ""
 }
 
+func (x *RegisterRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	User          *UserAuth              `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -236,11 +245,19 @@ func (x *RegisterResponse) GetUser() *UserAuth {
 	return nil
 }
 
+func (x *RegisterResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Login request and response
 type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -289,6 +306,13 @@ func (x *LoginRequest) GetPassword() string {
 	return ""
 }
 
+func (x *LoginRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
@@ -297,6 +321,7 @@ type LoginResponse struct {
 	RefreshToken  string                 `protobuf:"bytes,4,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	ExpiresIn     int64                  `protobuf:"varint,5,opt,name=expires_in,json=expiresIn,proto3" json:"expires_in,omitempty"`
 	User          *UserAuth              `protobuf:"bytes,6,opt,name=user,proto3" json:"user,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -373,10 +398,18 @@ func (x *LoginResponse) GetUser() *UserAuth {
 	return nil
 }
 
+func (x *LoginResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Token refresh
 type RefreshTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -418,11 +451,19 @@ func (x *RefreshTokenRequest) GetRefreshToken() string {
 	return ""
 }
 
+func (x *RefreshTokenRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type TokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	ExpiresIn     int64                  `protobuf:"varint,3,opt,name=expires_in,json=expiresIn,proto3" json:"expires_in,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -478,10 +519,18 @@ func (x *TokenResponse) GetExpiresIn() int64 {
 	return 0
 }
 
+func (x *TokenResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Logout request
 type LogoutRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -523,10 +572,18 @@ func (x *LogoutRequest) GetUserId() string {
 	return ""
 }
 
+func (x *LogoutRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type LogoutResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -575,10 +632,18 @@ func (x *LogoutResponse) GetMessage() string {
 	return ""
 }
 
+func (x *LogoutResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Session validation
 type ValidateSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken   string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -620,6 +685,13 @@ func (x *ValidateSessionRequest) GetAccessToken() string {
 	return ""
 }
 
+func (x *ValidateSessionRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type ValidateSessionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
@@ -627,6 +699,7 @@ type ValidateSessionResponse struct {
 	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	Role          string                 `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
 	ExpiresAt     int64                  `protobuf:"varint,5,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -696,12 +769,20 @@ func (x *ValidateSessionResponse) GetExpiresAt() int64 {
 	return 0
 }
 
+func (x *ValidateSessionResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Password update
 type UpdatePasswordRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	CurrentPassword string                 `protobuf:"bytes,2,opt,name=current_password,json=currentPassword,proto3" json:"current_password,omitempty"`
 	NewPassword     string                 `protobuf:"bytes,3,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
+	Request         *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -757,10 +838,18 @@ func (x *UpdatePasswordRequest) GetNewPassword() string {
 	return ""
 }
 
+func (x *UpdatePasswordRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdatePasswordResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -809,10 +898,18 @@ func (x *UpdatePasswordResponse) GetMessage() string {
 	return ""
 }
 
+func (x *UpdatePasswordResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Google OAuth
 type GoogleLoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RedirectUri   string                 `protobuf:"bytes,1,opt,name=redirect_uri,json=redirectUri,proto3" json:"redirect_uri,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -854,9 +951,17 @@ func (x *GoogleLoginRequest) GetRedirectUri() string {
 	return ""
 }
 
+func (x *GoogleLoginRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GoogleLoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AuthUrl       string                 `protobuf:"bytes,1,opt,name=auth_url,json=authUrl,proto3" json:"auth_url,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -898,10 +1003,18 @@ func (x *GoogleLoginResponse) GetAuthUrl() string {
 	return ""
 }
 
+func (x *GoogleLoginResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GoogleCallbackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 	State         string                 `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -948,6 +1061,13 @@ func (x *GoogleCallbackRequest) GetState() string {
 		return x.State
 	}
 	return ""
+}
+
+func (x *GoogleCallbackRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
 }
 
 // JWT Claims structure for reference
@@ -1035,6 +1155,118 @@ func (x *Claims) GetIss() string {
 	return ""
 }
 
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_auth_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_auth_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_auth_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_auth_proto protoreflect.FileDescriptor
 
 const file_auth_proto_rawDesc = "" +
@@ -1049,19 +1281,22 @@ const file_auth_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x8a\x01\n" +
+	"updated_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xc1\x01\n" +
 	"\x0fRegisterRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\x12)\n" +
-	"\x10confirm_password\x18\x04 \x01(\tR\x0fconfirmPassword\"t\n" +
+	"\x10confirm_password\x18\x04 \x01(\tR\x0fconfirmPassword\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"\xae\x01\n" +
 	"\x10RegisterResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12,\n" +
-	"\x04user\x18\x03 \x01(\v2\x18.ai_poi.auth.v1.UserAuthR\x04user\"@\n" +
+	"\x04user\x18\x03 \x01(\v2\x18.ai_poi.auth.v1.UserAuthR\x04user\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"w\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xd8\x01\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"\x92\x02\n" +
 	"\rLoginResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12!\n" +
@@ -1069,49 +1304,72 @@ const file_auth_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken\x12\x1d\n" +
 	"\n" +
 	"expires_in\x18\x05 \x01(\x03R\texpiresIn\x12,\n" +
-	"\x04user\x18\x06 \x01(\v2\x18.ai_poi.auth.v1.UserAuthR\x04user\":\n" +
+	"\x04user\x18\x06 \x01(\v2\x18.ai_poi.auth.v1.UserAuthR\x04user\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"q\n" +
 	"\x13RefreshTokenRequest\x12#\n" +
-	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"v\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"\xb0\x01\n" +
 	"\rTokenResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12\x1d\n" +
 	"\n" +
-	"expires_in\x18\x03 \x01(\x03R\texpiresIn\"(\n" +
+	"expires_in\x18\x03 \x01(\x03R\texpiresIn\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"_\n" +
 	"\rLogoutRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"D\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"~\n" +
 	"\x0eLogoutResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\";\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"r\n" +
 	"\x16ValidateSessionRequest\x12!\n" +
-	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\"\x91\x01\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"\xcb\x01\n" +
 	"\x17ValidateSessionResponse\x12\x14\n" +
 	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x12\n" +
 	"\x04role\x18\x04 \x01(\tR\x04role\x12\x1d\n" +
 	"\n" +
-	"expires_at\x18\x05 \x01(\x03R\texpiresAt\"~\n" +
+	"expires_at\x18\x05 \x01(\x03R\texpiresAt\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"\xb5\x01\n" +
 	"\x15UpdatePasswordRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12)\n" +
 	"\x10current_password\x18\x02 \x01(\tR\x0fcurrentPassword\x12!\n" +
-	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"L\n" +
+	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"\x86\x01\n" +
 	"\x16UpdatePasswordResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"7\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"n\n" +
 	"\x12GoogleLoginRequest\x12!\n" +
-	"\fredirect_uri\x18\x01 \x01(\tR\vredirectUri\"0\n" +
+	"\fredirect_uri\x18\x01 \x01(\tR\vredirectUri\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"j\n" +
 	"\x13GoogleLoginResponse\x12\x19\n" +
-	"\bauth_url\x18\x01 \x01(\tR\aauthUrl\"A\n" +
+	"\bauth_url\x18\x01 \x01(\tR\aauthUrl\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.auth.v1.BaseResponseR\bresponse\"x\n" +
 	"\x15GoogleCallbackRequest\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
-	"\x05state\x18\x02 \x01(\tR\x05state\"\x81\x01\n" +
+	"\x05state\x18\x02 \x01(\tR\x05state\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.auth.v1.BaseRequestR\arequest\"\x81\x01\n" +
 	"\x06Claims\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x12\n" +
 	"\x04role\x18\x03 \x01(\tR\x04role\x12\x10\n" +
 	"\x03exp\x18\x04 \x01(\x03R\x03exp\x12\x10\n" +
 	"\x03iat\x18\x05 \x01(\x03R\x03iat\x12\x10\n" +
-	"\x03iss\x18\x06 \x01(\tR\x03iss2\xb4\x05\n" +
+	"\x03iss\x18\x06 \x01(\tR\x03iss\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\xb4\x05\n" +
 	"\vAuthService\x12M\n" +
 	"\bRegister\x12\x1f.ai_poi.auth.v1.RegisterRequest\x1a .ai_poi.auth.v1.RegisterResponse\x12D\n" +
 	"\x05Login\x12\x1c.ai_poi.auth.v1.LoginRequest\x1a\x1d.ai_poi.auth.v1.LoginResponse\x12R\n" +
@@ -1134,7 +1392,7 @@ func file_auth_proto_rawDescGZIP() []byte {
 	return file_auth_proto_rawDescData
 }
 
-var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_auth_proto_goTypes = []any{
 	(*UserAuth)(nil),                // 0: ai_poi.auth.v1.UserAuth
 	(*RegisterRequest)(nil),         // 1: ai_poi.auth.v1.RegisterRequest
@@ -1153,34 +1411,51 @@ var file_auth_proto_goTypes = []any{
 	(*GoogleLoginResponse)(nil),     // 14: ai_poi.auth.v1.GoogleLoginResponse
 	(*GoogleCallbackRequest)(nil),   // 15: ai_poi.auth.v1.GoogleCallbackRequest
 	(*Claims)(nil),                  // 16: ai_poi.auth.v1.Claims
-	(*timestamppb.Timestamp)(nil),   // 17: google.protobuf.Timestamp
+	(*BaseRequest)(nil),             // 17: ai_poi.auth.v1.BaseRequest
+	(*BaseResponse)(nil),            // 18: ai_poi.auth.v1.BaseResponse
+	(*timestamppb.Timestamp)(nil),   // 19: google.protobuf.Timestamp
 }
 var file_auth_proto_depIdxs = []int32{
-	17, // 0: ai_poi.auth.v1.UserAuth.created_at:type_name -> google.protobuf.Timestamp
-	17, // 1: ai_poi.auth.v1.UserAuth.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 2: ai_poi.auth.v1.RegisterResponse.user:type_name -> ai_poi.auth.v1.UserAuth
-	0,  // 3: ai_poi.auth.v1.LoginResponse.user:type_name -> ai_poi.auth.v1.UserAuth
-	1,  // 4: ai_poi.auth.v1.AuthService.Register:input_type -> ai_poi.auth.v1.RegisterRequest
-	3,  // 5: ai_poi.auth.v1.AuthService.Login:input_type -> ai_poi.auth.v1.LoginRequest
-	5,  // 6: ai_poi.auth.v1.AuthService.RefreshToken:input_type -> ai_poi.auth.v1.RefreshTokenRequest
-	7,  // 7: ai_poi.auth.v1.AuthService.Logout:input_type -> ai_poi.auth.v1.LogoutRequest
-	9,  // 8: ai_poi.auth.v1.AuthService.ValidateSession:input_type -> ai_poi.auth.v1.ValidateSessionRequest
-	11, // 9: ai_poi.auth.v1.AuthService.UpdatePassword:input_type -> ai_poi.auth.v1.UpdatePasswordRequest
-	13, // 10: ai_poi.auth.v1.AuthService.GoogleLogin:input_type -> ai_poi.auth.v1.GoogleLoginRequest
-	15, // 11: ai_poi.auth.v1.AuthService.GoogleCallback:input_type -> ai_poi.auth.v1.GoogleCallbackRequest
-	2,  // 12: ai_poi.auth.v1.AuthService.Register:output_type -> ai_poi.auth.v1.RegisterResponse
-	4,  // 13: ai_poi.auth.v1.AuthService.Login:output_type -> ai_poi.auth.v1.LoginResponse
-	6,  // 14: ai_poi.auth.v1.AuthService.RefreshToken:output_type -> ai_poi.auth.v1.TokenResponse
-	8,  // 15: ai_poi.auth.v1.AuthService.Logout:output_type -> ai_poi.auth.v1.LogoutResponse
-	10, // 16: ai_poi.auth.v1.AuthService.ValidateSession:output_type -> ai_poi.auth.v1.ValidateSessionResponse
-	12, // 17: ai_poi.auth.v1.AuthService.UpdatePassword:output_type -> ai_poi.auth.v1.UpdatePasswordResponse
-	14, // 18: ai_poi.auth.v1.AuthService.GoogleLogin:output_type -> ai_poi.auth.v1.GoogleLoginResponse
-	4,  // 19: ai_poi.auth.v1.AuthService.GoogleCallback:output_type -> ai_poi.auth.v1.LoginResponse
-	12, // [12:20] is the sub-list for method output_type
-	4,  // [4:12] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	19, // 0: ai_poi.auth.v1.UserAuth.created_at:type_name -> google.protobuf.Timestamp
+	19, // 1: ai_poi.auth.v1.UserAuth.updated_at:type_name -> google.protobuf.Timestamp
+	17, // 2: ai_poi.auth.v1.RegisterRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	0,  // 3: ai_poi.auth.v1.RegisterResponse.user:type_name -> ai_poi.auth.v1.UserAuth
+	18, // 4: ai_poi.auth.v1.RegisterResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 5: ai_poi.auth.v1.LoginRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	0,  // 6: ai_poi.auth.v1.LoginResponse.user:type_name -> ai_poi.auth.v1.UserAuth
+	18, // 7: ai_poi.auth.v1.LoginResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 8: ai_poi.auth.v1.RefreshTokenRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	18, // 9: ai_poi.auth.v1.TokenResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 10: ai_poi.auth.v1.LogoutRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	18, // 11: ai_poi.auth.v1.LogoutResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 12: ai_poi.auth.v1.ValidateSessionRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	18, // 13: ai_poi.auth.v1.ValidateSessionResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 14: ai_poi.auth.v1.UpdatePasswordRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	18, // 15: ai_poi.auth.v1.UpdatePasswordResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 16: ai_poi.auth.v1.GoogleLoginRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	18, // 17: ai_poi.auth.v1.GoogleLoginResponse.response:type_name -> ai_poi.auth.v1.BaseResponse
+	17, // 18: ai_poi.auth.v1.GoogleCallbackRequest.request:type_name -> ai_poi.auth.v1.BaseRequest
+	1,  // 19: ai_poi.auth.v1.AuthService.Register:input_type -> ai_poi.auth.v1.RegisterRequest
+	3,  // 20: ai_poi.auth.v1.AuthService.Login:input_type -> ai_poi.auth.v1.LoginRequest
+	5,  // 21: ai_poi.auth.v1.AuthService.RefreshToken:input_type -> ai_poi.auth.v1.RefreshTokenRequest
+	7,  // 22: ai_poi.auth.v1.AuthService.Logout:input_type -> ai_poi.auth.v1.LogoutRequest
+	9,  // 23: ai_poi.auth.v1.AuthService.ValidateSession:input_type -> ai_poi.auth.v1.ValidateSessionRequest
+	11, // 24: ai_poi.auth.v1.AuthService.UpdatePassword:input_type -> ai_poi.auth.v1.UpdatePasswordRequest
+	13, // 25: ai_poi.auth.v1.AuthService.GoogleLogin:input_type -> ai_poi.auth.v1.GoogleLoginRequest
+	15, // 26: ai_poi.auth.v1.AuthService.GoogleCallback:input_type -> ai_poi.auth.v1.GoogleCallbackRequest
+	2,  // 27: ai_poi.auth.v1.AuthService.Register:output_type -> ai_poi.auth.v1.RegisterResponse
+	4,  // 28: ai_poi.auth.v1.AuthService.Login:output_type -> ai_poi.auth.v1.LoginResponse
+	6,  // 29: ai_poi.auth.v1.AuthService.RefreshToken:output_type -> ai_poi.auth.v1.TokenResponse
+	8,  // 30: ai_poi.auth.v1.AuthService.Logout:output_type -> ai_poi.auth.v1.LogoutResponse
+	10, // 31: ai_poi.auth.v1.AuthService.ValidateSession:output_type -> ai_poi.auth.v1.ValidateSessionResponse
+	12, // 32: ai_poi.auth.v1.AuthService.UpdatePassword:output_type -> ai_poi.auth.v1.UpdatePasswordResponse
+	14, // 33: ai_poi.auth.v1.AuthService.GoogleLogin:output_type -> ai_poi.auth.v1.GoogleLoginResponse
+	4,  // 34: ai_poi.auth.v1.AuthService.GoogleCallback:output_type -> ai_poi.auth.v1.LoginResponse
+	27, // [27:35] is the sub-list for method output_type
+	19, // [19:27] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_auth_proto_init() }
@@ -1194,7 +1469,7 @@ func file_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_proto_rawDesc), len(file_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

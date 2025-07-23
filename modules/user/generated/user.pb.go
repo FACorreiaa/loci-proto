@@ -1108,6 +1108,7 @@ func (x *UserStats) GetMemberSince() *timestamppb.Timestamp {
 type GetUserProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1149,10 +1150,18 @@ func (x *GetUserProfileRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetUserProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetUserProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Profile       *UserProfile           `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
 	Stats         *UserStats             `protobuf:"bytes,2,opt,name=stats,proto3" json:"stats,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1201,11 +1210,19 @@ func (x *GetUserProfileResponse) GetStats() *UserStats {
 	return nil
 }
 
+func (x *GetUserProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateUserProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Profile       *UserProfile           `protobuf:"bytes,2,opt,name=profile,proto3" json:"profile,omitempty"`
 	UpdateFields  []string               `protobuf:"bytes,3,rep,name=update_fields,json=updateFields,proto3" json:"update_fields,omitempty"` // Field mask for partial updates
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1261,11 +1278,19 @@ func (x *UpdateUserProfileRequest) GetUpdateFields() []string {
 	return nil
 }
 
+func (x *UpdateUserProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateUserProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Profile       *UserProfile           `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1321,10 +1346,18 @@ func (x *UpdateUserProfileResponse) GetProfile() *UserProfile {
 	return nil
 }
 
+func (x *UpdateUserProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Search profiles
 type GetSearchProfilesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1366,10 +1399,18 @@ func (x *GetSearchProfilesRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetSearchProfilesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetSearchProfilesResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Profiles         []*SearchProfile       `protobuf:"bytes,1,rep,name=profiles,proto3" json:"profiles,omitempty"`
 	DefaultProfileId string                 `protobuf:"bytes,2,opt,name=default_profile_id,json=defaultProfileId,proto3" json:"default_profile_id,omitempty"`
+	Response         *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1418,10 +1459,18 @@ func (x *GetSearchProfilesResponse) GetDefaultProfileId() string {
 	return ""
 }
 
+func (x *GetSearchProfilesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetSearchProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1470,9 +1519,17 @@ func (x *GetSearchProfileRequest) GetProfileId() string {
 	return ""
 }
 
+func (x *GetSearchProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetSearchProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Profile       *SearchProfile         `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1514,10 +1571,18 @@ func (x *GetSearchProfileResponse) GetProfile() *SearchProfile {
 	return nil
 }
 
+func (x *GetSearchProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type CreateSearchProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Profile       *SearchProfile         `protobuf:"bytes,2,opt,name=profile,proto3" json:"profile,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1566,11 +1631,19 @@ func (x *CreateSearchProfileRequest) GetProfile() *SearchProfile {
 	return nil
 }
 
+func (x *CreateSearchProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type CreateSearchProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Profile       *SearchProfile         `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1626,12 +1699,20 @@ func (x *CreateSearchProfileResponse) GetProfile() *SearchProfile {
 	return nil
 }
 
+func (x *CreateSearchProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateSearchProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
 	Profile       *SearchProfile         `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
 	UpdateFields  []string               `protobuf:"bytes,4,rep,name=update_fields,json=updateFields,proto3" json:"update_fields,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1694,11 +1775,19 @@ func (x *UpdateSearchProfileRequest) GetUpdateFields() []string {
 	return nil
 }
 
+func (x *UpdateSearchProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateSearchProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Profile       *SearchProfile         `protobuf:"bytes,3,opt,name=profile,proto3" json:"profile,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1754,10 +1843,18 @@ func (x *UpdateSearchProfileResponse) GetProfile() *SearchProfile {
 	return nil
 }
 
+func (x *UpdateSearchProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DeleteSearchProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1806,10 +1903,18 @@ func (x *DeleteSearchProfileRequest) GetProfileId() string {
 	return ""
 }
 
+func (x *DeleteSearchProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DeleteSearchProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1858,9 +1963,17 @@ func (x *DeleteSearchProfileResponse) GetMessage() string {
 	return ""
 }
 
+func (x *DeleteSearchProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetDefaultProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1902,9 +2015,17 @@ func (x *GetDefaultProfileRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetDefaultProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetDefaultProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Profile       *SearchProfile         `protobuf:"bytes,1,opt,name=profile,proto3" json:"profile,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1946,10 +2067,18 @@ func (x *GetDefaultProfileResponse) GetProfile() *SearchProfile {
 	return nil
 }
 
+func (x *GetDefaultProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type SetDefaultProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ProfileId     string                 `protobuf:"bytes,2,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1998,10 +2127,18 @@ func (x *SetDefaultProfileRequest) GetProfileId() string {
 	return ""
 }
 
+func (x *SetDefaultProfileRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SetDefaultProfileResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2050,10 +2187,18 @@ func (x *SetDefaultProfileResponse) GetMessage() string {
 	return ""
 }
 
+func (x *SetDefaultProfileResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Interests
 type GetInterestsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2095,9 +2240,17 @@ func (x *GetInterestsRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetInterestsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetInterestsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Interests     []*Interest            `protobuf:"bytes,1,rep,name=interests,proto3" json:"interests,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2139,10 +2292,18 @@ func (x *GetInterestsResponse) GetInterests() []*Interest {
 	return nil
 }
 
+func (x *GetInterestsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type CreateInterestRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Interest      *Interest              `protobuf:"bytes,2,opt,name=interest,proto3" json:"interest,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2191,11 +2352,19 @@ func (x *CreateInterestRequest) GetInterest() *Interest {
 	return nil
 }
 
+func (x *CreateInterestRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type CreateInterestResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Interest      *Interest              `protobuf:"bytes,3,opt,name=interest,proto3" json:"interest,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2251,11 +2420,19 @@ func (x *CreateInterestResponse) GetInterest() *Interest {
 	return nil
 }
 
+func (x *CreateInterestResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateInterestRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	InterestId    string                 `protobuf:"bytes,2,opt,name=interest_id,json=interestId,proto3" json:"interest_id,omitempty"`
 	Interest      *Interest              `protobuf:"bytes,3,opt,name=interest,proto3" json:"interest,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2311,11 +2488,19 @@ func (x *UpdateInterestRequest) GetInterest() *Interest {
 	return nil
 }
 
+func (x *UpdateInterestRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateInterestResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Interest      *Interest              `protobuf:"bytes,3,opt,name=interest,proto3" json:"interest,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2371,10 +2556,18 @@ func (x *UpdateInterestResponse) GetInterest() *Interest {
 	return nil
 }
 
+func (x *UpdateInterestResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DeleteInterestRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	InterestId    string                 `protobuf:"bytes,2,opt,name=interest_id,json=interestId,proto3" json:"interest_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2423,10 +2616,18 @@ func (x *DeleteInterestRequest) GetInterestId() string {
 	return ""
 }
 
+func (x *DeleteInterestRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DeleteInterestResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2475,10 +2676,18 @@ func (x *DeleteInterestResponse) GetMessage() string {
 	return ""
 }
 
+func (x *DeleteInterestResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Tags
 type GetTagsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2520,9 +2729,17 @@ func (x *GetTagsRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetTagsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetTagsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Tags          []*Tag                 `protobuf:"bytes,1,rep,name=tags,proto3" json:"tags,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2564,10 +2781,18 @@ func (x *GetTagsResponse) GetTags() []*Tag {
 	return nil
 }
 
+func (x *GetTagsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetTagRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TagId         string                 `protobuf:"bytes,2,opt,name=tag_id,json=tagId,proto3" json:"tag_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2616,9 +2841,17 @@ func (x *GetTagRequest) GetTagId() string {
 	return ""
 }
 
+func (x *GetTagRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetTagResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Tag           *Tag                   `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2660,10 +2893,18 @@ func (x *GetTagResponse) GetTag() *Tag {
 	return nil
 }
 
+func (x *GetTagResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type CreateTagRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Tag           *Tag                   `protobuf:"bytes,2,opt,name=tag,proto3" json:"tag,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2712,11 +2953,19 @@ func (x *CreateTagRequest) GetTag() *Tag {
 	return nil
 }
 
+func (x *CreateTagRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type CreateTagResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Tag           *Tag                   `protobuf:"bytes,3,opt,name=tag,proto3" json:"tag,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2772,11 +3021,19 @@ func (x *CreateTagResponse) GetTag() *Tag {
 	return nil
 }
 
+func (x *CreateTagResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateTagRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TagId         string                 `protobuf:"bytes,2,opt,name=tag_id,json=tagId,proto3" json:"tag_id,omitempty"`
 	Tag           *Tag                   `protobuf:"bytes,3,opt,name=tag,proto3" json:"tag,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2832,11 +3089,19 @@ func (x *UpdateTagRequest) GetTag() *Tag {
 	return nil
 }
 
+func (x *UpdateTagRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateTagResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Tag           *Tag                   `protobuf:"bytes,3,opt,name=tag,proto3" json:"tag,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2892,10 +3157,18 @@ func (x *UpdateTagResponse) GetTag() *Tag {
 	return nil
 }
 
+func (x *UpdateTagResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DeleteTagRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TagId         string                 `protobuf:"bytes,2,opt,name=tag_id,json=tagId,proto3" json:"tag_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2944,10 +3217,18 @@ func (x *DeleteTagRequest) GetTagId() string {
 	return ""
 }
 
+func (x *DeleteTagRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DeleteTagResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2992,6 +3273,125 @@ func (x *DeleteTagResponse) GetSuccess() bool {
 func (x *DeleteTagResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
+	}
+	return ""
+}
+
+func (x *DeleteTagResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_user_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_user_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
 	}
 	return ""
 }
@@ -3118,123 +3518,170 @@ const file_user_proto_rawDesc = "" +
 	"\x11countries_visited\x18\x04 \x01(\x05R\x10countriesVisited\x12'\n" +
 	"\x0fcities_explored\x18\x05 \x01(\x05R\x0ecitiesExplored\x12?\n" +
 	"\rlast_activity\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\flastActivity\x12=\n" +
-	"\fmember_since\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\vmemberSince\"0\n" +
+	"\fmember_since\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\vmemberSince\"g\n" +
 	"\x15GetUserProfileRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x80\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xba\x01\n" +
 	"\x16GetUserProfileResponse\x125\n" +
 	"\aprofile\x18\x01 \x01(\v2\x1b.ai_poi.user.v1.UserProfileR\aprofile\x12/\n" +
-	"\x05stats\x18\x02 \x01(\v2\x19.ai_poi.user.v1.UserStatsR\x05stats\"\x8f\x01\n" +
+	"\x05stats\x18\x02 \x01(\v2\x19.ai_poi.user.v1.UserStatsR\x05stats\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\xc6\x01\n" +
 	"\x18UpdateUserProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
 	"\aprofile\x18\x02 \x01(\v2\x1b.ai_poi.user.v1.UserProfileR\aprofile\x12#\n" +
-	"\rupdate_fields\x18\x03 \x03(\tR\fupdateFields\"\x86\x01\n" +
+	"\rupdate_fields\x18\x03 \x03(\tR\fupdateFields\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xc0\x01\n" +
 	"\x19UpdateUserProfileResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x125\n" +
-	"\aprofile\x18\x03 \x01(\v2\x1b.ai_poi.user.v1.UserProfileR\aprofile\"3\n" +
+	"\aprofile\x18\x03 \x01(\v2\x1b.ai_poi.user.v1.UserProfileR\aprofile\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"j\n" +
 	"\x18GetSearchProfilesRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x84\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xbe\x01\n" +
 	"\x19GetSearchProfilesResponse\x129\n" +
 	"\bprofiles\x18\x01 \x03(\v2\x1d.ai_poi.user.v1.SearchProfileR\bprofiles\x12,\n" +
-	"\x12default_profile_id\x18\x02 \x01(\tR\x10defaultProfileId\"Q\n" +
+	"\x12default_profile_id\x18\x02 \x01(\tR\x10defaultProfileId\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\x88\x01\n" +
 	"\x17GetSearchProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
-	"profile_id\x18\x02 \x01(\tR\tprofileId\"S\n" +
+	"profile_id\x18\x02 \x01(\tR\tprofileId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x8d\x01\n" +
 	"\x18GetSearchProfileResponse\x127\n" +
-	"\aprofile\x18\x01 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\"n\n" +
+	"\aprofile\x18\x01 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\xa5\x01\n" +
 	"\x1aCreateSearchProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x127\n" +
-	"\aprofile\x18\x02 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\"\x8a\x01\n" +
+	"\aprofile\x18\x02 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xc4\x01\n" +
 	"\x1bCreateSearchProfileResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x127\n" +
-	"\aprofile\x18\x03 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\"\xb2\x01\n" +
+	"\aprofile\x18\x03 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\xe9\x01\n" +
 	"\x1aUpdateSearchProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"profile_id\x18\x02 \x01(\tR\tprofileId\x127\n" +
 	"\aprofile\x18\x03 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\x12#\n" +
-	"\rupdate_fields\x18\x04 \x03(\tR\fupdateFields\"\x8a\x01\n" +
+	"\rupdate_fields\x18\x04 \x03(\tR\fupdateFields\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xc4\x01\n" +
 	"\x1bUpdateSearchProfileResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x127\n" +
-	"\aprofile\x18\x03 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\"T\n" +
+	"\aprofile\x18\x03 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\x8b\x01\n" +
 	"\x1aDeleteSearchProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
-	"profile_id\x18\x02 \x01(\tR\tprofileId\"Q\n" +
+	"profile_id\x18\x02 \x01(\tR\tprofileId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x8b\x01\n" +
 	"\x1bDeleteSearchProfileResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"3\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"j\n" +
 	"\x18GetDefaultProfileRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"T\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x8e\x01\n" +
 	"\x19GetDefaultProfileResponse\x127\n" +
-	"\aprofile\x18\x01 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\"R\n" +
+	"\aprofile\x18\x01 \x01(\v2\x1d.ai_poi.user.v1.SearchProfileR\aprofile\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\x89\x01\n" +
 	"\x18SetDefaultProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
-	"profile_id\x18\x02 \x01(\tR\tprofileId\"O\n" +
+	"profile_id\x18\x02 \x01(\tR\tprofileId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x89\x01\n" +
 	"\x19SetDefaultProfileResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\".\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"e\n" +
 	"\x13GetInterestsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"N\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x88\x01\n" +
 	"\x14GetInterestsResponse\x126\n" +
-	"\tinterests\x18\x01 \x03(\v2\x18.ai_poi.user.v1.InterestR\tinterests\"f\n" +
+	"\tinterests\x18\x01 \x03(\v2\x18.ai_poi.user.v1.InterestR\tinterests\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\x9d\x01\n" +
 	"\x15CreateInterestRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x124\n" +
-	"\binterest\x18\x02 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\"\x82\x01\n" +
+	"\binterest\x18\x02 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xbc\x01\n" +
 	"\x16CreateInterestResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x124\n" +
-	"\binterest\x18\x03 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\"\x87\x01\n" +
+	"\binterest\x18\x03 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\xbe\x01\n" +
 	"\x15UpdateInterestRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n" +
 	"\vinterest_id\x18\x02 \x01(\tR\n" +
 	"interestId\x124\n" +
-	"\binterest\x18\x03 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\"\x82\x01\n" +
+	"\binterest\x18\x03 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xbc\x01\n" +
 	"\x16UpdateInterestResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x124\n" +
-	"\binterest\x18\x03 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\"Q\n" +
+	"\binterest\x18\x03 \x01(\v2\x18.ai_poi.user.v1.InterestR\binterest\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\x88\x01\n" +
 	"\x15DeleteInterestRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n" +
 	"\vinterest_id\x18\x02 \x01(\tR\n" +
-	"interestId\"L\n" +
+	"interestId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x86\x01\n" +
 	"\x16DeleteInterestResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\")\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"`\n" +
 	"\x0eGetTagsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\":\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"t\n" +
 	"\x0fGetTagsResponse\x12'\n" +
-	"\x04tags\x18\x01 \x03(\v2\x13.ai_poi.user.v1.TagR\x04tags\"?\n" +
+	"\x04tags\x18\x01 \x03(\v2\x13.ai_poi.user.v1.TagR\x04tags\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"v\n" +
 	"\rGetTagRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x15\n" +
-	"\x06tag_id\x18\x02 \x01(\tR\x05tagId\"7\n" +
+	"\x06tag_id\x18\x02 \x01(\tR\x05tagId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"q\n" +
 	"\x0eGetTagResponse\x12%\n" +
-	"\x03tag\x18\x01 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\"R\n" +
+	"\x03tag\x18\x01 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\x89\x01\n" +
 	"\x10CreateTagRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12%\n" +
-	"\x03tag\x18\x02 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\"n\n" +
+	"\x03tag\x18\x02 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xa8\x01\n" +
 	"\x11CreateTagResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12%\n" +
-	"\x03tag\x18\x03 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\"i\n" +
+	"\x03tag\x18\x03 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"\xa0\x01\n" +
 	"\x10UpdateTagRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x15\n" +
 	"\x06tag_id\x18\x02 \x01(\tR\x05tagId\x12%\n" +
-	"\x03tag\x18\x03 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\"n\n" +
+	"\x03tag\x18\x03 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\xa8\x01\n" +
 	"\x11UpdateTagResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12%\n" +
-	"\x03tag\x18\x03 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\"B\n" +
+	"\x03tag\x18\x03 \x01(\v2\x13.ai_poi.user.v1.TagR\x03tag\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"y\n" +
 	"\x10DeleteTagRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x15\n" +
-	"\x06tag_id\x18\x02 \x01(\tR\x05tagId\"G\n" +
+	"\x06tag_id\x18\x02 \x01(\tR\x05tagId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.user.v1.BaseRequestR\arequest\"\x81\x01\n" +
 	"\x11DeleteTagResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xd6\r\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.user.v1.BaseResponseR\bresponse\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\xd6\r\n" +
 	"\vUserService\x12_\n" +
 	"\x0eGetUserProfile\x12%.ai_poi.user.v1.GetUserProfileRequest\x1a&.ai_poi.user.v1.GetUserProfileResponse\x12h\n" +
 	"\x11UpdateUserProfile\x12(.ai_poi.user.v1.UpdateUserProfileRequest\x1a).ai_poi.user.v1.UpdateUserProfileResponse\x12h\n" +
@@ -3267,7 +3714,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 48)
 var file_user_proto_goTypes = []any{
 	(*UserProfile)(nil),                 // 0: ai_poi.user.v1.UserProfile
 	(*NotificationPreferences)(nil),     // 1: ai_poi.user.v1.NotificationPreferences
@@ -3315,88 +3762,126 @@ var file_user_proto_goTypes = []any{
 	(*UpdateTagResponse)(nil),           // 43: ai_poi.user.v1.UpdateTagResponse
 	(*DeleteTagRequest)(nil),            // 44: ai_poi.user.v1.DeleteTagRequest
 	(*DeleteTagResponse)(nil),           // 45: ai_poi.user.v1.DeleteTagResponse
-	(*timestamppb.Timestamp)(nil),       // 46: google.protobuf.Timestamp
+	(*BaseRequest)(nil),                 // 46: ai_poi.user.v1.BaseRequest
+	(*BaseResponse)(nil),                // 47: ai_poi.user.v1.BaseResponse
+	(*timestamppb.Timestamp)(nil),       // 48: google.protobuf.Timestamp
 }
 var file_user_proto_depIdxs = []int32{
-	46, // 0: ai_poi.user.v1.UserProfile.date_of_birth:type_name -> google.protobuf.Timestamp
+	48, // 0: ai_poi.user.v1.UserProfile.date_of_birth:type_name -> google.protobuf.Timestamp
 	1,  // 1: ai_poi.user.v1.UserProfile.notification_preferences:type_name -> ai_poi.user.v1.NotificationPreferences
 	2,  // 2: ai_poi.user.v1.UserProfile.privacy_settings:type_name -> ai_poi.user.v1.PrivacySettings
-	46, // 3: ai_poi.user.v1.UserProfile.created_at:type_name -> google.protobuf.Timestamp
-	46, // 4: ai_poi.user.v1.UserProfile.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 3: ai_poi.user.v1.UserProfile.created_at:type_name -> google.protobuf.Timestamp
+	48, // 4: ai_poi.user.v1.UserProfile.updated_at:type_name -> google.protobuf.Timestamp
 	4,  // 5: ai_poi.user.v1.SearchProfile.travel_preferences:type_name -> ai_poi.user.v1.TravelPreferences
 	5,  // 6: ai_poi.user.v1.SearchProfile.budget_preferences:type_name -> ai_poi.user.v1.BudgetPreferences
 	6,  // 7: ai_poi.user.v1.SearchProfile.accessibility_needs:type_name -> ai_poi.user.v1.AccessibilityNeeds
-	46, // 8: ai_poi.user.v1.SearchProfile.created_at:type_name -> google.protobuf.Timestamp
-	46, // 9: ai_poi.user.v1.SearchProfile.updated_at:type_name -> google.protobuf.Timestamp
-	46, // 10: ai_poi.user.v1.Interest.created_at:type_name -> google.protobuf.Timestamp
-	46, // 11: ai_poi.user.v1.Interest.updated_at:type_name -> google.protobuf.Timestamp
-	46, // 12: ai_poi.user.v1.Tag.created_at:type_name -> google.protobuf.Timestamp
-	46, // 13: ai_poi.user.v1.Tag.updated_at:type_name -> google.protobuf.Timestamp
-	46, // 14: ai_poi.user.v1.UserStats.last_activity:type_name -> google.protobuf.Timestamp
-	46, // 15: ai_poi.user.v1.UserStats.member_since:type_name -> google.protobuf.Timestamp
-	0,  // 16: ai_poi.user.v1.GetUserProfileResponse.profile:type_name -> ai_poi.user.v1.UserProfile
-	9,  // 17: ai_poi.user.v1.GetUserProfileResponse.stats:type_name -> ai_poi.user.v1.UserStats
-	0,  // 18: ai_poi.user.v1.UpdateUserProfileRequest.profile:type_name -> ai_poi.user.v1.UserProfile
-	0,  // 19: ai_poi.user.v1.UpdateUserProfileResponse.profile:type_name -> ai_poi.user.v1.UserProfile
-	3,  // 20: ai_poi.user.v1.GetSearchProfilesResponse.profiles:type_name -> ai_poi.user.v1.SearchProfile
-	3,  // 21: ai_poi.user.v1.GetSearchProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
-	3,  // 22: ai_poi.user.v1.CreateSearchProfileRequest.profile:type_name -> ai_poi.user.v1.SearchProfile
-	3,  // 23: ai_poi.user.v1.CreateSearchProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
-	3,  // 24: ai_poi.user.v1.UpdateSearchProfileRequest.profile:type_name -> ai_poi.user.v1.SearchProfile
-	3,  // 25: ai_poi.user.v1.UpdateSearchProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
-	3,  // 26: ai_poi.user.v1.GetDefaultProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
-	7,  // 27: ai_poi.user.v1.GetInterestsResponse.interests:type_name -> ai_poi.user.v1.Interest
-	7,  // 28: ai_poi.user.v1.CreateInterestRequest.interest:type_name -> ai_poi.user.v1.Interest
-	7,  // 29: ai_poi.user.v1.CreateInterestResponse.interest:type_name -> ai_poi.user.v1.Interest
-	7,  // 30: ai_poi.user.v1.UpdateInterestRequest.interest:type_name -> ai_poi.user.v1.Interest
-	7,  // 31: ai_poi.user.v1.UpdateInterestResponse.interest:type_name -> ai_poi.user.v1.Interest
-	8,  // 32: ai_poi.user.v1.GetTagsResponse.tags:type_name -> ai_poi.user.v1.Tag
-	8,  // 33: ai_poi.user.v1.GetTagResponse.tag:type_name -> ai_poi.user.v1.Tag
-	8,  // 34: ai_poi.user.v1.CreateTagRequest.tag:type_name -> ai_poi.user.v1.Tag
-	8,  // 35: ai_poi.user.v1.CreateTagResponse.tag:type_name -> ai_poi.user.v1.Tag
-	8,  // 36: ai_poi.user.v1.UpdateTagRequest.tag:type_name -> ai_poi.user.v1.Tag
-	8,  // 37: ai_poi.user.v1.UpdateTagResponse.tag:type_name -> ai_poi.user.v1.Tag
-	10, // 38: ai_poi.user.v1.UserService.GetUserProfile:input_type -> ai_poi.user.v1.GetUserProfileRequest
-	12, // 39: ai_poi.user.v1.UserService.UpdateUserProfile:input_type -> ai_poi.user.v1.UpdateUserProfileRequest
-	14, // 40: ai_poi.user.v1.UserService.GetSearchProfiles:input_type -> ai_poi.user.v1.GetSearchProfilesRequest
-	16, // 41: ai_poi.user.v1.UserService.GetSearchProfile:input_type -> ai_poi.user.v1.GetSearchProfileRequest
-	18, // 42: ai_poi.user.v1.UserService.CreateSearchProfile:input_type -> ai_poi.user.v1.CreateSearchProfileRequest
-	20, // 43: ai_poi.user.v1.UserService.UpdateSearchProfile:input_type -> ai_poi.user.v1.UpdateSearchProfileRequest
-	22, // 44: ai_poi.user.v1.UserService.DeleteSearchProfile:input_type -> ai_poi.user.v1.DeleteSearchProfileRequest
-	24, // 45: ai_poi.user.v1.UserService.GetDefaultProfile:input_type -> ai_poi.user.v1.GetDefaultProfileRequest
-	26, // 46: ai_poi.user.v1.UserService.SetDefaultProfile:input_type -> ai_poi.user.v1.SetDefaultProfileRequest
-	28, // 47: ai_poi.user.v1.UserService.GetInterests:input_type -> ai_poi.user.v1.GetInterestsRequest
-	30, // 48: ai_poi.user.v1.UserService.CreateInterest:input_type -> ai_poi.user.v1.CreateInterestRequest
-	32, // 49: ai_poi.user.v1.UserService.UpdateInterest:input_type -> ai_poi.user.v1.UpdateInterestRequest
-	34, // 50: ai_poi.user.v1.UserService.DeleteInterest:input_type -> ai_poi.user.v1.DeleteInterestRequest
-	36, // 51: ai_poi.user.v1.UserService.GetTags:input_type -> ai_poi.user.v1.GetTagsRequest
-	38, // 52: ai_poi.user.v1.UserService.GetTag:input_type -> ai_poi.user.v1.GetTagRequest
-	40, // 53: ai_poi.user.v1.UserService.CreateTag:input_type -> ai_poi.user.v1.CreateTagRequest
-	42, // 54: ai_poi.user.v1.UserService.UpdateTag:input_type -> ai_poi.user.v1.UpdateTagRequest
-	44, // 55: ai_poi.user.v1.UserService.DeleteTag:input_type -> ai_poi.user.v1.DeleteTagRequest
-	11, // 56: ai_poi.user.v1.UserService.GetUserProfile:output_type -> ai_poi.user.v1.GetUserProfileResponse
-	13, // 57: ai_poi.user.v1.UserService.UpdateUserProfile:output_type -> ai_poi.user.v1.UpdateUserProfileResponse
-	15, // 58: ai_poi.user.v1.UserService.GetSearchProfiles:output_type -> ai_poi.user.v1.GetSearchProfilesResponse
-	17, // 59: ai_poi.user.v1.UserService.GetSearchProfile:output_type -> ai_poi.user.v1.GetSearchProfileResponse
-	19, // 60: ai_poi.user.v1.UserService.CreateSearchProfile:output_type -> ai_poi.user.v1.CreateSearchProfileResponse
-	21, // 61: ai_poi.user.v1.UserService.UpdateSearchProfile:output_type -> ai_poi.user.v1.UpdateSearchProfileResponse
-	23, // 62: ai_poi.user.v1.UserService.DeleteSearchProfile:output_type -> ai_poi.user.v1.DeleteSearchProfileResponse
-	25, // 63: ai_poi.user.v1.UserService.GetDefaultProfile:output_type -> ai_poi.user.v1.GetDefaultProfileResponse
-	27, // 64: ai_poi.user.v1.UserService.SetDefaultProfile:output_type -> ai_poi.user.v1.SetDefaultProfileResponse
-	29, // 65: ai_poi.user.v1.UserService.GetInterests:output_type -> ai_poi.user.v1.GetInterestsResponse
-	31, // 66: ai_poi.user.v1.UserService.CreateInterest:output_type -> ai_poi.user.v1.CreateInterestResponse
-	33, // 67: ai_poi.user.v1.UserService.UpdateInterest:output_type -> ai_poi.user.v1.UpdateInterestResponse
-	35, // 68: ai_poi.user.v1.UserService.DeleteInterest:output_type -> ai_poi.user.v1.DeleteInterestResponse
-	37, // 69: ai_poi.user.v1.UserService.GetTags:output_type -> ai_poi.user.v1.GetTagsResponse
-	39, // 70: ai_poi.user.v1.UserService.GetTag:output_type -> ai_poi.user.v1.GetTagResponse
-	41, // 71: ai_poi.user.v1.UserService.CreateTag:output_type -> ai_poi.user.v1.CreateTagResponse
-	43, // 72: ai_poi.user.v1.UserService.UpdateTag:output_type -> ai_poi.user.v1.UpdateTagResponse
-	45, // 73: ai_poi.user.v1.UserService.DeleteTag:output_type -> ai_poi.user.v1.DeleteTagResponse
-	56, // [56:74] is the sub-list for method output_type
-	38, // [38:56] is the sub-list for method input_type
-	38, // [38:38] is the sub-list for extension type_name
-	38, // [38:38] is the sub-list for extension extendee
-	0,  // [0:38] is the sub-list for field type_name
+	48, // 8: ai_poi.user.v1.SearchProfile.created_at:type_name -> google.protobuf.Timestamp
+	48, // 9: ai_poi.user.v1.SearchProfile.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 10: ai_poi.user.v1.Interest.created_at:type_name -> google.protobuf.Timestamp
+	48, // 11: ai_poi.user.v1.Interest.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 12: ai_poi.user.v1.Tag.created_at:type_name -> google.protobuf.Timestamp
+	48, // 13: ai_poi.user.v1.Tag.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 14: ai_poi.user.v1.UserStats.last_activity:type_name -> google.protobuf.Timestamp
+	48, // 15: ai_poi.user.v1.UserStats.member_since:type_name -> google.protobuf.Timestamp
+	46, // 16: ai_poi.user.v1.GetUserProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	0,  // 17: ai_poi.user.v1.GetUserProfileResponse.profile:type_name -> ai_poi.user.v1.UserProfile
+	9,  // 18: ai_poi.user.v1.GetUserProfileResponse.stats:type_name -> ai_poi.user.v1.UserStats
+	47, // 19: ai_poi.user.v1.GetUserProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	0,  // 20: ai_poi.user.v1.UpdateUserProfileRequest.profile:type_name -> ai_poi.user.v1.UserProfile
+	46, // 21: ai_poi.user.v1.UpdateUserProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	0,  // 22: ai_poi.user.v1.UpdateUserProfileResponse.profile:type_name -> ai_poi.user.v1.UserProfile
+	47, // 23: ai_poi.user.v1.UpdateUserProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 24: ai_poi.user.v1.GetSearchProfilesRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	3,  // 25: ai_poi.user.v1.GetSearchProfilesResponse.profiles:type_name -> ai_poi.user.v1.SearchProfile
+	47, // 26: ai_poi.user.v1.GetSearchProfilesResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 27: ai_poi.user.v1.GetSearchProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	3,  // 28: ai_poi.user.v1.GetSearchProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
+	47, // 29: ai_poi.user.v1.GetSearchProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	3,  // 30: ai_poi.user.v1.CreateSearchProfileRequest.profile:type_name -> ai_poi.user.v1.SearchProfile
+	46, // 31: ai_poi.user.v1.CreateSearchProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	3,  // 32: ai_poi.user.v1.CreateSearchProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
+	47, // 33: ai_poi.user.v1.CreateSearchProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	3,  // 34: ai_poi.user.v1.UpdateSearchProfileRequest.profile:type_name -> ai_poi.user.v1.SearchProfile
+	46, // 35: ai_poi.user.v1.UpdateSearchProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	3,  // 36: ai_poi.user.v1.UpdateSearchProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
+	47, // 37: ai_poi.user.v1.UpdateSearchProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 38: ai_poi.user.v1.DeleteSearchProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	47, // 39: ai_poi.user.v1.DeleteSearchProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 40: ai_poi.user.v1.GetDefaultProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	3,  // 41: ai_poi.user.v1.GetDefaultProfileResponse.profile:type_name -> ai_poi.user.v1.SearchProfile
+	47, // 42: ai_poi.user.v1.GetDefaultProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 43: ai_poi.user.v1.SetDefaultProfileRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	47, // 44: ai_poi.user.v1.SetDefaultProfileResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 45: ai_poi.user.v1.GetInterestsRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	7,  // 46: ai_poi.user.v1.GetInterestsResponse.interests:type_name -> ai_poi.user.v1.Interest
+	47, // 47: ai_poi.user.v1.GetInterestsResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	7,  // 48: ai_poi.user.v1.CreateInterestRequest.interest:type_name -> ai_poi.user.v1.Interest
+	46, // 49: ai_poi.user.v1.CreateInterestRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	7,  // 50: ai_poi.user.v1.CreateInterestResponse.interest:type_name -> ai_poi.user.v1.Interest
+	47, // 51: ai_poi.user.v1.CreateInterestResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	7,  // 52: ai_poi.user.v1.UpdateInterestRequest.interest:type_name -> ai_poi.user.v1.Interest
+	46, // 53: ai_poi.user.v1.UpdateInterestRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	7,  // 54: ai_poi.user.v1.UpdateInterestResponse.interest:type_name -> ai_poi.user.v1.Interest
+	47, // 55: ai_poi.user.v1.UpdateInterestResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 56: ai_poi.user.v1.DeleteInterestRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	47, // 57: ai_poi.user.v1.DeleteInterestResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 58: ai_poi.user.v1.GetTagsRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	8,  // 59: ai_poi.user.v1.GetTagsResponse.tags:type_name -> ai_poi.user.v1.Tag
+	47, // 60: ai_poi.user.v1.GetTagsResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 61: ai_poi.user.v1.GetTagRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	8,  // 62: ai_poi.user.v1.GetTagResponse.tag:type_name -> ai_poi.user.v1.Tag
+	47, // 63: ai_poi.user.v1.GetTagResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	8,  // 64: ai_poi.user.v1.CreateTagRequest.tag:type_name -> ai_poi.user.v1.Tag
+	46, // 65: ai_poi.user.v1.CreateTagRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	8,  // 66: ai_poi.user.v1.CreateTagResponse.tag:type_name -> ai_poi.user.v1.Tag
+	47, // 67: ai_poi.user.v1.CreateTagResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	8,  // 68: ai_poi.user.v1.UpdateTagRequest.tag:type_name -> ai_poi.user.v1.Tag
+	46, // 69: ai_poi.user.v1.UpdateTagRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	8,  // 70: ai_poi.user.v1.UpdateTagResponse.tag:type_name -> ai_poi.user.v1.Tag
+	47, // 71: ai_poi.user.v1.UpdateTagResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	46, // 72: ai_poi.user.v1.DeleteTagRequest.request:type_name -> ai_poi.user.v1.BaseRequest
+	47, // 73: ai_poi.user.v1.DeleteTagResponse.response:type_name -> ai_poi.user.v1.BaseResponse
+	10, // 74: ai_poi.user.v1.UserService.GetUserProfile:input_type -> ai_poi.user.v1.GetUserProfileRequest
+	12, // 75: ai_poi.user.v1.UserService.UpdateUserProfile:input_type -> ai_poi.user.v1.UpdateUserProfileRequest
+	14, // 76: ai_poi.user.v1.UserService.GetSearchProfiles:input_type -> ai_poi.user.v1.GetSearchProfilesRequest
+	16, // 77: ai_poi.user.v1.UserService.GetSearchProfile:input_type -> ai_poi.user.v1.GetSearchProfileRequest
+	18, // 78: ai_poi.user.v1.UserService.CreateSearchProfile:input_type -> ai_poi.user.v1.CreateSearchProfileRequest
+	20, // 79: ai_poi.user.v1.UserService.UpdateSearchProfile:input_type -> ai_poi.user.v1.UpdateSearchProfileRequest
+	22, // 80: ai_poi.user.v1.UserService.DeleteSearchProfile:input_type -> ai_poi.user.v1.DeleteSearchProfileRequest
+	24, // 81: ai_poi.user.v1.UserService.GetDefaultProfile:input_type -> ai_poi.user.v1.GetDefaultProfileRequest
+	26, // 82: ai_poi.user.v1.UserService.SetDefaultProfile:input_type -> ai_poi.user.v1.SetDefaultProfileRequest
+	28, // 83: ai_poi.user.v1.UserService.GetInterests:input_type -> ai_poi.user.v1.GetInterestsRequest
+	30, // 84: ai_poi.user.v1.UserService.CreateInterest:input_type -> ai_poi.user.v1.CreateInterestRequest
+	32, // 85: ai_poi.user.v1.UserService.UpdateInterest:input_type -> ai_poi.user.v1.UpdateInterestRequest
+	34, // 86: ai_poi.user.v1.UserService.DeleteInterest:input_type -> ai_poi.user.v1.DeleteInterestRequest
+	36, // 87: ai_poi.user.v1.UserService.GetTags:input_type -> ai_poi.user.v1.GetTagsRequest
+	38, // 88: ai_poi.user.v1.UserService.GetTag:input_type -> ai_poi.user.v1.GetTagRequest
+	40, // 89: ai_poi.user.v1.UserService.CreateTag:input_type -> ai_poi.user.v1.CreateTagRequest
+	42, // 90: ai_poi.user.v1.UserService.UpdateTag:input_type -> ai_poi.user.v1.UpdateTagRequest
+	44, // 91: ai_poi.user.v1.UserService.DeleteTag:input_type -> ai_poi.user.v1.DeleteTagRequest
+	11, // 92: ai_poi.user.v1.UserService.GetUserProfile:output_type -> ai_poi.user.v1.GetUserProfileResponse
+	13, // 93: ai_poi.user.v1.UserService.UpdateUserProfile:output_type -> ai_poi.user.v1.UpdateUserProfileResponse
+	15, // 94: ai_poi.user.v1.UserService.GetSearchProfiles:output_type -> ai_poi.user.v1.GetSearchProfilesResponse
+	17, // 95: ai_poi.user.v1.UserService.GetSearchProfile:output_type -> ai_poi.user.v1.GetSearchProfileResponse
+	19, // 96: ai_poi.user.v1.UserService.CreateSearchProfile:output_type -> ai_poi.user.v1.CreateSearchProfileResponse
+	21, // 97: ai_poi.user.v1.UserService.UpdateSearchProfile:output_type -> ai_poi.user.v1.UpdateSearchProfileResponse
+	23, // 98: ai_poi.user.v1.UserService.DeleteSearchProfile:output_type -> ai_poi.user.v1.DeleteSearchProfileResponse
+	25, // 99: ai_poi.user.v1.UserService.GetDefaultProfile:output_type -> ai_poi.user.v1.GetDefaultProfileResponse
+	27, // 100: ai_poi.user.v1.UserService.SetDefaultProfile:output_type -> ai_poi.user.v1.SetDefaultProfileResponse
+	29, // 101: ai_poi.user.v1.UserService.GetInterests:output_type -> ai_poi.user.v1.GetInterestsResponse
+	31, // 102: ai_poi.user.v1.UserService.CreateInterest:output_type -> ai_poi.user.v1.CreateInterestResponse
+	33, // 103: ai_poi.user.v1.UserService.UpdateInterest:output_type -> ai_poi.user.v1.UpdateInterestResponse
+	35, // 104: ai_poi.user.v1.UserService.DeleteInterest:output_type -> ai_poi.user.v1.DeleteInterestResponse
+	37, // 105: ai_poi.user.v1.UserService.GetTags:output_type -> ai_poi.user.v1.GetTagsResponse
+	39, // 106: ai_poi.user.v1.UserService.GetTag:output_type -> ai_poi.user.v1.GetTagResponse
+	41, // 107: ai_poi.user.v1.UserService.CreateTag:output_type -> ai_poi.user.v1.CreateTagResponse
+	43, // 108: ai_poi.user.v1.UserService.UpdateTag:output_type -> ai_poi.user.v1.UpdateTagResponse
+	45, // 109: ai_poi.user.v1.UserService.DeleteTag:output_type -> ai_poi.user.v1.DeleteTagResponse
+	92, // [92:110] is the sub-list for method output_type
+	74, // [74:92] is the sub-list for method input_type
+	74, // [74:74] is the sub-list for extension type_name
+	74, // [74:74] is the sub-list for extension extendee
+	0,  // [0:74] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -3410,7 +3895,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   46,
+			NumMessages:   48,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -645,6 +645,7 @@ type GetPOIsByCityRequest struct {
 	CityId        string                 `protobuf:"bytes,1,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -700,10 +701,18 @@ func (x *GetPOIsByCityRequest) GetOffset() int32 {
 	return 0
 }
 
+func (x *GetPOIsByCityRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetPOIsByCityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pois          []*POIDetailedInfo     `protobuf:"bytes,1,rep,name=pois,proto3" json:"pois,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -752,9 +761,17 @@ func (x *GetPOIsByCityResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *GetPOIsByCityResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type SearchPOIsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Filter        *POIFilter             `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -796,11 +813,19 @@ func (x *SearchPOIsRequest) GetFilter() *POIFilter {
 	return nil
 }
 
+func (x *SearchPOIsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SearchPOIsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pois          []*POIDetailedInfo     `protobuf:"bytes,1,rep,name=pois,proto3" json:"pois,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	Metadata      *SearchMetadata        `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -856,12 +881,20 @@ func (x *SearchPOIsResponse) GetMetadata() *SearchMetadata {
 	return nil
 }
 
+func (x *SearchPOIsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type SearchPOIsSemanticRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Query             string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	Location          *GeoPoint              `protobuf:"bytes,2,opt,name=location,proto3" json:"location,omitempty"`
 	Limit             int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	SemanticThreshold float64                `protobuf:"fixed64,4,opt,name=semantic_threshold,json=semanticThreshold,proto3" json:"semantic_threshold,omitempty"`
+	Request           *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -924,12 +957,20 @@ func (x *SearchPOIsSemanticRequest) GetSemanticThreshold() float64 {
 	return 0
 }
 
+func (x *SearchPOIsSemanticRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SearchPOIsSemanticByCityRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Query             string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
 	CityId            string                 `protobuf:"bytes,2,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	Limit             int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	SemanticThreshold float64                `protobuf:"fixed64,4,opt,name=semantic_threshold,json=semanticThreshold,proto3" json:"semantic_threshold,omitempty"`
+	Request           *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -992,11 +1033,19 @@ func (x *SearchPOIsSemanticByCityRequest) GetSemanticThreshold() float64 {
 	return 0
 }
 
+func (x *SearchPOIsSemanticByCityRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SearchPOIsSemanticResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pois          []*POISemanticMatch    `protobuf:"bytes,1,rep,name=pois,proto3" json:"pois,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	Metadata      *SearchMetadata        `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1048,6 +1097,13 @@ func (x *SearchPOIsSemanticResponse) GetTotalCount() int32 {
 func (x *SearchPOIsSemanticResponse) GetMetadata() *SearchMetadata {
 	if x != nil {
 		return x.Metadata
+	}
+	return nil
+}
+
+func (x *SearchPOIsSemanticResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1117,6 +1173,7 @@ type SearchPOIsHybridRequest struct {
 	Filter         *POIFilter             `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	SemanticQuery  string                 `protobuf:"bytes,2,opt,name=semantic_query,json=semanticQuery,proto3" json:"semantic_query,omitempty"`
 	SemanticWeight float64                `protobuf:"fixed64,3,opt,name=semantic_weight,json=semanticWeight,proto3" json:"semantic_weight,omitempty"` // 0.0-1.0, weight between spatial and semantic
+	Request        *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1172,11 +1229,19 @@ func (x *SearchPOIsHybridRequest) GetSemanticWeight() float64 {
 	return 0
 }
 
+func (x *SearchPOIsHybridRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SearchPOIsHybridResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pois          []*POIHybridMatch      `protobuf:"bytes,1,rep,name=pois,proto3" json:"pois,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	Metadata      *SearchMetadata        `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1228,6 +1293,13 @@ func (x *SearchPOIsHybridResponse) GetTotalCount() int32 {
 func (x *SearchPOIsHybridResponse) GetMetadata() *SearchMetadata {
 	if x != nil {
 		return x.Metadata
+	}
+	return nil
+}
+
+func (x *SearchPOIsHybridResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1368,6 +1440,7 @@ type GetNearbyRecommendationsRequest struct {
 	UserId              string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // For personalized recommendations
 	PreferredCategories []string               `protobuf:"bytes,4,rep,name=preferred_categories,json=preferredCategories,proto3" json:"preferred_categories,omitempty"`
 	Limit               int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	Request             *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -1437,10 +1510,18 @@ func (x *GetNearbyRecommendationsRequest) GetLimit() int32 {
 	return 0
 }
 
+func (x *GetNearbyRecommendationsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetNearbyRecommendationsResponse struct {
 	state           protoimpl.MessageState  `protogen:"open.v1"`
 	Recommendations []*POIRecommendation    `protobuf:"bytes,1,rep,name=recommendations,proto3" json:"recommendations,omitempty"`
 	Metadata        *RecommendationMetadata `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Response        *BaseResponse           `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1485,6 +1566,13 @@ func (x *GetNearbyRecommendationsResponse) GetRecommendations() []*POIRecommenda
 func (x *GetNearbyRecommendationsResponse) GetMetadata() *RecommendationMetadata {
 	if x != nil {
 		return x.Metadata
+	}
+	return nil
+}
+
+func (x *GetNearbyRecommendationsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1618,6 +1706,7 @@ type DiscoverRestaurantsRequest struct {
 	PriceRanges   []string               `protobuf:"bytes,4,rep,name=price_ranges,json=priceRanges,proto3" json:"price_ranges,omitempty"`
 	MinRating     float64                `protobuf:"fixed64,5,opt,name=min_rating,json=minRating,proto3" json:"min_rating,omitempty"`
 	Limit         int32                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1694,10 +1783,18 @@ func (x *DiscoverRestaurantsRequest) GetLimit() int32 {
 	return 0
 }
 
+func (x *DiscoverRestaurantsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DiscoverRestaurantsResponse struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	Restaurants   []*RestaurantDetailedInfo `protobuf:"bytes,1,rep,name=restaurants,proto3" json:"restaurants,omitempty"`
 	TotalCount    int32                     `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse             `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1746,12 +1843,20 @@ func (x *DiscoverRestaurantsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *DiscoverRestaurantsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DiscoverActivitiesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Location      *GeoPoint              `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
 	RadiusMeters  float64                `protobuf:"fixed64,2,opt,name=radius_meters,json=radiusMeters,proto3" json:"radius_meters,omitempty"`
 	ActivityTypes []string               `protobuf:"bytes,3,rep,name=activity_types,json=activityTypes,proto3" json:"activity_types,omitempty"`
 	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1814,10 +1919,18 @@ func (x *DiscoverActivitiesRequest) GetLimit() int32 {
 	return 0
 }
 
+func (x *DiscoverActivitiesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DiscoverActivitiesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Activities    []*POIDetailedInfo     `protobuf:"bytes,1,rep,name=activities,proto3" json:"activities,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1866,6 +1979,13 @@ func (x *DiscoverActivitiesResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *DiscoverActivitiesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DiscoverHotelsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Location      *GeoPoint              `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
@@ -1874,6 +1994,7 @@ type DiscoverHotelsRequest struct {
 	StarRatings   []int32                `protobuf:"varint,4,rep,packed,name=star_ratings,json=starRatings,proto3" json:"star_ratings,omitempty"`
 	PriceRanges   []string               `protobuf:"bytes,5,rep,name=price_ranges,json=priceRanges,proto3" json:"price_ranges,omitempty"`
 	Limit         int32                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1950,10 +2071,18 @@ func (x *DiscoverHotelsRequest) GetLimit() int32 {
 	return 0
 }
 
+func (x *DiscoverHotelsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DiscoverHotelsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Hotels        []*HotelDetailedInfo   `protobuf:"bytes,1,rep,name=hotels,proto3" json:"hotels,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2002,12 +2131,20 @@ func (x *DiscoverHotelsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *DiscoverHotelsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DiscoverAttractionsRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Location        *GeoPoint              `protobuf:"bytes,1,opt,name=location,proto3" json:"location,omitempty"`
 	RadiusMeters    float64                `protobuf:"fixed64,2,opt,name=radius_meters,json=radiusMeters,proto3" json:"radius_meters,omitempty"`
 	AttractionTypes []string               `protobuf:"bytes,3,rep,name=attraction_types,json=attractionTypes,proto3" json:"attraction_types,omitempty"`
 	Limit           int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Request         *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2070,10 +2207,18 @@ func (x *DiscoverAttractionsRequest) GetLimit() int32 {
 	return 0
 }
 
+func (x *DiscoverAttractionsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DiscoverAttractionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Attractions   []*POIDetailedInfo     `protobuf:"bytes,1,rep,name=attractions,proto3" json:"attractions,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2122,6 +2267,13 @@ func (x *DiscoverAttractionsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *DiscoverAttractionsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Favorites management
 type AddToFavoritesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2129,6 +2281,7 @@ type AddToFavoritesRequest struct {
 	PoiId         string                 `protobuf:"bytes,2,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
 	IsLlmPoi      bool                   `protobuf:"varint,3,opt,name=is_llm_poi,json=isLlmPoi,proto3" json:"is_llm_poi,omitempty"`
 	PoiData       *POIDetailedInfo       `protobuf:"bytes,4,opt,name=poi_data,json=poiData,proto3" json:"poi_data,omitempty"` // For LLM-generated POIs
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2191,11 +2344,19 @@ func (x *AddToFavoritesRequest) GetPoiData() *POIDetailedInfo {
 	return nil
 }
 
+func (x *AddToFavoritesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type AddToFavoritesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	PoiId         string                 `protobuf:"bytes,3,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"` // Actual POI ID after processing
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2251,12 +2412,20 @@ func (x *AddToFavoritesResponse) GetPoiId() string {
 	return ""
 }
 
+func (x *AddToFavoritesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type RemoveFromFavoritesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	PoiId         string                 `protobuf:"bytes,2,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
 	IsLlmPoi      bool                   `protobuf:"varint,3,opt,name=is_llm_poi,json=isLlmPoi,proto3" json:"is_llm_poi,omitempty"`
 	PoiData       *POIDetailedInfo       `protobuf:"bytes,4,opt,name=poi_data,json=poiData,proto3" json:"poi_data,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2319,11 +2488,19 @@ func (x *RemoveFromFavoritesRequest) GetPoiData() *POIDetailedInfo {
 	return nil
 }
 
+func (x *RemoveFromFavoritesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type RemoveFromFavoritesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	PoiId         string                 `protobuf:"bytes,3,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2379,11 +2556,19 @@ func (x *RemoveFromFavoritesResponse) GetPoiId() string {
 	return ""
 }
 
+func (x *RemoveFromFavoritesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetFavoritesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2439,12 +2624,20 @@ func (x *GetFavoritesRequest) GetPageSize() int32 {
 	return 0
 }
 
+func (x *GetFavoritesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetFavoritesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Favorites     []*POIDetailedInfo     `protobuf:"bytes,1,rep,name=favorites,proto3" json:"favorites,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	CurrentPage   int32                  `protobuf:"varint,3,opt,name=current_page,json=currentPage,proto3" json:"current_page,omitempty"`
 	TotalPages    int32                  `protobuf:"varint,4,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2507,12 +2700,20 @@ func (x *GetFavoritesResponse) GetTotalPages() int32 {
 	return 0
 }
 
+func (x *GetFavoritesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Itinerary management
 type GetItinerariesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2568,10 +2769,18 @@ func (x *GetItinerariesRequest) GetOffset() int32 {
 	return 0
 }
 
+func (x *GetItinerariesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetItinerariesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Itineraries   []*UserItinerary       `protobuf:"bytes,1,rep,name=itineraries,proto3" json:"itineraries,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2620,10 +2829,18 @@ func (x *GetItinerariesResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *GetItinerariesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetItineraryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ItineraryId   string                 `protobuf:"bytes,2,opt,name=itinerary_id,json=itineraryId,proto3" json:"itinerary_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2672,9 +2889,17 @@ func (x *GetItineraryRequest) GetItineraryId() string {
 	return ""
 }
 
+func (x *GetItineraryRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetItineraryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Itinerary     *UserItinerary         `protobuf:"bytes,1,opt,name=itinerary,proto3" json:"itinerary,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2716,6 +2941,13 @@ func (x *GetItineraryResponse) GetItinerary() *UserItinerary {
 	return nil
 }
 
+func (x *GetItineraryResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateItineraryRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -2723,6 +2955,7 @@ type UpdateItineraryRequest struct {
 	Title           string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	Description     string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	MarkdownContent string                 `protobuf:"bytes,5,opt,name=markdown_content,json=markdownContent,proto3" json:"markdown_content,omitempty"`
+	Request         *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2792,11 +3025,19 @@ func (x *UpdateItineraryRequest) GetMarkdownContent() string {
 	return ""
 }
 
+func (x *UpdateItineraryRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateItineraryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Itinerary     *UserItinerary         `protobuf:"bytes,3,opt,name=itinerary,proto3" json:"itinerary,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2848,6 +3089,13 @@ func (x *UpdateItineraryResponse) GetMessage() string {
 func (x *UpdateItineraryResponse) GetItinerary() *UserItinerary {
 	if x != nil {
 		return x.Itinerary
+	}
+	return nil
+}
+
+func (x *UpdateItineraryResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -2957,6 +3205,7 @@ type GenerateEmbeddingsRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	BatchSize       int32                  `protobuf:"varint,1,opt,name=batch_size,json=batchSize,proto3" json:"batch_size,omitempty"`
 	ForceRegenerate bool                   `protobuf:"varint,2,opt,name=force_regenerate,json=forceRegenerate,proto3" json:"force_regenerate,omitempty"`
+	Request         *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -3005,12 +3254,20 @@ func (x *GenerateEmbeddingsRequest) GetForceRegenerate() bool {
 	return false
 }
 
+func (x *GenerateEmbeddingsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GenerateEmbeddingsResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ProcessedCount int32                  `protobuf:"varint,1,opt,name=processed_count,json=processedCount,proto3" json:"processed_count,omitempty"`
 	UpdatedCount   int32                  `protobuf:"varint,2,opt,name=updated_count,json=updatedCount,proto3" json:"updated_count,omitempty"`
 	Status         string                 `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
 	Errors         []string               `protobuf:"bytes,4,rep,name=errors,proto3" json:"errors,omitempty"`
+	Response       *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -3071,6 +3328,125 @@ func (x *GenerateEmbeddingsResponse) GetErrors() []string {
 		return x.Errors
 	}
 	return nil
+}
+
+func (x *GenerateEmbeddingsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_poi_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_poi_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_poi_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_poi_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_poi_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_poi_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
 }
 
 var File_poi_proto protoreflect.FileDescriptor
@@ -3152,50 +3528,59 @@ const file_poi_proto_rawDesc = "" +
 	"\x05limit\x18\t \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\n" +
 	" \x01(\x05R\x06offset\x12\x17\n" +
-	"\acity_id\x18\v \x01(\tR\x06cityId\"]\n" +
+	"\acity_id\x18\v \x01(\tR\x06cityId\"\x93\x01\n" +
 	"\x14GetPOIsByCityRequest\x12\x17\n" +
 	"\acity_id\x18\x01 \x01(\tR\x06cityId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"l\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xa5\x01\n" +
 	"\x15GetPOIsByCityResponse\x122\n" +
 	"\x04pois\x18\x01 \x03(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\x04pois\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"E\n" +
+	"totalCount\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"{\n" +
 	"\x11SearchPOIsRequest\x120\n" +
-	"\x06filter\x18\x01 \x01(\v2\x18.ai_poi.poi.v1.POIFilterR\x06filter\"\xa4\x01\n" +
+	"\x06filter\x18\x01 \x01(\v2\x18.ai_poi.poi.v1.POIFilterR\x06filter\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xdd\x01\n" +
 	"\x12SearchPOIsResponse\x122\n" +
 	"\x04pois\x18\x01 \x03(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\x04pois\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x129\n" +
-	"\bmetadata\x18\x03 \x01(\v2\x1d.ai_poi.poi.v1.SearchMetadataR\bmetadata\"\xab\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2\x1d.ai_poi.poi.v1.SearchMetadataR\bmetadata\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xe1\x01\n" +
 	"\x19SearchPOIsSemanticRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x123\n" +
 	"\blocation\x18\x02 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12-\n" +
-	"\x12semantic_threshold\x18\x04 \x01(\x01R\x11semanticThreshold\"\x95\x01\n" +
+	"\x12semantic_threshold\x18\x04 \x01(\x01R\x11semanticThreshold\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xcb\x01\n" +
 	"\x1fSearchPOIsSemanticByCityRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12\x17\n" +
 	"\acity_id\x18\x02 \x01(\tR\x06cityId\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12-\n" +
-	"\x12semantic_threshold\x18\x04 \x01(\x01R\x11semanticThreshold\"\xad\x01\n" +
+	"\x12semantic_threshold\x18\x04 \x01(\x01R\x11semanticThreshold\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xe6\x01\n" +
 	"\x1aSearchPOIsSemanticResponse\x123\n" +
 	"\x04pois\x18\x01 \x03(\v2\x1f.ai_poi.poi.v1.POISemanticMatchR\x04pois\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x129\n" +
-	"\bmetadata\x18\x03 \x01(\v2\x1d.ai_poi.poi.v1.SearchMetadataR\bmetadata\"\x92\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2\x1d.ai_poi.poi.v1.SearchMetadataR\bmetadata\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x92\x01\n" +
 	"\x10POISemanticMatch\x120\n" +
 	"\x03poi\x18\x01 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\x03poi\x12)\n" +
 	"\x10similarity_score\x18\x02 \x01(\x01R\x0fsimilarityScore\x12!\n" +
-	"\fmatch_reason\x18\x03 \x01(\tR\vmatchReason\"\x9b\x01\n" +
+	"\fmatch_reason\x18\x03 \x01(\tR\vmatchReason\"\xd1\x01\n" +
 	"\x17SearchPOIsHybridRequest\x120\n" +
 	"\x06filter\x18\x01 \x01(\v2\x18.ai_poi.poi.v1.POIFilterR\x06filter\x12%\n" +
 	"\x0esemantic_query\x18\x02 \x01(\tR\rsemanticQuery\x12'\n" +
-	"\x0fsemantic_weight\x18\x03 \x01(\x01R\x0esemanticWeight\"\xa9\x01\n" +
+	"\x0fsemantic_weight\x18\x03 \x01(\x01R\x0esemanticWeight\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xe2\x01\n" +
 	"\x18SearchPOIsHybridResponse\x121\n" +
 	"\x04pois\x18\x01 \x03(\v2\x1d.ai_poi.poi.v1.POIHybridMatchR\x04pois\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x129\n" +
-	"\bmetadata\x18\x03 \x01(\v2\x1d.ai_poi.poi.v1.SearchMetadataR\bmetadata\"\xb5\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2\x1d.ai_poi.poi.v1.SearchMetadataR\bmetadata\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xb5\x01\n" +
 	"\x0ePOIHybridMatch\x120\n" +
 	"\x03poi\x18\x01 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\x03poi\x12#\n" +
 	"\rspatial_score\x18\x02 \x01(\x01R\fspatialScore\x12%\n" +
@@ -3208,16 +3593,18 @@ const file_poi_proto_rawDesc = "" +
 	"debug_info\x18\x03 \x03(\v2,.ai_poi.poi.v1.SearchMetadata.DebugInfoEntryR\tdebugInfo\x1a<\n" +
 	"\x0eDebugInfoEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xdd\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x93\x02\n" +
 	"\x1fGetNearbyRecommendationsRequest\x123\n" +
 	"\blocation\x18\x01 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
 	"\rradius_meters\x18\x02 \x01(\x01R\fradiusMeters\x12\x17\n" +
 	"\auser_id\x18\x03 \x01(\tR\x06userId\x121\n" +
 	"\x14preferred_categories\x18\x04 \x03(\tR\x13preferredCategories\x12\x14\n" +
-	"\x05limit\x18\x05 \x01(\x05R\x05limit\"\xb1\x01\n" +
+	"\x05limit\x18\x05 \x01(\x05R\x05limit\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xea\x01\n" +
 	" GetNearbyRecommendationsResponse\x12J\n" +
 	"\x0frecommendations\x18\x01 \x03(\v2 .ai_poi.poi.v1.POIRecommendationR\x0frecommendations\x12A\n" +
-	"\bmetadata\x18\x02 \x01(\v2%.ai_poi.poi.v1.RecommendationMetadataR\bmetadata\"\xc1\x01\n" +
+	"\bmetadata\x18\x02 \x01(\v2%.ai_poi.poi.v1.RecommendationMetadataR\bmetadata\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xc1\x01\n" +
 	"\x11POIRecommendation\x120\n" +
 	"\x03poi\x18\x01 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\x03poi\x121\n" +
 	"\x14recommendation_score\x18\x02 \x01(\x01R\x13recommendationScore\x123\n" +
@@ -3225,7 +3612,7 @@ const file_poi_proto_rawDesc = "" +
 	"\x04tags\x18\x04 \x03(\tR\x04tags\"v\n" +
 	"\x16RecommendationMetadata\x123\n" +
 	"\x15personalization_level\x18\x01 \x01(\tR\x14personalizationLevel\x12'\n" +
-	"\x0fapplied_filters\x18\x02 \x03(\tR\x0eappliedFilters\"\xf3\x01\n" +
+	"\x0fapplied_filters\x18\x02 \x03(\tR\x0eappliedFilters\"\xa9\x02\n" +
 	"\x1aDiscoverRestaurantsRequest\x123\n" +
 	"\blocation\x18\x01 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
 	"\rradius_meters\x18\x02 \x01(\x01R\fradiusMeters\x12#\n" +
@@ -3233,96 +3620,116 @@ const file_poi_proto_rawDesc = "" +
 	"\fprice_ranges\x18\x04 \x03(\tR\vpriceRanges\x12\x1d\n" +
 	"\n" +
 	"min_rating\x18\x05 \x01(\x01R\tminRating\x12\x14\n" +
-	"\x05limit\x18\x06 \x01(\x05R\x05limit\"\x87\x01\n" +
+	"\x05limit\x18\x06 \x01(\x05R\x05limit\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xc0\x01\n" +
 	"\x1bDiscoverRestaurantsResponse\x12G\n" +
 	"\vrestaurants\x18\x01 \x03(\v2%.ai_poi.poi.v1.RestaurantDetailedInfoR\vrestaurants\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xb2\x01\n" +
+	"totalCount\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xe8\x01\n" +
 	"\x19DiscoverActivitiesRequest\x123\n" +
 	"\blocation\x18\x01 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
 	"\rradius_meters\x18\x02 \x01(\x01R\fradiusMeters\x12%\n" +
 	"\x0eactivity_types\x18\x03 \x03(\tR\ractivityTypes\x12\x14\n" +
-	"\x05limit\x18\x04 \x01(\x05R\x05limit\"}\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xb6\x01\n" +
 	"\x1aDiscoverActivitiesResponse\x12>\n" +
 	"\n" +
 	"activities\x18\x01 \x03(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\n" +
 	"activities\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xf4\x01\n" +
+	"totalCount\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xaa\x02\n" +
 	"\x15DiscoverHotelsRequest\x123\n" +
 	"\blocation\x18\x01 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
 	"\rradius_meters\x18\x02 \x01(\x01R\fradiusMeters\x12%\n" +
 	"\x0eproperty_types\x18\x03 \x03(\tR\rpropertyTypes\x12!\n" +
 	"\fstar_ratings\x18\x04 \x03(\x05R\vstarRatings\x12!\n" +
 	"\fprice_ranges\x18\x05 \x03(\tR\vpriceRanges\x12\x14\n" +
-	"\x05limit\x18\x06 \x01(\x05R\x05limit\"s\n" +
+	"\x05limit\x18\x06 \x01(\x05R\x05limit\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xac\x01\n" +
 	"\x16DiscoverHotelsResponse\x128\n" +
 	"\x06hotels\x18\x01 \x03(\v2 .ai_poi.poi.v1.HotelDetailedInfoR\x06hotels\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xb7\x01\n" +
+	"totalCount\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xed\x01\n" +
 	"\x1aDiscoverAttractionsRequest\x123\n" +
 	"\blocation\x18\x01 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
 	"\rradius_meters\x18\x02 \x01(\x01R\fradiusMeters\x12)\n" +
 	"\x10attraction_types\x18\x03 \x03(\tR\x0fattractionTypes\x12\x14\n" +
-	"\x05limit\x18\x04 \x01(\x05R\x05limit\"\x80\x01\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xb9\x01\n" +
 	"\x1bDiscoverAttractionsResponse\x12@\n" +
 	"\vattractions\x18\x01 \x03(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\vattractions\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xa0\x01\n" +
+	"totalCount\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xd6\x01\n" +
 	"\x15AddToFavoritesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x15\n" +
 	"\x06poi_id\x18\x02 \x01(\tR\x05poiId\x12\x1c\n" +
 	"\n" +
 	"is_llm_poi\x18\x03 \x01(\bR\bisLlmPoi\x129\n" +
-	"\bpoi_data\x18\x04 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\apoiData\"c\n" +
+	"\bpoi_data\x18\x04 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\apoiData\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\x9c\x01\n" +
 	"\x16AddToFavoritesResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x15\n" +
-	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\"\xa5\x01\n" +
+	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xdb\x01\n" +
 	"\x1aRemoveFromFavoritesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x15\n" +
 	"\x06poi_id\x18\x02 \x01(\tR\x05poiId\x12\x1c\n" +
 	"\n" +
 	"is_llm_poi\x18\x03 \x01(\bR\bisLlmPoi\x129\n" +
-	"\bpoi_data\x18\x04 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\apoiData\"h\n" +
+	"\bpoi_data\x18\x04 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\apoiData\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xa1\x01\n" +
 	"\x1bRemoveFromFavoritesResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x15\n" +
-	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\"_\n" +
+	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x95\x01\n" +
 	"\x13GetFavoritesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\"\xb9\x01\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xf2\x01\n" +
 	"\x14GetFavoritesResponse\x12<\n" +
 	"\tfavorites\x18\x01 \x03(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\tfavorites\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12!\n" +
 	"\fcurrent_page\x18\x03 \x01(\x05R\vcurrentPage\x12\x1f\n" +
 	"\vtotal_pages\x18\x04 \x01(\x05R\n" +
-	"totalPages\"^\n" +
+	"totalPages\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x94\x01\n" +
 	"\x15GetItinerariesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"y\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xb2\x01\n" +
 	"\x16GetItinerariesResponse\x12>\n" +
 	"\vitineraries\x18\x01 \x03(\v2\x1c.ai_poi.poi.v1.UserItineraryR\vitineraries\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"Q\n" +
+	"totalCount\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x87\x01\n" +
 	"\x13GetItineraryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
-	"\fitinerary_id\x18\x02 \x01(\tR\vitineraryId\"R\n" +
+	"\fitinerary_id\x18\x02 \x01(\tR\vitineraryId\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\x8b\x01\n" +
 	"\x14GetItineraryResponse\x12:\n" +
-	"\titinerary\x18\x01 \x01(\v2\x1c.ai_poi.poi.v1.UserItineraryR\titinerary\"\xb7\x01\n" +
+	"\titinerary\x18\x01 \x01(\v2\x1c.ai_poi.poi.v1.UserItineraryR\titinerary\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xed\x01\n" +
 	"\x16UpdateItineraryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
 	"\fitinerary_id\x18\x02 \x01(\tR\vitineraryId\x12\x14\n" +
 	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12)\n" +
-	"\x10markdown_content\x18\x05 \x01(\tR\x0fmarkdownContent\"\x89\x01\n" +
+	"\x10markdown_content\x18\x05 \x01(\tR\x0fmarkdownContent\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xc2\x01\n" +
 	"\x17UpdateItineraryResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12:\n" +
-	"\titinerary\x18\x03 \x01(\v2\x1c.ai_poi.poi.v1.UserItineraryR\titinerary\"\xb0\x02\n" +
+	"\titinerary\x18\x03 \x01(\v2\x1c.ai_poi.poi.v1.UserItineraryR\titinerary\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xb0\x02\n" +
 	"\rUserItinerary\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
@@ -3334,16 +3741,29 @@ const file_poi_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"e\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x9b\x01\n" +
 	"\x19GenerateEmbeddingsRequest\x12\x1d\n" +
 	"\n" +
 	"batch_size\x18\x01 \x01(\x05R\tbatchSize\x12)\n" +
-	"\x10force_regenerate\x18\x02 \x01(\bR\x0fforceRegenerate\"\x9a\x01\n" +
+	"\x10force_regenerate\x18\x02 \x01(\bR\x0fforceRegenerate\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xd3\x01\n" +
 	"\x1aGenerateEmbeddingsResponse\x12'\n" +
 	"\x0fprocessed_count\x18\x01 \x01(\x05R\x0eprocessedCount\x12#\n" +
 	"\rupdated_count\x18\x02 \x01(\x05R\fupdatedCount\x12\x16\n" +
 	"\x06status\x18\x03 \x01(\tR\x06status\x12\x16\n" +
-	"\x06errors\x18\x04 \x03(\tR\x06errors2\xd0\r\n" +
+	"\x06errors\x18\x04 \x03(\tR\x06errors\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\xd0\r\n" +
 	"\n" +
 	"POIService\x12Z\n" +
 	"\rGetPOIsByCity\x12#.ai_poi.poi.v1.GetPOIsByCityRequest\x1a$.ai_poi.poi.v1.GetPOIsByCityResponse\x12Q\n" +
@@ -3377,7 +3797,7 @@ func file_poi_proto_rawDescGZIP() []byte {
 	return file_poi_proto_rawDescData
 }
 
-var file_poi_proto_msgTypes = make([]protoimpl.MessageInfo, 46)
+var file_poi_proto_msgTypes = make([]protoimpl.MessageInfo, 48)
 var file_poi_proto_goTypes = []any{
 	(*POIDetailedInfo)(nil),                  // 0: ai_poi.poi.v1.POIDetailedInfo
 	(*RestaurantDetailedInfo)(nil),           // 1: ai_poi.poi.v1.RestaurantDetailedInfo
@@ -3423,89 +3843,124 @@ var file_poi_proto_goTypes = []any{
 	(*UserItinerary)(nil),                    // 41: ai_poi.poi.v1.UserItinerary
 	(*GenerateEmbeddingsRequest)(nil),        // 42: ai_poi.poi.v1.GenerateEmbeddingsRequest
 	(*GenerateEmbeddingsResponse)(nil),       // 43: ai_poi.poi.v1.GenerateEmbeddingsResponse
-	nil,                                      // 44: ai_poi.poi.v1.POIDetailedInfo.MetadataEntry
-	nil,                                      // 45: ai_poi.poi.v1.SearchMetadata.DebugInfoEntry
-	(*timestamppb.Timestamp)(nil),            // 46: google.protobuf.Timestamp
+	(*BaseRequest)(nil),                      // 44: ai_poi.poi.v1.BaseRequest
+	(*BaseResponse)(nil),                     // 45: ai_poi.poi.v1.BaseResponse
+	nil,                                      // 46: ai_poi.poi.v1.POIDetailedInfo.MetadataEntry
+	nil,                                      // 47: ai_poi.poi.v1.SearchMetadata.DebugInfoEntry
+	(*timestamppb.Timestamp)(nil),            // 48: google.protobuf.Timestamp
 }
 var file_poi_proto_depIdxs = []int32{
-	44, // 0: ai_poi.poi.v1.POIDetailedInfo.metadata:type_name -> ai_poi.poi.v1.POIDetailedInfo.MetadataEntry
-	46, // 1: ai_poi.poi.v1.POIDetailedInfo.created_at:type_name -> google.protobuf.Timestamp
-	46, // 2: ai_poi.poi.v1.POIDetailedInfo.updated_at:type_name -> google.protobuf.Timestamp
+	46, // 0: ai_poi.poi.v1.POIDetailedInfo.metadata:type_name -> ai_poi.poi.v1.POIDetailedInfo.MetadataEntry
+	48, // 1: ai_poi.poi.v1.POIDetailedInfo.created_at:type_name -> google.protobuf.Timestamp
+	48, // 2: ai_poi.poi.v1.POIDetailedInfo.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: ai_poi.poi.v1.RestaurantDetailedInfo.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
 	0,  // 4: ai_poi.poi.v1.HotelDetailedInfo.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
 	3,  // 5: ai_poi.poi.v1.POIFilter.location:type_name -> ai_poi.poi.v1.GeoPoint
-	0,  // 6: ai_poi.poi.v1.GetPOIsByCityResponse.pois:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	4,  // 7: ai_poi.poi.v1.SearchPOIsRequest.filter:type_name -> ai_poi.poi.v1.POIFilter
-	0,  // 8: ai_poi.poi.v1.SearchPOIsResponse.pois:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	16, // 9: ai_poi.poi.v1.SearchPOIsResponse.metadata:type_name -> ai_poi.poi.v1.SearchMetadata
-	3,  // 10: ai_poi.poi.v1.SearchPOIsSemanticRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
-	12, // 11: ai_poi.poi.v1.SearchPOIsSemanticResponse.pois:type_name -> ai_poi.poi.v1.POISemanticMatch
-	16, // 12: ai_poi.poi.v1.SearchPOIsSemanticResponse.metadata:type_name -> ai_poi.poi.v1.SearchMetadata
-	0,  // 13: ai_poi.poi.v1.POISemanticMatch.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	4,  // 14: ai_poi.poi.v1.SearchPOIsHybridRequest.filter:type_name -> ai_poi.poi.v1.POIFilter
-	15, // 15: ai_poi.poi.v1.SearchPOIsHybridResponse.pois:type_name -> ai_poi.poi.v1.POIHybridMatch
-	16, // 16: ai_poi.poi.v1.SearchPOIsHybridResponse.metadata:type_name -> ai_poi.poi.v1.SearchMetadata
-	0,  // 17: ai_poi.poi.v1.POIHybridMatch.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	45, // 18: ai_poi.poi.v1.SearchMetadata.debug_info:type_name -> ai_poi.poi.v1.SearchMetadata.DebugInfoEntry
-	3,  // 19: ai_poi.poi.v1.GetNearbyRecommendationsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
-	19, // 20: ai_poi.poi.v1.GetNearbyRecommendationsResponse.recommendations:type_name -> ai_poi.poi.v1.POIRecommendation
-	20, // 21: ai_poi.poi.v1.GetNearbyRecommendationsResponse.metadata:type_name -> ai_poi.poi.v1.RecommendationMetadata
-	0,  // 22: ai_poi.poi.v1.POIRecommendation.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	3,  // 23: ai_poi.poi.v1.DiscoverRestaurantsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
-	1,  // 24: ai_poi.poi.v1.DiscoverRestaurantsResponse.restaurants:type_name -> ai_poi.poi.v1.RestaurantDetailedInfo
-	3,  // 25: ai_poi.poi.v1.DiscoverActivitiesRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
-	0,  // 26: ai_poi.poi.v1.DiscoverActivitiesResponse.activities:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	3,  // 27: ai_poi.poi.v1.DiscoverHotelsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
-	2,  // 28: ai_poi.poi.v1.DiscoverHotelsResponse.hotels:type_name -> ai_poi.poi.v1.HotelDetailedInfo
-	3,  // 29: ai_poi.poi.v1.DiscoverAttractionsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
-	0,  // 30: ai_poi.poi.v1.DiscoverAttractionsResponse.attractions:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	0,  // 31: ai_poi.poi.v1.AddToFavoritesRequest.poi_data:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	0,  // 32: ai_poi.poi.v1.RemoveFromFavoritesRequest.poi_data:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	0,  // 33: ai_poi.poi.v1.GetFavoritesResponse.favorites:type_name -> ai_poi.poi.v1.POIDetailedInfo
-	41, // 34: ai_poi.poi.v1.GetItinerariesResponse.itineraries:type_name -> ai_poi.poi.v1.UserItinerary
-	41, // 35: ai_poi.poi.v1.GetItineraryResponse.itinerary:type_name -> ai_poi.poi.v1.UserItinerary
-	41, // 36: ai_poi.poi.v1.UpdateItineraryResponse.itinerary:type_name -> ai_poi.poi.v1.UserItinerary
-	46, // 37: ai_poi.poi.v1.UserItinerary.created_at:type_name -> google.protobuf.Timestamp
-	46, // 38: ai_poi.poi.v1.UserItinerary.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 39: ai_poi.poi.v1.POIService.GetPOIsByCity:input_type -> ai_poi.poi.v1.GetPOIsByCityRequest
-	7,  // 40: ai_poi.poi.v1.POIService.SearchPOIs:input_type -> ai_poi.poi.v1.SearchPOIsRequest
-	9,  // 41: ai_poi.poi.v1.POIService.SearchPOIsSemantic:input_type -> ai_poi.poi.v1.SearchPOIsSemanticRequest
-	10, // 42: ai_poi.poi.v1.POIService.SearchPOIsSemanticByCity:input_type -> ai_poi.poi.v1.SearchPOIsSemanticByCityRequest
-	13, // 43: ai_poi.poi.v1.POIService.SearchPOIsHybrid:input_type -> ai_poi.poi.v1.SearchPOIsHybridRequest
-	17, // 44: ai_poi.poi.v1.POIService.GetNearbyRecommendations:input_type -> ai_poi.poi.v1.GetNearbyRecommendationsRequest
-	21, // 45: ai_poi.poi.v1.POIService.DiscoverRestaurants:input_type -> ai_poi.poi.v1.DiscoverRestaurantsRequest
-	23, // 46: ai_poi.poi.v1.POIService.DiscoverActivities:input_type -> ai_poi.poi.v1.DiscoverActivitiesRequest
-	25, // 47: ai_poi.poi.v1.POIService.DiscoverHotels:input_type -> ai_poi.poi.v1.DiscoverHotelsRequest
-	27, // 48: ai_poi.poi.v1.POIService.DiscoverAttractions:input_type -> ai_poi.poi.v1.DiscoverAttractionsRequest
-	29, // 49: ai_poi.poi.v1.POIService.AddToFavorites:input_type -> ai_poi.poi.v1.AddToFavoritesRequest
-	31, // 50: ai_poi.poi.v1.POIService.RemoveFromFavorites:input_type -> ai_poi.poi.v1.RemoveFromFavoritesRequest
-	33, // 51: ai_poi.poi.v1.POIService.GetFavorites:input_type -> ai_poi.poi.v1.GetFavoritesRequest
-	35, // 52: ai_poi.poi.v1.POIService.GetItineraries:input_type -> ai_poi.poi.v1.GetItinerariesRequest
-	37, // 53: ai_poi.poi.v1.POIService.GetItinerary:input_type -> ai_poi.poi.v1.GetItineraryRequest
-	39, // 54: ai_poi.poi.v1.POIService.UpdateItinerary:input_type -> ai_poi.poi.v1.UpdateItineraryRequest
-	42, // 55: ai_poi.poi.v1.POIService.GenerateEmbeddings:input_type -> ai_poi.poi.v1.GenerateEmbeddingsRequest
-	6,  // 56: ai_poi.poi.v1.POIService.GetPOIsByCity:output_type -> ai_poi.poi.v1.GetPOIsByCityResponse
-	8,  // 57: ai_poi.poi.v1.POIService.SearchPOIs:output_type -> ai_poi.poi.v1.SearchPOIsResponse
-	11, // 58: ai_poi.poi.v1.POIService.SearchPOIsSemantic:output_type -> ai_poi.poi.v1.SearchPOIsSemanticResponse
-	11, // 59: ai_poi.poi.v1.POIService.SearchPOIsSemanticByCity:output_type -> ai_poi.poi.v1.SearchPOIsSemanticResponse
-	14, // 60: ai_poi.poi.v1.POIService.SearchPOIsHybrid:output_type -> ai_poi.poi.v1.SearchPOIsHybridResponse
-	18, // 61: ai_poi.poi.v1.POIService.GetNearbyRecommendations:output_type -> ai_poi.poi.v1.GetNearbyRecommendationsResponse
-	22, // 62: ai_poi.poi.v1.POIService.DiscoverRestaurants:output_type -> ai_poi.poi.v1.DiscoverRestaurantsResponse
-	24, // 63: ai_poi.poi.v1.POIService.DiscoverActivities:output_type -> ai_poi.poi.v1.DiscoverActivitiesResponse
-	26, // 64: ai_poi.poi.v1.POIService.DiscoverHotels:output_type -> ai_poi.poi.v1.DiscoverHotelsResponse
-	28, // 65: ai_poi.poi.v1.POIService.DiscoverAttractions:output_type -> ai_poi.poi.v1.DiscoverAttractionsResponse
-	30, // 66: ai_poi.poi.v1.POIService.AddToFavorites:output_type -> ai_poi.poi.v1.AddToFavoritesResponse
-	32, // 67: ai_poi.poi.v1.POIService.RemoveFromFavorites:output_type -> ai_poi.poi.v1.RemoveFromFavoritesResponse
-	34, // 68: ai_poi.poi.v1.POIService.GetFavorites:output_type -> ai_poi.poi.v1.GetFavoritesResponse
-	36, // 69: ai_poi.poi.v1.POIService.GetItineraries:output_type -> ai_poi.poi.v1.GetItinerariesResponse
-	38, // 70: ai_poi.poi.v1.POIService.GetItinerary:output_type -> ai_poi.poi.v1.GetItineraryResponse
-	40, // 71: ai_poi.poi.v1.POIService.UpdateItinerary:output_type -> ai_poi.poi.v1.UpdateItineraryResponse
-	43, // 72: ai_poi.poi.v1.POIService.GenerateEmbeddings:output_type -> ai_poi.poi.v1.GenerateEmbeddingsResponse
-	56, // [56:73] is the sub-list for method output_type
-	39, // [39:56] is the sub-list for method input_type
-	39, // [39:39] is the sub-list for extension type_name
-	39, // [39:39] is the sub-list for extension extendee
-	0,  // [0:39] is the sub-list for field type_name
+	44, // 6: ai_poi.poi.v1.GetPOIsByCityRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	0,  // 7: ai_poi.poi.v1.GetPOIsByCityResponse.pois:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	45, // 8: ai_poi.poi.v1.GetPOIsByCityResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	4,  // 9: ai_poi.poi.v1.SearchPOIsRequest.filter:type_name -> ai_poi.poi.v1.POIFilter
+	44, // 10: ai_poi.poi.v1.SearchPOIsRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	0,  // 11: ai_poi.poi.v1.SearchPOIsResponse.pois:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	16, // 12: ai_poi.poi.v1.SearchPOIsResponse.metadata:type_name -> ai_poi.poi.v1.SearchMetadata
+	45, // 13: ai_poi.poi.v1.SearchPOIsResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	3,  // 14: ai_poi.poi.v1.SearchPOIsSemanticRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
+	44, // 15: ai_poi.poi.v1.SearchPOIsSemanticRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	44, // 16: ai_poi.poi.v1.SearchPOIsSemanticByCityRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	12, // 17: ai_poi.poi.v1.SearchPOIsSemanticResponse.pois:type_name -> ai_poi.poi.v1.POISemanticMatch
+	16, // 18: ai_poi.poi.v1.SearchPOIsSemanticResponse.metadata:type_name -> ai_poi.poi.v1.SearchMetadata
+	45, // 19: ai_poi.poi.v1.SearchPOIsSemanticResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	0,  // 20: ai_poi.poi.v1.POISemanticMatch.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	4,  // 21: ai_poi.poi.v1.SearchPOIsHybridRequest.filter:type_name -> ai_poi.poi.v1.POIFilter
+	44, // 22: ai_poi.poi.v1.SearchPOIsHybridRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	15, // 23: ai_poi.poi.v1.SearchPOIsHybridResponse.pois:type_name -> ai_poi.poi.v1.POIHybridMatch
+	16, // 24: ai_poi.poi.v1.SearchPOIsHybridResponse.metadata:type_name -> ai_poi.poi.v1.SearchMetadata
+	45, // 25: ai_poi.poi.v1.SearchPOIsHybridResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	0,  // 26: ai_poi.poi.v1.POIHybridMatch.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	47, // 27: ai_poi.poi.v1.SearchMetadata.debug_info:type_name -> ai_poi.poi.v1.SearchMetadata.DebugInfoEntry
+	3,  // 28: ai_poi.poi.v1.GetNearbyRecommendationsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
+	44, // 29: ai_poi.poi.v1.GetNearbyRecommendationsRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	19, // 30: ai_poi.poi.v1.GetNearbyRecommendationsResponse.recommendations:type_name -> ai_poi.poi.v1.POIRecommendation
+	20, // 31: ai_poi.poi.v1.GetNearbyRecommendationsResponse.metadata:type_name -> ai_poi.poi.v1.RecommendationMetadata
+	45, // 32: ai_poi.poi.v1.GetNearbyRecommendationsResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	0,  // 33: ai_poi.poi.v1.POIRecommendation.poi:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	3,  // 34: ai_poi.poi.v1.DiscoverRestaurantsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
+	44, // 35: ai_poi.poi.v1.DiscoverRestaurantsRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	1,  // 36: ai_poi.poi.v1.DiscoverRestaurantsResponse.restaurants:type_name -> ai_poi.poi.v1.RestaurantDetailedInfo
+	45, // 37: ai_poi.poi.v1.DiscoverRestaurantsResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	3,  // 38: ai_poi.poi.v1.DiscoverActivitiesRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
+	44, // 39: ai_poi.poi.v1.DiscoverActivitiesRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	0,  // 40: ai_poi.poi.v1.DiscoverActivitiesResponse.activities:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	45, // 41: ai_poi.poi.v1.DiscoverActivitiesResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	3,  // 42: ai_poi.poi.v1.DiscoverHotelsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
+	44, // 43: ai_poi.poi.v1.DiscoverHotelsRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	2,  // 44: ai_poi.poi.v1.DiscoverHotelsResponse.hotels:type_name -> ai_poi.poi.v1.HotelDetailedInfo
+	45, // 45: ai_poi.poi.v1.DiscoverHotelsResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	3,  // 46: ai_poi.poi.v1.DiscoverAttractionsRequest.location:type_name -> ai_poi.poi.v1.GeoPoint
+	44, // 47: ai_poi.poi.v1.DiscoverAttractionsRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	0,  // 48: ai_poi.poi.v1.DiscoverAttractionsResponse.attractions:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	45, // 49: ai_poi.poi.v1.DiscoverAttractionsResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	0,  // 50: ai_poi.poi.v1.AddToFavoritesRequest.poi_data:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	44, // 51: ai_poi.poi.v1.AddToFavoritesRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	45, // 52: ai_poi.poi.v1.AddToFavoritesResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	0,  // 53: ai_poi.poi.v1.RemoveFromFavoritesRequest.poi_data:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	44, // 54: ai_poi.poi.v1.RemoveFromFavoritesRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	45, // 55: ai_poi.poi.v1.RemoveFromFavoritesResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	44, // 56: ai_poi.poi.v1.GetFavoritesRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	0,  // 57: ai_poi.poi.v1.GetFavoritesResponse.favorites:type_name -> ai_poi.poi.v1.POIDetailedInfo
+	45, // 58: ai_poi.poi.v1.GetFavoritesResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	44, // 59: ai_poi.poi.v1.GetItinerariesRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	41, // 60: ai_poi.poi.v1.GetItinerariesResponse.itineraries:type_name -> ai_poi.poi.v1.UserItinerary
+	45, // 61: ai_poi.poi.v1.GetItinerariesResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	44, // 62: ai_poi.poi.v1.GetItineraryRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	41, // 63: ai_poi.poi.v1.GetItineraryResponse.itinerary:type_name -> ai_poi.poi.v1.UserItinerary
+	45, // 64: ai_poi.poi.v1.GetItineraryResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	44, // 65: ai_poi.poi.v1.UpdateItineraryRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	41, // 66: ai_poi.poi.v1.UpdateItineraryResponse.itinerary:type_name -> ai_poi.poi.v1.UserItinerary
+	45, // 67: ai_poi.poi.v1.UpdateItineraryResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	48, // 68: ai_poi.poi.v1.UserItinerary.created_at:type_name -> google.protobuf.Timestamp
+	48, // 69: ai_poi.poi.v1.UserItinerary.updated_at:type_name -> google.protobuf.Timestamp
+	44, // 70: ai_poi.poi.v1.GenerateEmbeddingsRequest.request:type_name -> ai_poi.poi.v1.BaseRequest
+	45, // 71: ai_poi.poi.v1.GenerateEmbeddingsResponse.response:type_name -> ai_poi.poi.v1.BaseResponse
+	5,  // 72: ai_poi.poi.v1.POIService.GetPOIsByCity:input_type -> ai_poi.poi.v1.GetPOIsByCityRequest
+	7,  // 73: ai_poi.poi.v1.POIService.SearchPOIs:input_type -> ai_poi.poi.v1.SearchPOIsRequest
+	9,  // 74: ai_poi.poi.v1.POIService.SearchPOIsSemantic:input_type -> ai_poi.poi.v1.SearchPOIsSemanticRequest
+	10, // 75: ai_poi.poi.v1.POIService.SearchPOIsSemanticByCity:input_type -> ai_poi.poi.v1.SearchPOIsSemanticByCityRequest
+	13, // 76: ai_poi.poi.v1.POIService.SearchPOIsHybrid:input_type -> ai_poi.poi.v1.SearchPOIsHybridRequest
+	17, // 77: ai_poi.poi.v1.POIService.GetNearbyRecommendations:input_type -> ai_poi.poi.v1.GetNearbyRecommendationsRequest
+	21, // 78: ai_poi.poi.v1.POIService.DiscoverRestaurants:input_type -> ai_poi.poi.v1.DiscoverRestaurantsRequest
+	23, // 79: ai_poi.poi.v1.POIService.DiscoverActivities:input_type -> ai_poi.poi.v1.DiscoverActivitiesRequest
+	25, // 80: ai_poi.poi.v1.POIService.DiscoverHotels:input_type -> ai_poi.poi.v1.DiscoverHotelsRequest
+	27, // 81: ai_poi.poi.v1.POIService.DiscoverAttractions:input_type -> ai_poi.poi.v1.DiscoverAttractionsRequest
+	29, // 82: ai_poi.poi.v1.POIService.AddToFavorites:input_type -> ai_poi.poi.v1.AddToFavoritesRequest
+	31, // 83: ai_poi.poi.v1.POIService.RemoveFromFavorites:input_type -> ai_poi.poi.v1.RemoveFromFavoritesRequest
+	33, // 84: ai_poi.poi.v1.POIService.GetFavorites:input_type -> ai_poi.poi.v1.GetFavoritesRequest
+	35, // 85: ai_poi.poi.v1.POIService.GetItineraries:input_type -> ai_poi.poi.v1.GetItinerariesRequest
+	37, // 86: ai_poi.poi.v1.POIService.GetItinerary:input_type -> ai_poi.poi.v1.GetItineraryRequest
+	39, // 87: ai_poi.poi.v1.POIService.UpdateItinerary:input_type -> ai_poi.poi.v1.UpdateItineraryRequest
+	42, // 88: ai_poi.poi.v1.POIService.GenerateEmbeddings:input_type -> ai_poi.poi.v1.GenerateEmbeddingsRequest
+	6,  // 89: ai_poi.poi.v1.POIService.GetPOIsByCity:output_type -> ai_poi.poi.v1.GetPOIsByCityResponse
+	8,  // 90: ai_poi.poi.v1.POIService.SearchPOIs:output_type -> ai_poi.poi.v1.SearchPOIsResponse
+	11, // 91: ai_poi.poi.v1.POIService.SearchPOIsSemantic:output_type -> ai_poi.poi.v1.SearchPOIsSemanticResponse
+	11, // 92: ai_poi.poi.v1.POIService.SearchPOIsSemanticByCity:output_type -> ai_poi.poi.v1.SearchPOIsSemanticResponse
+	14, // 93: ai_poi.poi.v1.POIService.SearchPOIsHybrid:output_type -> ai_poi.poi.v1.SearchPOIsHybridResponse
+	18, // 94: ai_poi.poi.v1.POIService.GetNearbyRecommendations:output_type -> ai_poi.poi.v1.GetNearbyRecommendationsResponse
+	22, // 95: ai_poi.poi.v1.POIService.DiscoverRestaurants:output_type -> ai_poi.poi.v1.DiscoverRestaurantsResponse
+	24, // 96: ai_poi.poi.v1.POIService.DiscoverActivities:output_type -> ai_poi.poi.v1.DiscoverActivitiesResponse
+	26, // 97: ai_poi.poi.v1.POIService.DiscoverHotels:output_type -> ai_poi.poi.v1.DiscoverHotelsResponse
+	28, // 98: ai_poi.poi.v1.POIService.DiscoverAttractions:output_type -> ai_poi.poi.v1.DiscoverAttractionsResponse
+	30, // 99: ai_poi.poi.v1.POIService.AddToFavorites:output_type -> ai_poi.poi.v1.AddToFavoritesResponse
+	32, // 100: ai_poi.poi.v1.POIService.RemoveFromFavorites:output_type -> ai_poi.poi.v1.RemoveFromFavoritesResponse
+	34, // 101: ai_poi.poi.v1.POIService.GetFavorites:output_type -> ai_poi.poi.v1.GetFavoritesResponse
+	36, // 102: ai_poi.poi.v1.POIService.GetItineraries:output_type -> ai_poi.poi.v1.GetItinerariesResponse
+	38, // 103: ai_poi.poi.v1.POIService.GetItinerary:output_type -> ai_poi.poi.v1.GetItineraryResponse
+	40, // 104: ai_poi.poi.v1.POIService.UpdateItinerary:output_type -> ai_poi.poi.v1.UpdateItineraryResponse
+	43, // 105: ai_poi.poi.v1.POIService.GenerateEmbeddings:output_type -> ai_poi.poi.v1.GenerateEmbeddingsResponse
+	89, // [89:106] is the sub-list for method output_type
+	72, // [72:89] is the sub-list for method input_type
+	72, // [72:72] is the sub-list for extension type_name
+	72, // [72:72] is the sub-list for extension extendee
+	0,  // [0:72] is the sub-list for field type_name
 }
 
 func init() { file_poi_proto_init() }
@@ -3519,7 +3974,7 @@ func file_poi_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_poi_proto_rawDesc), len(file_poi_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   46,
+			NumMessages:   48,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

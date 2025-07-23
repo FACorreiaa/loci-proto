@@ -2443,6 +2443,7 @@ type GetMainPageStatisticsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IncludeTrends bool                   `protobuf:"varint,1,opt,name=include_trends,json=includeTrends,proto3" json:"include_trends,omitempty"`
 	TimeRange     string                 `protobuf:"bytes,2,opt,name=time_range,json=timeRange,proto3" json:"time_range,omitempty"` // "24h", "7d", "30d"
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2491,9 +2492,17 @@ func (x *GetMainPageStatisticsRequest) GetTimeRange() string {
 	return ""
 }
 
+func (x *GetMainPageStatisticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetMainPageStatisticsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Statistics    *MainPageStatistics    `protobuf:"bytes,1,opt,name=statistics,proto3" json:"statistics,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2535,10 +2544,18 @@ func (x *GetMainPageStatisticsResponse) GetStatistics() *MainPageStatistics {
 	return nil
 }
 
+func (x *GetMainPageStatisticsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type StreamMainPageStatisticsRequest struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
 	UpdateIntervalSeconds int32                  `protobuf:"varint,1,opt,name=update_interval_seconds,json=updateIntervalSeconds,proto3" json:"update_interval_seconds,omitempty"` // Default: 30 seconds
 	MetricFilters         []string               `protobuf:"bytes,2,rep,name=metric_filters,json=metricFilters,proto3" json:"metric_filters,omitempty"`                            // Which metrics to include
+	Request               *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -2587,11 +2604,19 @@ func (x *StreamMainPageStatisticsRequest) GetMetricFilters() []string {
 	return nil
 }
 
+func (x *StreamMainPageStatisticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetDetailedPOIStatisticsRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	UserId             string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TimeRange          string                 `protobuf:"bytes,2,opt,name=time_range,json=timeRange,proto3" json:"time_range,omitempty"` // "7d", "30d", "90d", "1y"
 	IncludePredictions bool                   `protobuf:"varint,3,opt,name=include_predictions,json=includePredictions,proto3" json:"include_predictions,omitempty"`
+	Request            *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -2647,10 +2672,18 @@ func (x *GetDetailedPOIStatisticsRequest) GetIncludePredictions() bool {
 	return false
 }
 
+func (x *GetDetailedPOIStatisticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetDetailedPOIStatisticsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Statistics    *DetailedPOIStatistics `protobuf:"bytes,1,opt,name=statistics,proto3" json:"statistics,omitempty"`
 	Predictions   []*Prediction          `protobuf:"bytes,2,rep,name=predictions,proto3" json:"predictions,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2695,6 +2728,13 @@ func (x *GetDetailedPOIStatisticsResponse) GetStatistics() *DetailedPOIStatistic
 func (x *GetDetailedPOIStatisticsResponse) GetPredictions() []*Prediction {
 	if x != nil {
 		return x.Predictions
+	}
+	return nil
+}
+
+func (x *GetDetailedPOIStatisticsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -2770,6 +2810,7 @@ func (x *Prediction) GetTimeHorizon() string {
 type GetLandingPageStatisticsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2811,9 +2852,17 @@ func (x *GetLandingPageStatisticsRequest) GetUserId() string {
 	return ""
 }
 
+func (x *GetLandingPageStatisticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetLandingPageStatisticsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Statistics    *LandingPageUserStats  `protobuf:"bytes,1,opt,name=statistics,proto3" json:"statistics,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2855,12 +2904,20 @@ func (x *GetLandingPageStatisticsResponse) GetStatistics() *LandingPageUserStats
 	return nil
 }
 
+func (x *GetLandingPageStatisticsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetUserActivityAnalyticsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	StartDate     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
 	EndDate       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
 	Granularity   string                 `protobuf:"bytes,4,opt,name=granularity,proto3" json:"granularity,omitempty"` // "hour", "day", "week", "month"
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2923,10 +2980,18 @@ func (x *GetUserActivityAnalyticsRequest) GetGranularity() string {
 	return ""
 }
 
+func (x *GetUserActivityAnalyticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetUserActivityAnalyticsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ActivityData  []*ActivityDataPoint   `protobuf:"bytes,1,rep,name=activity_data,json=activityData,proto3" json:"activity_data,omitempty"`
 	Summary       *ActivitySummary       `protobuf:"bytes,2,opt,name=summary,proto3" json:"summary,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2971,6 +3036,13 @@ func (x *GetUserActivityAnalyticsResponse) GetActivityData() []*ActivityDataPoin
 func (x *GetUserActivityAnalyticsResponse) GetSummary() *ActivitySummary {
 	if x != nil {
 		return x.Summary
+	}
+	return nil
+}
+
+func (x *GetUserActivityAnalyticsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -3131,6 +3203,7 @@ type GetSystemAnalyticsRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	TimeRange        string                 `protobuf:"bytes,1,opt,name=time_range,json=timeRange,proto3" json:"time_range,omitempty"`                      // "24h", "7d", "30d"
 	MetricCategories []string               `protobuf:"bytes,2,rep,name=metric_categories,json=metricCategories,proto3" json:"metric_categories,omitempty"` // "users", "performance", "errors", etc.
+	Request          *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -3179,9 +3252,17 @@ func (x *GetSystemAnalyticsRequest) GetMetricCategories() []string {
 	return nil
 }
 
+func (x *GetSystemAnalyticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetSystemAnalyticsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Analytics     *SystemAnalytics       `protobuf:"bytes,1,opt,name=analytics,proto3" json:"analytics,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3221,6 +3302,125 @@ func (x *GetSystemAnalyticsResponse) GetAnalytics() *SystemAnalytics {
 		return x.Analytics
 	}
 	return nil
+}
+
+func (x *GetSystemAnalyticsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_statistics_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_statistics_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_statistics_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_statistics_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_statistics_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_statistics_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
 }
 
 var File_statistics_proto protoreflect.FileDescriptor
@@ -3442,49 +3642,58 @@ const file_statistics_proto_rawDesc = "" +
 	"\adetails\x18\x04 \x03(\v2..ai_poi.statistics.v1.SystemAlert.DetailsEntryR\adetails\x1a:\n" +
 	"\fDetailsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"d\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xa1\x01\n" +
 	"\x1cGetMainPageStatisticsRequest\x12%\n" +
 	"\x0einclude_trends\x18\x01 \x01(\bR\rincludeTrends\x12\x1d\n" +
 	"\n" +
-	"time_range\x18\x02 \x01(\tR\ttimeRange\"i\n" +
+	"time_range\x18\x02 \x01(\tR\ttimeRange\x12;\n" +
+	"\arequest\x18d \x01(\v2!.ai_poi.statistics.v1.BaseRequestR\arequest\"\xa9\x01\n" +
 	"\x1dGetMainPageStatisticsResponse\x12H\n" +
 	"\n" +
 	"statistics\x18\x01 \x01(\v2(.ai_poi.statistics.v1.MainPageStatisticsR\n" +
-	"statistics\"\x80\x01\n" +
+	"statistics\x12>\n" +
+	"\bresponse\x18d \x01(\v2\".ai_poi.statistics.v1.BaseResponseR\bresponse\"\xbd\x01\n" +
 	"\x1fStreamMainPageStatisticsRequest\x126\n" +
 	"\x17update_interval_seconds\x18\x01 \x01(\x05R\x15updateIntervalSeconds\x12%\n" +
-	"\x0emetric_filters\x18\x02 \x03(\tR\rmetricFilters\"\x8a\x01\n" +
+	"\x0emetric_filters\x18\x02 \x03(\tR\rmetricFilters\x12;\n" +
+	"\arequest\x18d \x01(\v2!.ai_poi.statistics.v1.BaseRequestR\arequest\"\xc7\x01\n" +
 	"\x1fGetDetailedPOIStatisticsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"time_range\x18\x02 \x01(\tR\ttimeRange\x12/\n" +
-	"\x13include_predictions\x18\x03 \x01(\bR\x12includePredictions\"\xb3\x01\n" +
+	"\x13include_predictions\x18\x03 \x01(\bR\x12includePredictions\x12;\n" +
+	"\arequest\x18d \x01(\v2!.ai_poi.statistics.v1.BaseRequestR\arequest\"\xf3\x01\n" +
 	" GetDetailedPOIStatisticsResponse\x12K\n" +
 	"\n" +
 	"statistics\x18\x01 \x01(\v2+.ai_poi.statistics.v1.DetailedPOIStatisticsR\n" +
 	"statistics\x12B\n" +
-	"\vpredictions\x18\x02 \x03(\v2 .ai_poi.statistics.v1.PredictionR\vpredictions\"\x9b\x01\n" +
+	"\vpredictions\x18\x02 \x03(\v2 .ai_poi.statistics.v1.PredictionR\vpredictions\x12>\n" +
+	"\bresponse\x18d \x01(\v2\".ai_poi.statistics.v1.BaseResponseR\bresponse\"\x9b\x01\n" +
 	"\n" +
 	"Prediction\x12\x16\n" +
 	"\x06metric\x18\x01 \x01(\tR\x06metric\x12'\n" +
 	"\x0fpredicted_value\x18\x02 \x01(\x01R\x0epredictedValue\x12)\n" +
 	"\x10confidence_level\x18\x03 \x01(\tR\x0fconfidenceLevel\x12!\n" +
-	"\ftime_horizon\x18\x04 \x01(\tR\vtimeHorizon\":\n" +
+	"\ftime_horizon\x18\x04 \x01(\tR\vtimeHorizon\"w\n" +
 	"\x1fGetLandingPageStatisticsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"n\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12;\n" +
+	"\arequest\x18d \x01(\v2!.ai_poi.statistics.v1.BaseRequestR\arequest\"\xae\x01\n" +
 	" GetLandingPageStatisticsResponse\x12J\n" +
 	"\n" +
 	"statistics\x18\x01 \x01(\v2*.ai_poi.statistics.v1.LandingPageUserStatsR\n" +
-	"statistics\"\xce\x01\n" +
+	"statistics\x12>\n" +
+	"\bresponse\x18d \x01(\v2\".ai_poi.statistics.v1.BaseResponseR\bresponse\"\x8b\x02\n" +
 	"\x1fGetUserActivityAnalyticsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x129\n" +
 	"\n" +
 	"start_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
 	"\bend_date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12 \n" +
-	"\vgranularity\x18\x04 \x01(\tR\vgranularity\"\xb1\x01\n" +
+	"\vgranularity\x18\x04 \x01(\tR\vgranularity\x12;\n" +
+	"\arequest\x18d \x01(\v2!.ai_poi.statistics.v1.BaseRequestR\arequest\"\xf1\x01\n" +
 	" GetUserActivityAnalyticsResponse\x12L\n" +
 	"\ractivity_data\x18\x01 \x03(\v2'.ai_poi.statistics.v1.ActivityDataPointR\factivityData\x12?\n" +
-	"\asummary\x18\x02 \x01(\v2%.ai_poi.statistics.v1.ActivitySummaryR\asummary\"\xd9\x01\n" +
+	"\asummary\x18\x02 \x01(\v2%.ai_poi.statistics.v1.ActivitySummaryR\asummary\x12>\n" +
+	"\bresponse\x18d \x01(\v2\".ai_poi.statistics.v1.BaseResponseR\bresponse\"\xd9\x01\n" +
 	"\x11ActivityDataPoint\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x1a\n" +
 	"\bsearches\x18\x02 \x01(\x05R\bsearches\x12\x1c\n" +
@@ -3496,13 +3705,26 @@ const file_statistics_proto_rawDesc = "" +
 	"\x0ftotal_favorites\x18\x02 \x01(\x05R\x0etotalFavorites\x126\n" +
 	"\x17total_itinerary_actions\x18\x03 \x01(\x05R\x15totalItineraryActions\x12(\n" +
 	"\x10most_active_hour\x18\x04 \x01(\x05R\x0emostActiveHour\x12&\n" +
-	"\x0fmost_active_day\x18\x05 \x01(\tR\rmostActiveDay\"g\n" +
+	"\x0fmost_active_day\x18\x05 \x01(\tR\rmostActiveDay\"\xa4\x01\n" +
 	"\x19GetSystemAnalyticsRequest\x12\x1d\n" +
 	"\n" +
 	"time_range\x18\x01 \x01(\tR\ttimeRange\x12+\n" +
-	"\x11metric_categories\x18\x02 \x03(\tR\x10metricCategories\"a\n" +
+	"\x11metric_categories\x18\x02 \x03(\tR\x10metricCategories\x12;\n" +
+	"\arequest\x18d \x01(\v2!.ai_poi.statistics.v1.BaseRequestR\arequest\"\xa1\x01\n" +
 	"\x1aGetSystemAnalyticsResponse\x12C\n" +
-	"\tanalytics\x18\x01 \x01(\v2%.ai_poi.statistics.v1.SystemAnalyticsR\tanalytics2\xaf\x06\n" +
+	"\tanalytics\x18\x01 \x01(\v2%.ai_poi.statistics.v1.SystemAnalyticsR\tanalytics\x12>\n" +
+	"\bresponse\x18d \x01(\v2\".ai_poi.statistics.v1.BaseResponseR\bresponse\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\xaf\x06\n" +
 	"\x11StatisticsService\x12\x80\x01\n" +
 	"\x15GetMainPageStatistics\x122.ai_poi.statistics.v1.GetMainPageStatisticsRequest\x1a3.ai_poi.statistics.v1.GetMainPageStatisticsResponse\x12z\n" +
 	"\x18StreamMainPageStatistics\x125.ai_poi.statistics.v1.StreamMainPageStatisticsRequest\x1a%.ai_poi.statistics.v1.StatisticsEvent0\x01\x12\x89\x01\n" +
@@ -3523,7 +3745,7 @@ func file_statistics_proto_rawDescGZIP() []byte {
 	return file_statistics_proto_rawDescData
 }
 
-var file_statistics_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
+var file_statistics_proto_msgTypes = make([]protoimpl.MessageInfo, 49)
 var file_statistics_proto_goTypes = []any{
 	(*MainPageStatistics)(nil),               // 0: ai_poi.statistics.v1.MainPageStatistics
 	(*RecentActivity)(nil),                   // 1: ai_poi.statistics.v1.RecentActivity
@@ -3570,76 +3792,89 @@ var file_statistics_proto_goTypes = []any{
 	(*ActivitySummary)(nil),                  // 42: ai_poi.statistics.v1.ActivitySummary
 	(*GetSystemAnalyticsRequest)(nil),        // 43: ai_poi.statistics.v1.GetSystemAnalyticsRequest
 	(*GetSystemAnalyticsResponse)(nil),       // 44: ai_poi.statistics.v1.GetSystemAnalyticsResponse
-	nil,                                      // 45: ai_poi.statistics.v1.RecentInteraction.MetadataEntry
-	nil,                                      // 46: ai_poi.statistics.v1.SystemAlert.DetailsEntry
-	(*timestamppb.Timestamp)(nil),            // 47: google.protobuf.Timestamp
+	(*BaseRequest)(nil),                      // 45: ai_poi.statistics.v1.BaseRequest
+	(*BaseResponse)(nil),                     // 46: ai_poi.statistics.v1.BaseResponse
+	nil,                                      // 47: ai_poi.statistics.v1.RecentInteraction.MetadataEntry
+	nil,                                      // 48: ai_poi.statistics.v1.SystemAlert.DetailsEntry
+	(*timestamppb.Timestamp)(nil),            // 49: google.protobuf.Timestamp
 }
 var file_statistics_proto_depIdxs = []int32{
 	1,  // 0: ai_poi.statistics.v1.MainPageStatistics.recent_activity:type_name -> ai_poi.statistics.v1.RecentActivity
 	2,  // 1: ai_poi.statistics.v1.MainPageStatistics.popular_destinations:type_name -> ai_poi.statistics.v1.PopularDestination
 	3,  // 2: ai_poi.statistics.v1.MainPageStatistics.trending_categories:type_name -> ai_poi.statistics.v1.TrendingCategories
-	47, // 3: ai_poi.statistics.v1.MainPageStatistics.last_updated:type_name -> google.protobuf.Timestamp
+	49, // 3: ai_poi.statistics.v1.MainPageStatistics.last_updated:type_name -> google.protobuf.Timestamp
 	4,  // 4: ai_poi.statistics.v1.TrendingCategories.categories:type_name -> ai_poi.statistics.v1.CategoryTrend
 	6,  // 5: ai_poi.statistics.v1.DetailedPOIStatistics.city_interactions:type_name -> ai_poi.statistics.v1.CityInteractionStats
 	7,  // 6: ai_poi.statistics.v1.DetailedPOIStatistics.search_patterns:type_name -> ai_poi.statistics.v1.SearchPatterns
 	8,  // 7: ai_poi.statistics.v1.DetailedPOIStatistics.time_analytics:type_name -> ai_poi.statistics.v1.TimeBasedAnalytics
-	47, // 8: ai_poi.statistics.v1.DetailedPOIStatistics.generated_at:type_name -> google.protobuf.Timestamp
-	47, // 9: ai_poi.statistics.v1.CityInteractionStats.last_interaction:type_name -> google.protobuf.Timestamp
+	49, // 8: ai_poi.statistics.v1.DetailedPOIStatistics.generated_at:type_name -> google.protobuf.Timestamp
+	49, // 9: ai_poi.statistics.v1.CityInteractionStats.last_interaction:type_name -> google.protobuf.Timestamp
 	9,  // 10: ai_poi.statistics.v1.TimeBasedAnalytics.hourly_activity:type_name -> ai_poi.statistics.v1.HourlyActivity
 	10, // 11: ai_poi.statistics.v1.TimeBasedAnalytics.daily_activity:type_name -> ai_poi.statistics.v1.DailyActivity
 	11, // 12: ai_poi.statistics.v1.TimeBasedAnalytics.monthly_activity:type_name -> ai_poi.statistics.v1.MonthlyActivity
-	47, // 13: ai_poi.statistics.v1.DailyActivity.date:type_name -> google.protobuf.Timestamp
+	49, // 13: ai_poi.statistics.v1.DailyActivity.date:type_name -> google.protobuf.Timestamp
 	13, // 14: ai_poi.statistics.v1.LandingPageUserStats.recent_interactions:type_name -> ai_poi.statistics.v1.RecentInteraction
 	14, // 15: ai_poi.statistics.v1.LandingPageUserStats.recommendations:type_name -> ai_poi.statistics.v1.PersonalizedRecommendations
 	15, // 16: ai_poi.statistics.v1.LandingPageUserStats.badges:type_name -> ai_poi.statistics.v1.AchievementBadges
-	47, // 17: ai_poi.statistics.v1.RecentInteraction.timestamp:type_name -> google.protobuf.Timestamp
-	45, // 18: ai_poi.statistics.v1.RecentInteraction.metadata:type_name -> ai_poi.statistics.v1.RecentInteraction.MetadataEntry
+	49, // 17: ai_poi.statistics.v1.RecentInteraction.timestamp:type_name -> google.protobuf.Timestamp
+	47, // 18: ai_poi.statistics.v1.RecentInteraction.metadata:type_name -> ai_poi.statistics.v1.RecentInteraction.MetadataEntry
 	16, // 19: ai_poi.statistics.v1.AchievementBadges.earned_badges:type_name -> ai_poi.statistics.v1.Badge
 	16, // 20: ai_poi.statistics.v1.AchievementBadges.available_badges:type_name -> ai_poi.statistics.v1.Badge
-	47, // 21: ai_poi.statistics.v1.Badge.earned_at:type_name -> google.protobuf.Timestamp
+	49, // 21: ai_poi.statistics.v1.Badge.earned_at:type_name -> google.protobuf.Timestamp
 	18, // 22: ai_poi.statistics.v1.SystemAnalytics.user_growth:type_name -> ai_poi.statistics.v1.UserGrowthMetrics
 	19, // 23: ai_poi.statistics.v1.SystemAnalytics.usage_metrics:type_name -> ai_poi.statistics.v1.UsageMetrics
 	20, // 24: ai_poi.statistics.v1.SystemAnalytics.performance_metrics:type_name -> ai_poi.statistics.v1.PerformanceMetrics
 	21, // 25: ai_poi.statistics.v1.SystemAnalytics.error_metrics:type_name -> ai_poi.statistics.v1.ErrorMetrics
 	23, // 26: ai_poi.statistics.v1.SystemAnalytics.geographic_distribution:type_name -> ai_poi.statistics.v1.GeographicDistribution
 	26, // 27: ai_poi.statistics.v1.SystemAnalytics.feature_usage:type_name -> ai_poi.statistics.v1.FeatureUsage
-	47, // 28: ai_poi.statistics.v1.SystemAnalytics.generated_at:type_name -> google.protobuf.Timestamp
+	49, // 28: ai_poi.statistics.v1.SystemAnalytics.generated_at:type_name -> google.protobuf.Timestamp
 	22, // 29: ai_poi.statistics.v1.ErrorMetrics.error_breakdown:type_name -> ai_poi.statistics.v1.ErrorBreakdown
 	24, // 30: ai_poi.statistics.v1.GeographicDistribution.country_stats:type_name -> ai_poi.statistics.v1.CountryStats
 	25, // 31: ai_poi.statistics.v1.GeographicDistribution.city_stats:type_name -> ai_poi.statistics.v1.CityStats
 	27, // 32: ai_poi.statistics.v1.FeatureUsage.feature_metrics:type_name -> ai_poi.statistics.v1.FeatureMetric
-	47, // 33: ai_poi.statistics.v1.StatisticsEvent.timestamp:type_name -> google.protobuf.Timestamp
+	49, // 33: ai_poi.statistics.v1.StatisticsEvent.timestamp:type_name -> google.protobuf.Timestamp
 	0,  // 34: ai_poi.statistics.v1.StatisticsEvent.main_stats:type_name -> ai_poi.statistics.v1.MainPageStatistics
 	29, // 35: ai_poi.statistics.v1.StatisticsEvent.metric_update:type_name -> ai_poi.statistics.v1.MetricUpdate
 	30, // 36: ai_poi.statistics.v1.StatisticsEvent.system_alert:type_name -> ai_poi.statistics.v1.SystemAlert
-	46, // 37: ai_poi.statistics.v1.SystemAlert.details:type_name -> ai_poi.statistics.v1.SystemAlert.DetailsEntry
-	0,  // 38: ai_poi.statistics.v1.GetMainPageStatisticsResponse.statistics:type_name -> ai_poi.statistics.v1.MainPageStatistics
-	5,  // 39: ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse.statistics:type_name -> ai_poi.statistics.v1.DetailedPOIStatistics
-	36, // 40: ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse.predictions:type_name -> ai_poi.statistics.v1.Prediction
-	12, // 41: ai_poi.statistics.v1.GetLandingPageStatisticsResponse.statistics:type_name -> ai_poi.statistics.v1.LandingPageUserStats
-	47, // 42: ai_poi.statistics.v1.GetUserActivityAnalyticsRequest.start_date:type_name -> google.protobuf.Timestamp
-	47, // 43: ai_poi.statistics.v1.GetUserActivityAnalyticsRequest.end_date:type_name -> google.protobuf.Timestamp
-	41, // 44: ai_poi.statistics.v1.GetUserActivityAnalyticsResponse.activity_data:type_name -> ai_poi.statistics.v1.ActivityDataPoint
-	42, // 45: ai_poi.statistics.v1.GetUserActivityAnalyticsResponse.summary:type_name -> ai_poi.statistics.v1.ActivitySummary
-	47, // 46: ai_poi.statistics.v1.ActivityDataPoint.timestamp:type_name -> google.protobuf.Timestamp
-	17, // 47: ai_poi.statistics.v1.GetSystemAnalyticsResponse.analytics:type_name -> ai_poi.statistics.v1.SystemAnalytics
-	31, // 48: ai_poi.statistics.v1.StatisticsService.GetMainPageStatistics:input_type -> ai_poi.statistics.v1.GetMainPageStatisticsRequest
-	33, // 49: ai_poi.statistics.v1.StatisticsService.StreamMainPageStatistics:input_type -> ai_poi.statistics.v1.StreamMainPageStatisticsRequest
-	34, // 50: ai_poi.statistics.v1.StatisticsService.GetDetailedPOIStatistics:input_type -> ai_poi.statistics.v1.GetDetailedPOIStatisticsRequest
-	37, // 51: ai_poi.statistics.v1.StatisticsService.GetLandingPageStatistics:input_type -> ai_poi.statistics.v1.GetLandingPageStatisticsRequest
-	39, // 52: ai_poi.statistics.v1.StatisticsService.GetUserActivityAnalytics:input_type -> ai_poi.statistics.v1.GetUserActivityAnalyticsRequest
-	43, // 53: ai_poi.statistics.v1.StatisticsService.GetSystemAnalytics:input_type -> ai_poi.statistics.v1.GetSystemAnalyticsRequest
-	32, // 54: ai_poi.statistics.v1.StatisticsService.GetMainPageStatistics:output_type -> ai_poi.statistics.v1.GetMainPageStatisticsResponse
-	28, // 55: ai_poi.statistics.v1.StatisticsService.StreamMainPageStatistics:output_type -> ai_poi.statistics.v1.StatisticsEvent
-	35, // 56: ai_poi.statistics.v1.StatisticsService.GetDetailedPOIStatistics:output_type -> ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse
-	38, // 57: ai_poi.statistics.v1.StatisticsService.GetLandingPageStatistics:output_type -> ai_poi.statistics.v1.GetLandingPageStatisticsResponse
-	40, // 58: ai_poi.statistics.v1.StatisticsService.GetUserActivityAnalytics:output_type -> ai_poi.statistics.v1.GetUserActivityAnalyticsResponse
-	44, // 59: ai_poi.statistics.v1.StatisticsService.GetSystemAnalytics:output_type -> ai_poi.statistics.v1.GetSystemAnalyticsResponse
-	54, // [54:60] is the sub-list for method output_type
-	48, // [48:54] is the sub-list for method input_type
-	48, // [48:48] is the sub-list for extension type_name
-	48, // [48:48] is the sub-list for extension extendee
-	0,  // [0:48] is the sub-list for field type_name
+	48, // 37: ai_poi.statistics.v1.SystemAlert.details:type_name -> ai_poi.statistics.v1.SystemAlert.DetailsEntry
+	45, // 38: ai_poi.statistics.v1.GetMainPageStatisticsRequest.request:type_name -> ai_poi.statistics.v1.BaseRequest
+	0,  // 39: ai_poi.statistics.v1.GetMainPageStatisticsResponse.statistics:type_name -> ai_poi.statistics.v1.MainPageStatistics
+	46, // 40: ai_poi.statistics.v1.GetMainPageStatisticsResponse.response:type_name -> ai_poi.statistics.v1.BaseResponse
+	45, // 41: ai_poi.statistics.v1.StreamMainPageStatisticsRequest.request:type_name -> ai_poi.statistics.v1.BaseRequest
+	45, // 42: ai_poi.statistics.v1.GetDetailedPOIStatisticsRequest.request:type_name -> ai_poi.statistics.v1.BaseRequest
+	5,  // 43: ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse.statistics:type_name -> ai_poi.statistics.v1.DetailedPOIStatistics
+	36, // 44: ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse.predictions:type_name -> ai_poi.statistics.v1.Prediction
+	46, // 45: ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse.response:type_name -> ai_poi.statistics.v1.BaseResponse
+	45, // 46: ai_poi.statistics.v1.GetLandingPageStatisticsRequest.request:type_name -> ai_poi.statistics.v1.BaseRequest
+	12, // 47: ai_poi.statistics.v1.GetLandingPageStatisticsResponse.statistics:type_name -> ai_poi.statistics.v1.LandingPageUserStats
+	46, // 48: ai_poi.statistics.v1.GetLandingPageStatisticsResponse.response:type_name -> ai_poi.statistics.v1.BaseResponse
+	49, // 49: ai_poi.statistics.v1.GetUserActivityAnalyticsRequest.start_date:type_name -> google.protobuf.Timestamp
+	49, // 50: ai_poi.statistics.v1.GetUserActivityAnalyticsRequest.end_date:type_name -> google.protobuf.Timestamp
+	45, // 51: ai_poi.statistics.v1.GetUserActivityAnalyticsRequest.request:type_name -> ai_poi.statistics.v1.BaseRequest
+	41, // 52: ai_poi.statistics.v1.GetUserActivityAnalyticsResponse.activity_data:type_name -> ai_poi.statistics.v1.ActivityDataPoint
+	42, // 53: ai_poi.statistics.v1.GetUserActivityAnalyticsResponse.summary:type_name -> ai_poi.statistics.v1.ActivitySummary
+	46, // 54: ai_poi.statistics.v1.GetUserActivityAnalyticsResponse.response:type_name -> ai_poi.statistics.v1.BaseResponse
+	49, // 55: ai_poi.statistics.v1.ActivityDataPoint.timestamp:type_name -> google.protobuf.Timestamp
+	45, // 56: ai_poi.statistics.v1.GetSystemAnalyticsRequest.request:type_name -> ai_poi.statistics.v1.BaseRequest
+	17, // 57: ai_poi.statistics.v1.GetSystemAnalyticsResponse.analytics:type_name -> ai_poi.statistics.v1.SystemAnalytics
+	46, // 58: ai_poi.statistics.v1.GetSystemAnalyticsResponse.response:type_name -> ai_poi.statistics.v1.BaseResponse
+	31, // 59: ai_poi.statistics.v1.StatisticsService.GetMainPageStatistics:input_type -> ai_poi.statistics.v1.GetMainPageStatisticsRequest
+	33, // 60: ai_poi.statistics.v1.StatisticsService.StreamMainPageStatistics:input_type -> ai_poi.statistics.v1.StreamMainPageStatisticsRequest
+	34, // 61: ai_poi.statistics.v1.StatisticsService.GetDetailedPOIStatistics:input_type -> ai_poi.statistics.v1.GetDetailedPOIStatisticsRequest
+	37, // 62: ai_poi.statistics.v1.StatisticsService.GetLandingPageStatistics:input_type -> ai_poi.statistics.v1.GetLandingPageStatisticsRequest
+	39, // 63: ai_poi.statistics.v1.StatisticsService.GetUserActivityAnalytics:input_type -> ai_poi.statistics.v1.GetUserActivityAnalyticsRequest
+	43, // 64: ai_poi.statistics.v1.StatisticsService.GetSystemAnalytics:input_type -> ai_poi.statistics.v1.GetSystemAnalyticsRequest
+	32, // 65: ai_poi.statistics.v1.StatisticsService.GetMainPageStatistics:output_type -> ai_poi.statistics.v1.GetMainPageStatisticsResponse
+	28, // 66: ai_poi.statistics.v1.StatisticsService.StreamMainPageStatistics:output_type -> ai_poi.statistics.v1.StatisticsEvent
+	35, // 67: ai_poi.statistics.v1.StatisticsService.GetDetailedPOIStatistics:output_type -> ai_poi.statistics.v1.GetDetailedPOIStatisticsResponse
+	38, // 68: ai_poi.statistics.v1.StatisticsService.GetLandingPageStatistics:output_type -> ai_poi.statistics.v1.GetLandingPageStatisticsResponse
+	40, // 69: ai_poi.statistics.v1.StatisticsService.GetUserActivityAnalytics:output_type -> ai_poi.statistics.v1.GetUserActivityAnalyticsResponse
+	44, // 70: ai_poi.statistics.v1.StatisticsService.GetSystemAnalytics:output_type -> ai_poi.statistics.v1.GetSystemAnalyticsResponse
+	65, // [65:71] is the sub-list for method output_type
+	59, // [59:65] is the sub-list for method input_type
+	59, // [59:59] is the sub-list for extension type_name
+	59, // [59:59] is the sub-list for extension extendee
+	0,  // [0:59] is the sub-list for field type_name
 }
 
 func init() { file_statistics_proto_init() }
@@ -3658,7 +3893,7 @@ func file_statistics_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_statistics_proto_rawDesc), len(file_statistics_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   47,
+			NumMessages:   49,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -964,6 +964,7 @@ type CreateListRequest struct {
 	CityId        string                 `protobuf:"bytes,4,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	IsItinerary   bool                   `protobuf:"varint,5,opt,name=is_itinerary,json=isItinerary,proto3" json:"is_itinerary,omitempty"`
 	IsPublic      bool                   `protobuf:"varint,6,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1040,11 +1041,19 @@ func (x *CreateListRequest) GetIsPublic() bool {
 	return false
 }
 
+func (x *CreateListRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type CreateListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	List          *List                  `protobuf:"bytes,3,opt,name=list,proto3" json:"list,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1100,12 +1109,20 @@ func (x *CreateListResponse) GetList() *List {
 	return nil
 }
 
+func (x *CreateListResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetListsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	IncludeItems  bool                   `protobuf:"varint,4,opt,name=include_items,json=includeItems,proto3" json:"include_items,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1168,10 +1185,18 @@ func (x *GetListsRequest) GetIncludeItems() bool {
 	return false
 }
 
+func (x *GetListsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetListsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Lists         []*ListWithItems       `protobuf:"bytes,1,rep,name=lists,proto3" json:"lists,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1220,11 +1245,19 @@ func (x *GetListsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *GetListsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetListRequest struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	UserId               string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId               string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
 	IncludeDetailedItems bool                   `protobuf:"varint,3,opt,name=include_detailed_items,json=includeDetailedItems,proto3" json:"include_detailed_items,omitempty"`
+	Request              *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -1280,9 +1313,17 @@ func (x *GetListRequest) GetIncludeDetailedItems() bool {
 	return false
 }
 
+func (x *GetListRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	List          *ListWithDetailedItems `protobuf:"bytes,1,opt,name=list,proto3" json:"list,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1324,6 +1365,13 @@ func (x *GetListResponse) GetList() *ListWithDetailedItems {
 	return nil
 }
 
+func (x *GetListResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -1333,6 +1381,7 @@ type UpdateListRequest struct {
 	ImageUrl      string                 `protobuf:"bytes,5,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
 	IsPublic      bool                   `protobuf:"varint,6,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
 	CityId        string                 `protobuf:"bytes,7,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1416,11 +1465,19 @@ func (x *UpdateListRequest) GetCityId() string {
 	return ""
 }
 
+func (x *UpdateListRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	List          *List                  `protobuf:"bytes,3,opt,name=list,proto3" json:"list,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1476,10 +1533,18 @@ func (x *UpdateListResponse) GetList() *List {
 	return nil
 }
 
+func (x *UpdateListResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type DeleteListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1528,10 +1593,18 @@ func (x *DeleteListRequest) GetListId() string {
 	return ""
 }
 
+func (x *DeleteListRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type DeleteListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1580,6 +1653,13 @@ func (x *DeleteListResponse) GetMessage() string {
 	return ""
 }
 
+func (x *DeleteListResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Itinerary creation
 type CreateItineraryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1588,6 +1668,7 @@ type CreateItineraryRequest struct {
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	IsPublic      bool                   `protobuf:"varint,5,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1657,11 +1738,19 @@ func (x *CreateItineraryRequest) GetIsPublic() bool {
 	return false
 }
 
+func (x *CreateItineraryRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type CreateItineraryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Itinerary     *List                  `protobuf:"bytes,3,opt,name=itinerary,proto3" json:"itinerary,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1717,6 +1806,13 @@ func (x *CreateItineraryResponse) GetItinerary() *List {
 	return nil
 }
 
+func (x *CreateItineraryResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // List item management
 type AddListItemRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
@@ -1731,6 +1827,7 @@ type AddListItemRequest struct {
 	DurationMinutes        int32                  `protobuf:"varint,9,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
 	SourceLlmInteractionId string                 `protobuf:"bytes,10,opt,name=source_llm_interaction_id,json=sourceLlmInteractionId,proto3" json:"source_llm_interaction_id,omitempty"`
 	ItemAiDescription      string                 `protobuf:"bytes,11,opt,name=item_ai_description,json=itemAiDescription,proto3" json:"item_ai_description,omitempty"`
+	Request                *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -1842,11 +1939,19 @@ func (x *AddListItemRequest) GetItemAiDescription() string {
 	return ""
 }
 
+func (x *AddListItemRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type AddListItemResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Item          *ListItem              `protobuf:"bytes,3,opt,name=item,proto3" json:"item,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1902,6 +2007,13 @@ func (x *AddListItemResponse) GetItem() *ListItem {
 	return nil
 }
 
+func (x *AddListItemResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UpdateListItemRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	UserId                 string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -1915,6 +2027,7 @@ type UpdateListItemRequest struct {
 	DurationMinutes        int32                  `protobuf:"varint,9,opt,name=duration_minutes,json=durationMinutes,proto3" json:"duration_minutes,omitempty"`
 	SourceLlmInteractionId string                 `protobuf:"bytes,10,opt,name=source_llm_interaction_id,json=sourceLlmInteractionId,proto3" json:"source_llm_interaction_id,omitempty"`
 	ItemAiDescription      string                 `protobuf:"bytes,11,opt,name=item_ai_description,json=itemAiDescription,proto3" json:"item_ai_description,omitempty"`
+	Request                *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -2026,11 +2139,19 @@ func (x *UpdateListItemRequest) GetItemAiDescription() string {
 	return ""
 }
 
+func (x *UpdateListItemRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UpdateListItemResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Item          *ListItem              `protobuf:"bytes,3,opt,name=item,proto3" json:"item,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2086,12 +2207,20 @@ func (x *UpdateListItemResponse) GetItem() *ListItem {
 	return nil
 }
 
+func (x *UpdateListItemResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type RemoveListItemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
 	ItemId        string                 `protobuf:"bytes,3,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
 	ContentType   ContentType            `protobuf:"varint,4,opt,name=content_type,json=contentType,proto3,enum=ai_poi.list.v1.ContentType" json:"content_type,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2154,10 +2283,18 @@ func (x *RemoveListItemRequest) GetContentType() ContentType {
 	return ContentType_CONTENT_TYPE_UNSPECIFIED
 }
 
+func (x *RemoveListItemRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type RemoveListItemResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2206,11 +2343,19 @@ func (x *RemoveListItemResponse) GetMessage() string {
 	return ""
 }
 
+func (x *RemoveListItemResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetListItemsRequest struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
 	UserId                string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId                string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
 	IncludeContentDetails bool                   `protobuf:"varint,3,opt,name=include_content_details,json=includeContentDetails,proto3" json:"include_content_details,omitempty"`
+	Request               *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -2266,10 +2411,18 @@ func (x *GetListItemsRequest) GetIncludeContentDetails() bool {
 	return false
 }
 
+func (x *GetListItemsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetListItemsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Items         []*ListItemWithContent `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2318,11 +2471,19 @@ func (x *GetListItemsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *GetListItemsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Content-specific item requests
 type GetListRestaurantsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2371,9 +2532,17 @@ func (x *GetListRestaurantsRequest) GetListId() string {
 	return ""
 }
 
+func (x *GetListRestaurantsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetListRestaurantsResponse struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	Restaurants   []*RestaurantDetailedInfo `protobuf:"bytes,1,rep,name=restaurants,proto3" json:"restaurants,omitempty"`
+	Response      *BaseResponse             `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2415,10 +2584,18 @@ func (x *GetListRestaurantsResponse) GetRestaurants() []*RestaurantDetailedInfo 
 	return nil
 }
 
+func (x *GetListRestaurantsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetListHotelsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2467,9 +2644,17 @@ func (x *GetListHotelsRequest) GetListId() string {
 	return ""
 }
 
+func (x *GetListHotelsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetListHotelsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Hotels        []*HotelDetailedInfo   `protobuf:"bytes,1,rep,name=hotels,proto3" json:"hotels,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2511,10 +2696,18 @@ func (x *GetListHotelsResponse) GetHotels() []*HotelDetailedInfo {
 	return nil
 }
 
+func (x *GetListHotelsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetListItinerariesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2563,9 +2756,17 @@ func (x *GetListItinerariesRequest) GetListId() string {
 	return ""
 }
 
+func (x *GetListItinerariesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetListItinerariesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Itineraries   []*UserSavedItinerary  `protobuf:"bytes,1,rep,name=itineraries,proto3" json:"itineraries,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2607,11 +2808,19 @@ func (x *GetListItinerariesResponse) GetItineraries() []*UserSavedItinerary {
 	return nil
 }
 
+func (x *GetListItinerariesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 // Public list management
 type SavePublicListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2660,10 +2869,18 @@ func (x *SavePublicListRequest) GetListId() string {
 	return ""
 }
 
+func (x *SavePublicListRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SavePublicListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2712,10 +2929,18 @@ func (x *SavePublicListResponse) GetMessage() string {
 	return ""
 }
 
+func (x *SavePublicListResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type UnsaveListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	ListId        string                 `protobuf:"bytes,2,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2764,10 +2989,18 @@ func (x *UnsaveListRequest) GetListId() string {
 	return ""
 }
 
+func (x *UnsaveListRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type UnsaveListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2816,11 +3049,19 @@ func (x *UnsaveListResponse) GetMessage() string {
 	return ""
 }
 
+func (x *UnsaveListResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetSavedListsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2876,10 +3117,18 @@ func (x *GetSavedListsRequest) GetOffset() int32 {
 	return 0
 }
 
+func (x *GetSavedListsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetSavedListsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Lists         []*ListWithItems       `protobuf:"bytes,1,rep,name=lists,proto3" json:"lists,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2928,6 +3177,13 @@ func (x *GetSavedListsResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *GetSavedListsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type SearchPublicListsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
@@ -2936,6 +3192,7 @@ type SearchPublicListsRequest struct {
 	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
 	SortBy        string                 `protobuf:"bytes,6,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"` // "popularity", "recent", "name"
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3012,11 +3269,19 @@ func (x *SearchPublicListsRequest) GetSortBy() string {
 	return ""
 }
 
+func (x *SearchPublicListsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SearchPublicListsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Lists         []*ListWithItems       `protobuf:"bytes,1,rep,name=lists,proto3" json:"lists,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	Metadata      *SearchMetadata        `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3068,6 +3333,13 @@ func (x *SearchPublicListsResponse) GetTotalCount() int32 {
 func (x *SearchPublicListsResponse) GetMetadata() *SearchMetadata {
 	if x != nil {
 		return x.Metadata
+	}
+	return nil
+}
+
+func (x *SearchPublicListsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -3130,6 +3402,118 @@ func (x *SearchMetadata) GetFiltersApplied() map[string]string {
 		return x.FiltersApplied
 	}
 	return nil
+}
+
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_list_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_list_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_list_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_list_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_list_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_list_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
 }
 
 var File_list_proto protoreflect.FileDescriptor
@@ -3234,33 +3618,39 @@ const file_list_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xbb\x01\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xf2\x01\n" +
 	"\x11CreateListRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x17\n" +
 	"\acity_id\x18\x04 \x01(\tR\x06cityId\x12!\n" +
 	"\fis_itinerary\x18\x05 \x01(\bR\visItinerary\x12\x1b\n" +
-	"\tis_public\x18\x06 \x01(\bR\bisPublic\"r\n" +
+	"\tis_public\x18\x06 \x01(\bR\bisPublic\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xac\x01\n" +
 	"\x12CreateListResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12(\n" +
-	"\x04list\x18\x03 \x01(\v2\x14.ai_poi.list.v1.ListR\x04list\"}\n" +
+	"\x04list\x18\x03 \x01(\v2\x14.ai_poi.list.v1.ListR\x04list\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xb4\x01\n" +
 	"\x0fGetListsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12#\n" +
-	"\rinclude_items\x18\x04 \x01(\bR\fincludeItems\"h\n" +
+	"\rinclude_items\x18\x04 \x01(\bR\fincludeItems\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xa2\x01\n" +
 	"\x10GetListsResponse\x123\n" +
 	"\x05lists\x18\x01 \x03(\v2\x1d.ai_poi.list.v1.ListWithItemsR\x05lists\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"x\n" +
+	"totalCount\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xaf\x01\n" +
 	"\x0eGetListRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\alist_id\x18\x02 \x01(\tR\x06listId\x124\n" +
-	"\x16include_detailed_items\x18\x03 \x01(\bR\x14includeDetailedItems\"L\n" +
+	"\x16include_detailed_items\x18\x03 \x01(\bR\x14includeDetailedItems\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x86\x01\n" +
 	"\x0fGetListResponse\x129\n" +
-	"\x04list\x18\x01 \x01(\v2%.ai_poi.list.v1.ListWithDetailedItemsR\x04list\"\xce\x01\n" +
+	"\x04list\x18\x01 \x01(\v2%.ai_poi.list.v1.ListWithDetailedItemsR\x04list\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\x85\x02\n" +
 	"\x11UpdateListRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\alist_id\x18\x02 \x01(\tR\x06listId\x12\x12\n" +
@@ -3268,27 +3658,33 @@ const file_list_proto_rawDesc = "" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1b\n" +
 	"\timage_url\x18\x05 \x01(\tR\bimageUrl\x12\x1b\n" +
 	"\tis_public\x18\x06 \x01(\bR\bisPublic\x12\x17\n" +
-	"\acity_id\x18\a \x01(\tR\x06cityId\"r\n" +
+	"\acity_id\x18\a \x01(\tR\x06cityId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xac\x01\n" +
 	"\x12UpdateListResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12(\n" +
-	"\x04list\x18\x03 \x01(\v2\x14.ai_poi.list.v1.ListR\x04list\"E\n" +
+	"\x04list\x18\x03 \x01(\v2\x14.ai_poi.list.v1.ListR\x04list\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"|\n" +
 	"\x11DeleteListRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\alist_id\x18\x02 \x01(\tR\x06listId\"H\n" +
+	"\alist_id\x18\x02 \x01(\tR\x06listId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x82\x01\n" +
 	"\x12DeleteListResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\xaa\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xe1\x01\n" +
 	"\x16CreateItineraryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12$\n" +
 	"\x0eparent_list_id\x18\x02 \x01(\tR\fparentListId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1b\n" +
-	"\tis_public\x18\x05 \x01(\bR\bisPublic\"\x81\x01\n" +
+	"\tis_public\x18\x05 \x01(\bR\bisPublic\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xbb\x01\n" +
 	"\x17CreateItineraryResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x122\n" +
-	"\titinerary\x18\x03 \x01(\v2\x14.ai_poi.list.v1.ListR\titinerary\"\xbf\x03\n" +
+	"\titinerary\x18\x03 \x01(\v2\x14.ai_poi.list.v1.ListR\titinerary\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xf6\x03\n" +
 	"\x12AddListItemRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\alist_id\x18\x02 \x01(\tR\x06listId\x12\x17\n" +
@@ -3302,11 +3698,13 @@ const file_list_proto_rawDesc = "" +
 	"\x10duration_minutes\x18\t \x01(\x05R\x0fdurationMinutes\x129\n" +
 	"\x19source_llm_interaction_id\x18\n" +
 	" \x01(\tR\x16sourceLlmInteractionId\x12.\n" +
-	"\x13item_ai_description\x18\v \x01(\tR\x11itemAiDescription\"w\n" +
+	"\x13item_ai_description\x18\v \x01(\tR\x11itemAiDescription\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xb1\x01\n" +
 	"\x13AddListItemResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12,\n" +
-	"\x04item\x18\x03 \x01(\v2\x18.ai_poi.list.v1.ListItemR\x04item\"\xc2\x03\n" +
+	"\x04item\x18\x03 \x01(\v2\x18.ai_poi.list.v1.ListItemR\x04item\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xf9\x03\n" +
 	"\x15UpdateListItemRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\alist_id\x18\x02 \x01(\tR\x06listId\x12\x17\n" +
@@ -3320,62 +3718,80 @@ const file_list_proto_rawDesc = "" +
 	"\x10duration_minutes\x18\t \x01(\x05R\x0fdurationMinutes\x129\n" +
 	"\x19source_llm_interaction_id\x18\n" +
 	" \x01(\tR\x16sourceLlmInteractionId\x12.\n" +
-	"\x13item_ai_description\x18\v \x01(\tR\x11itemAiDescription\"z\n" +
+	"\x13item_ai_description\x18\v \x01(\tR\x11itemAiDescription\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xb4\x01\n" +
 	"\x16UpdateListItemResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12,\n" +
-	"\x04item\x18\x03 \x01(\v2\x18.ai_poi.list.v1.ListItemR\x04item\"\xa2\x01\n" +
+	"\x04item\x18\x03 \x01(\v2\x18.ai_poi.list.v1.ListItemR\x04item\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xd9\x01\n" +
 	"\x15RemoveListItemRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\alist_id\x18\x02 \x01(\tR\x06listId\x12\x17\n" +
 	"\aitem_id\x18\x03 \x01(\tR\x06itemId\x12>\n" +
-	"\fcontent_type\x18\x04 \x01(\x0e2\x1b.ai_poi.list.v1.ContentTypeR\vcontentType\"L\n" +
+	"\fcontent_type\x18\x04 \x01(\x0e2\x1b.ai_poi.list.v1.ContentTypeR\vcontentType\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x86\x01\n" +
 	"\x16RemoveListItemResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x7f\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xb6\x01\n" +
 	"\x13GetListItemsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\alist_id\x18\x02 \x01(\tR\x06listId\x126\n" +
-	"\x17include_content_details\x18\x03 \x01(\bR\x15includeContentDetails\"r\n" +
+	"\x17include_content_details\x18\x03 \x01(\bR\x15includeContentDetails\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xac\x01\n" +
 	"\x14GetListItemsResponse\x129\n" +
 	"\x05items\x18\x01 \x03(\v2#.ai_poi.list.v1.ListItemWithContentR\x05items\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"M\n" +
+	"totalCount\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\x84\x01\n" +
 	"\x19GetListRestaurantsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\alist_id\x18\x02 \x01(\tR\x06listId\"f\n" +
+	"\alist_id\x18\x02 \x01(\tR\x06listId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xa0\x01\n" +
 	"\x1aGetListRestaurantsResponse\x12H\n" +
-	"\vrestaurants\x18\x01 \x03(\v2&.ai_poi.list.v1.RestaurantDetailedInfoR\vrestaurants\"H\n" +
+	"\vrestaurants\x18\x01 \x03(\v2&.ai_poi.list.v1.RestaurantDetailedInfoR\vrestaurants\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\x7f\n" +
 	"\x14GetListHotelsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\alist_id\x18\x02 \x01(\tR\x06listId\"R\n" +
+	"\alist_id\x18\x02 \x01(\tR\x06listId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x8c\x01\n" +
 	"\x15GetListHotelsResponse\x129\n" +
-	"\x06hotels\x18\x01 \x03(\v2!.ai_poi.list.v1.HotelDetailedInfoR\x06hotels\"M\n" +
+	"\x06hotels\x18\x01 \x03(\v2!.ai_poi.list.v1.HotelDetailedInfoR\x06hotels\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\x84\x01\n" +
 	"\x19GetListItinerariesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\alist_id\x18\x02 \x01(\tR\x06listId\"b\n" +
+	"\alist_id\x18\x02 \x01(\tR\x06listId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x9c\x01\n" +
 	"\x1aGetListItinerariesResponse\x12D\n" +
-	"\vitineraries\x18\x01 \x03(\v2\".ai_poi.list.v1.UserSavedItineraryR\vitineraries\"I\n" +
+	"\vitineraries\x18\x01 \x03(\v2\".ai_poi.list.v1.UserSavedItineraryR\vitineraries\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\x80\x01\n" +
 	"\x15SavePublicListRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\alist_id\x18\x02 \x01(\tR\x06listId\"L\n" +
+	"\alist_id\x18\x02 \x01(\tR\x06listId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x86\x01\n" +
 	"\x16SavePublicListResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"E\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"|\n" +
 	"\x11UnsaveListRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\alist_id\x18\x02 \x01(\tR\x06listId\"H\n" +
+	"\alist_id\x18\x02 \x01(\tR\x06listId\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\x82\x01\n" +
 	"\x12UnsaveListResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"]\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\x94\x01\n" +
 	"\x14GetSavedListsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"m\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xa7\x01\n" +
 	"\x15GetSavedListsResponse\x123\n" +
 	"\x05lists\x18\x01 \x03(\v2\x1d.ai_poi.list.v1.ListWithItemsR\x05lists\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\xb0\x01\n" +
+	"totalCount\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xe7\x01\n" +
 	"\x18SearchPublicListsRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12\x17\n" +
 	"\acity_id\x18\x02 \x01(\tR\x06cityId\x12\x1e\n" +
@@ -3384,19 +3800,32 @@ const file_list_proto_rawDesc = "" +
 	"categories\x12\x14\n" +
 	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x05 \x01(\x05R\x06offset\x12\x17\n" +
-	"\asort_by\x18\x06 \x01(\tR\x06sortBy\"\xad\x01\n" +
+	"\asort_by\x18\x06 \x01(\tR\x06sortBy\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.list.v1.BaseRequestR\arequest\"\xe7\x01\n" +
 	"\x19SearchPublicListsResponse\x123\n" +
 	"\x05lists\x18\x01 \x03(\v2\x1d.ai_poi.list.v1.ListWithItemsR\x05lists\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12:\n" +
-	"\bmetadata\x18\x03 \x01(\v2\x1e.ai_poi.list.v1.SearchMetadataR\bmetadata\"\xf9\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2\x1e.ai_poi.list.v1.SearchMetadataR\bmetadata\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.list.v1.BaseResponseR\bresponse\"\xf9\x01\n" +
 	"\x0eSearchMetadata\x12\"\n" +
 	"\rquery_time_ms\x18\x01 \x01(\x01R\vqueryTimeMs\x12#\n" +
 	"\rsearch_method\x18\x02 \x01(\tR\fsearchMethod\x12[\n" +
 	"\x0ffilters_applied\x18\x03 \x03(\v22.ai_poi.list.v1.SearchMetadata.FiltersAppliedEntryR\x0efiltersApplied\x1aA\n" +
 	"\x13FiltersAppliedEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*\x92\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status*\x92\x01\n" +
 	"\vContentType\x12\x1c\n" +
 	"\x18CONTENT_TYPE_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10CONTENT_TYPE_POI\x10\x01\x12\x1b\n" +
@@ -3439,7 +3868,7 @@ func file_list_proto_rawDescGZIP() []byte {
 }
 
 var file_list_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_list_proto_msgTypes = make([]protoimpl.MessageInfo, 45)
+var file_list_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
 var file_list_proto_goTypes = []any{
 	(ContentType)(0),                   // 0: ai_poi.list.v1.ContentType
 	(*List)(nil),                       // 1: ai_poi.list.v1.List
@@ -3486,16 +3915,18 @@ var file_list_proto_goTypes = []any{
 	(*SearchPublicListsRequest)(nil),   // 42: ai_poi.list.v1.SearchPublicListsRequest
 	(*SearchPublicListsResponse)(nil),  // 43: ai_poi.list.v1.SearchPublicListsResponse
 	(*SearchMetadata)(nil),             // 44: ai_poi.list.v1.SearchMetadata
-	nil,                                // 45: ai_poi.list.v1.SearchMetadata.FiltersAppliedEntry
-	(*timestamppb.Timestamp)(nil),      // 46: google.protobuf.Timestamp
+	(*BaseRequest)(nil),                // 45: ai_poi.list.v1.BaseRequest
+	(*BaseResponse)(nil),               // 46: ai_poi.list.v1.BaseResponse
+	nil,                                // 47: ai_poi.list.v1.SearchMetadata.FiltersAppliedEntry
+	(*timestamppb.Timestamp)(nil),      // 48: google.protobuf.Timestamp
 }
 var file_list_proto_depIdxs = []int32{
-	46, // 0: ai_poi.list.v1.List.created_at:type_name -> google.protobuf.Timestamp
-	46, // 1: ai_poi.list.v1.List.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 0: ai_poi.list.v1.List.created_at:type_name -> google.protobuf.Timestamp
+	48, // 1: ai_poi.list.v1.List.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 2: ai_poi.list.v1.ListItem.content_type:type_name -> ai_poi.list.v1.ContentType
-	46, // 3: ai_poi.list.v1.ListItem.time_slot:type_name -> google.protobuf.Timestamp
-	46, // 4: ai_poi.list.v1.ListItem.created_at:type_name -> google.protobuf.Timestamp
-	46, // 5: ai_poi.list.v1.ListItem.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 3: ai_poi.list.v1.ListItem.time_slot:type_name -> google.protobuf.Timestamp
+	48, // 4: ai_poi.list.v1.ListItem.created_at:type_name -> google.protobuf.Timestamp
+	48, // 5: ai_poi.list.v1.ListItem.updated_at:type_name -> google.protobuf.Timestamp
 	1,  // 6: ai_poi.list.v1.ListWithItems.list:type_name -> ai_poi.list.v1.List
 	2,  // 7: ai_poi.list.v1.ListWithItems.items:type_name -> ai_poi.list.v1.ListItem
 	2,  // 8: ai_poi.list.v1.ListItemWithContent.list_item:type_name -> ai_poi.list.v1.ListItem
@@ -3507,67 +3938,101 @@ var file_list_proto_depIdxs = []int32{
 	4,  // 14: ai_poi.list.v1.ListWithDetailedItems.items:type_name -> ai_poi.list.v1.ListItemWithContent
 	6,  // 15: ai_poi.list.v1.RestaurantDetailedInfo.poi:type_name -> ai_poi.list.v1.POIDetailedInfo
 	6,  // 16: ai_poi.list.v1.HotelDetailedInfo.poi:type_name -> ai_poi.list.v1.POIDetailedInfo
-	46, // 17: ai_poi.list.v1.UserSavedItinerary.created_at:type_name -> google.protobuf.Timestamp
-	46, // 18: ai_poi.list.v1.UserSavedItinerary.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 19: ai_poi.list.v1.CreateListResponse.list:type_name -> ai_poi.list.v1.List
-	3,  // 20: ai_poi.list.v1.GetListsResponse.lists:type_name -> ai_poi.list.v1.ListWithItems
-	5,  // 21: ai_poi.list.v1.GetListResponse.list:type_name -> ai_poi.list.v1.ListWithDetailedItems
-	1,  // 22: ai_poi.list.v1.UpdateListResponse.list:type_name -> ai_poi.list.v1.List
-	1,  // 23: ai_poi.list.v1.CreateItineraryResponse.itinerary:type_name -> ai_poi.list.v1.List
-	0,  // 24: ai_poi.list.v1.AddListItemRequest.content_type:type_name -> ai_poi.list.v1.ContentType
-	46, // 25: ai_poi.list.v1.AddListItemRequest.time_slot:type_name -> google.protobuf.Timestamp
-	2,  // 26: ai_poi.list.v1.AddListItemResponse.item:type_name -> ai_poi.list.v1.ListItem
-	0,  // 27: ai_poi.list.v1.UpdateListItemRequest.content_type:type_name -> ai_poi.list.v1.ContentType
-	46, // 28: ai_poi.list.v1.UpdateListItemRequest.time_slot:type_name -> google.protobuf.Timestamp
-	2,  // 29: ai_poi.list.v1.UpdateListItemResponse.item:type_name -> ai_poi.list.v1.ListItem
-	0,  // 30: ai_poi.list.v1.RemoveListItemRequest.content_type:type_name -> ai_poi.list.v1.ContentType
-	4,  // 31: ai_poi.list.v1.GetListItemsResponse.items:type_name -> ai_poi.list.v1.ListItemWithContent
-	7,  // 32: ai_poi.list.v1.GetListRestaurantsResponse.restaurants:type_name -> ai_poi.list.v1.RestaurantDetailedInfo
-	8,  // 33: ai_poi.list.v1.GetListHotelsResponse.hotels:type_name -> ai_poi.list.v1.HotelDetailedInfo
-	9,  // 34: ai_poi.list.v1.GetListItinerariesResponse.itineraries:type_name -> ai_poi.list.v1.UserSavedItinerary
-	3,  // 35: ai_poi.list.v1.GetSavedListsResponse.lists:type_name -> ai_poi.list.v1.ListWithItems
-	3,  // 36: ai_poi.list.v1.SearchPublicListsResponse.lists:type_name -> ai_poi.list.v1.ListWithItems
-	44, // 37: ai_poi.list.v1.SearchPublicListsResponse.metadata:type_name -> ai_poi.list.v1.SearchMetadata
-	45, // 38: ai_poi.list.v1.SearchMetadata.filters_applied:type_name -> ai_poi.list.v1.SearchMetadata.FiltersAppliedEntry
-	10, // 39: ai_poi.list.v1.ListService.CreateList:input_type -> ai_poi.list.v1.CreateListRequest
-	12, // 40: ai_poi.list.v1.ListService.GetLists:input_type -> ai_poi.list.v1.GetListsRequest
-	14, // 41: ai_poi.list.v1.ListService.GetList:input_type -> ai_poi.list.v1.GetListRequest
-	16, // 42: ai_poi.list.v1.ListService.UpdateList:input_type -> ai_poi.list.v1.UpdateListRequest
-	18, // 43: ai_poi.list.v1.ListService.DeleteList:input_type -> ai_poi.list.v1.DeleteListRequest
-	20, // 44: ai_poi.list.v1.ListService.CreateItinerary:input_type -> ai_poi.list.v1.CreateItineraryRequest
-	22, // 45: ai_poi.list.v1.ListService.AddListItem:input_type -> ai_poi.list.v1.AddListItemRequest
-	24, // 46: ai_poi.list.v1.ListService.UpdateListItem:input_type -> ai_poi.list.v1.UpdateListItemRequest
-	26, // 47: ai_poi.list.v1.ListService.RemoveListItem:input_type -> ai_poi.list.v1.RemoveListItemRequest
-	28, // 48: ai_poi.list.v1.ListService.GetListItems:input_type -> ai_poi.list.v1.GetListItemsRequest
-	30, // 49: ai_poi.list.v1.ListService.GetListRestaurants:input_type -> ai_poi.list.v1.GetListRestaurantsRequest
-	32, // 50: ai_poi.list.v1.ListService.GetListHotels:input_type -> ai_poi.list.v1.GetListHotelsRequest
-	34, // 51: ai_poi.list.v1.ListService.GetListItineraries:input_type -> ai_poi.list.v1.GetListItinerariesRequest
-	36, // 52: ai_poi.list.v1.ListService.SavePublicList:input_type -> ai_poi.list.v1.SavePublicListRequest
-	38, // 53: ai_poi.list.v1.ListService.UnsaveList:input_type -> ai_poi.list.v1.UnsaveListRequest
-	40, // 54: ai_poi.list.v1.ListService.GetSavedLists:input_type -> ai_poi.list.v1.GetSavedListsRequest
-	42, // 55: ai_poi.list.v1.ListService.SearchPublicLists:input_type -> ai_poi.list.v1.SearchPublicListsRequest
-	11, // 56: ai_poi.list.v1.ListService.CreateList:output_type -> ai_poi.list.v1.CreateListResponse
-	13, // 57: ai_poi.list.v1.ListService.GetLists:output_type -> ai_poi.list.v1.GetListsResponse
-	15, // 58: ai_poi.list.v1.ListService.GetList:output_type -> ai_poi.list.v1.GetListResponse
-	17, // 59: ai_poi.list.v1.ListService.UpdateList:output_type -> ai_poi.list.v1.UpdateListResponse
-	19, // 60: ai_poi.list.v1.ListService.DeleteList:output_type -> ai_poi.list.v1.DeleteListResponse
-	21, // 61: ai_poi.list.v1.ListService.CreateItinerary:output_type -> ai_poi.list.v1.CreateItineraryResponse
-	23, // 62: ai_poi.list.v1.ListService.AddListItem:output_type -> ai_poi.list.v1.AddListItemResponse
-	25, // 63: ai_poi.list.v1.ListService.UpdateListItem:output_type -> ai_poi.list.v1.UpdateListItemResponse
-	27, // 64: ai_poi.list.v1.ListService.RemoveListItem:output_type -> ai_poi.list.v1.RemoveListItemResponse
-	29, // 65: ai_poi.list.v1.ListService.GetListItems:output_type -> ai_poi.list.v1.GetListItemsResponse
-	31, // 66: ai_poi.list.v1.ListService.GetListRestaurants:output_type -> ai_poi.list.v1.GetListRestaurantsResponse
-	33, // 67: ai_poi.list.v1.ListService.GetListHotels:output_type -> ai_poi.list.v1.GetListHotelsResponse
-	35, // 68: ai_poi.list.v1.ListService.GetListItineraries:output_type -> ai_poi.list.v1.GetListItinerariesResponse
-	37, // 69: ai_poi.list.v1.ListService.SavePublicList:output_type -> ai_poi.list.v1.SavePublicListResponse
-	39, // 70: ai_poi.list.v1.ListService.UnsaveList:output_type -> ai_poi.list.v1.UnsaveListResponse
-	41, // 71: ai_poi.list.v1.ListService.GetSavedLists:output_type -> ai_poi.list.v1.GetSavedListsResponse
-	43, // 72: ai_poi.list.v1.ListService.SearchPublicLists:output_type -> ai_poi.list.v1.SearchPublicListsResponse
-	56, // [56:73] is the sub-list for method output_type
-	39, // [39:56] is the sub-list for method input_type
-	39, // [39:39] is the sub-list for extension type_name
-	39, // [39:39] is the sub-list for extension extendee
-	0,  // [0:39] is the sub-list for field type_name
+	48, // 17: ai_poi.list.v1.UserSavedItinerary.created_at:type_name -> google.protobuf.Timestamp
+	48, // 18: ai_poi.list.v1.UserSavedItinerary.updated_at:type_name -> google.protobuf.Timestamp
+	45, // 19: ai_poi.list.v1.CreateListRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	1,  // 20: ai_poi.list.v1.CreateListResponse.list:type_name -> ai_poi.list.v1.List
+	46, // 21: ai_poi.list.v1.CreateListResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 22: ai_poi.list.v1.GetListsRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	3,  // 23: ai_poi.list.v1.GetListsResponse.lists:type_name -> ai_poi.list.v1.ListWithItems
+	46, // 24: ai_poi.list.v1.GetListsResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 25: ai_poi.list.v1.GetListRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	5,  // 26: ai_poi.list.v1.GetListResponse.list:type_name -> ai_poi.list.v1.ListWithDetailedItems
+	46, // 27: ai_poi.list.v1.GetListResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 28: ai_poi.list.v1.UpdateListRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	1,  // 29: ai_poi.list.v1.UpdateListResponse.list:type_name -> ai_poi.list.v1.List
+	46, // 30: ai_poi.list.v1.UpdateListResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 31: ai_poi.list.v1.DeleteListRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	46, // 32: ai_poi.list.v1.DeleteListResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 33: ai_poi.list.v1.CreateItineraryRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	1,  // 34: ai_poi.list.v1.CreateItineraryResponse.itinerary:type_name -> ai_poi.list.v1.List
+	46, // 35: ai_poi.list.v1.CreateItineraryResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	0,  // 36: ai_poi.list.v1.AddListItemRequest.content_type:type_name -> ai_poi.list.v1.ContentType
+	48, // 37: ai_poi.list.v1.AddListItemRequest.time_slot:type_name -> google.protobuf.Timestamp
+	45, // 38: ai_poi.list.v1.AddListItemRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	2,  // 39: ai_poi.list.v1.AddListItemResponse.item:type_name -> ai_poi.list.v1.ListItem
+	46, // 40: ai_poi.list.v1.AddListItemResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	0,  // 41: ai_poi.list.v1.UpdateListItemRequest.content_type:type_name -> ai_poi.list.v1.ContentType
+	48, // 42: ai_poi.list.v1.UpdateListItemRequest.time_slot:type_name -> google.protobuf.Timestamp
+	45, // 43: ai_poi.list.v1.UpdateListItemRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	2,  // 44: ai_poi.list.v1.UpdateListItemResponse.item:type_name -> ai_poi.list.v1.ListItem
+	46, // 45: ai_poi.list.v1.UpdateListItemResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	0,  // 46: ai_poi.list.v1.RemoveListItemRequest.content_type:type_name -> ai_poi.list.v1.ContentType
+	45, // 47: ai_poi.list.v1.RemoveListItemRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	46, // 48: ai_poi.list.v1.RemoveListItemResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 49: ai_poi.list.v1.GetListItemsRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	4,  // 50: ai_poi.list.v1.GetListItemsResponse.items:type_name -> ai_poi.list.v1.ListItemWithContent
+	46, // 51: ai_poi.list.v1.GetListItemsResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 52: ai_poi.list.v1.GetListRestaurantsRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	7,  // 53: ai_poi.list.v1.GetListRestaurantsResponse.restaurants:type_name -> ai_poi.list.v1.RestaurantDetailedInfo
+	46, // 54: ai_poi.list.v1.GetListRestaurantsResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 55: ai_poi.list.v1.GetListHotelsRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	8,  // 56: ai_poi.list.v1.GetListHotelsResponse.hotels:type_name -> ai_poi.list.v1.HotelDetailedInfo
+	46, // 57: ai_poi.list.v1.GetListHotelsResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 58: ai_poi.list.v1.GetListItinerariesRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	9,  // 59: ai_poi.list.v1.GetListItinerariesResponse.itineraries:type_name -> ai_poi.list.v1.UserSavedItinerary
+	46, // 60: ai_poi.list.v1.GetListItinerariesResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 61: ai_poi.list.v1.SavePublicListRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	46, // 62: ai_poi.list.v1.SavePublicListResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 63: ai_poi.list.v1.UnsaveListRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	46, // 64: ai_poi.list.v1.UnsaveListResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 65: ai_poi.list.v1.GetSavedListsRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	3,  // 66: ai_poi.list.v1.GetSavedListsResponse.lists:type_name -> ai_poi.list.v1.ListWithItems
+	46, // 67: ai_poi.list.v1.GetSavedListsResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	45, // 68: ai_poi.list.v1.SearchPublicListsRequest.request:type_name -> ai_poi.list.v1.BaseRequest
+	3,  // 69: ai_poi.list.v1.SearchPublicListsResponse.lists:type_name -> ai_poi.list.v1.ListWithItems
+	44, // 70: ai_poi.list.v1.SearchPublicListsResponse.metadata:type_name -> ai_poi.list.v1.SearchMetadata
+	46, // 71: ai_poi.list.v1.SearchPublicListsResponse.response:type_name -> ai_poi.list.v1.BaseResponse
+	47, // 72: ai_poi.list.v1.SearchMetadata.filters_applied:type_name -> ai_poi.list.v1.SearchMetadata.FiltersAppliedEntry
+	10, // 73: ai_poi.list.v1.ListService.CreateList:input_type -> ai_poi.list.v1.CreateListRequest
+	12, // 74: ai_poi.list.v1.ListService.GetLists:input_type -> ai_poi.list.v1.GetListsRequest
+	14, // 75: ai_poi.list.v1.ListService.GetList:input_type -> ai_poi.list.v1.GetListRequest
+	16, // 76: ai_poi.list.v1.ListService.UpdateList:input_type -> ai_poi.list.v1.UpdateListRequest
+	18, // 77: ai_poi.list.v1.ListService.DeleteList:input_type -> ai_poi.list.v1.DeleteListRequest
+	20, // 78: ai_poi.list.v1.ListService.CreateItinerary:input_type -> ai_poi.list.v1.CreateItineraryRequest
+	22, // 79: ai_poi.list.v1.ListService.AddListItem:input_type -> ai_poi.list.v1.AddListItemRequest
+	24, // 80: ai_poi.list.v1.ListService.UpdateListItem:input_type -> ai_poi.list.v1.UpdateListItemRequest
+	26, // 81: ai_poi.list.v1.ListService.RemoveListItem:input_type -> ai_poi.list.v1.RemoveListItemRequest
+	28, // 82: ai_poi.list.v1.ListService.GetListItems:input_type -> ai_poi.list.v1.GetListItemsRequest
+	30, // 83: ai_poi.list.v1.ListService.GetListRestaurants:input_type -> ai_poi.list.v1.GetListRestaurantsRequest
+	32, // 84: ai_poi.list.v1.ListService.GetListHotels:input_type -> ai_poi.list.v1.GetListHotelsRequest
+	34, // 85: ai_poi.list.v1.ListService.GetListItineraries:input_type -> ai_poi.list.v1.GetListItinerariesRequest
+	36, // 86: ai_poi.list.v1.ListService.SavePublicList:input_type -> ai_poi.list.v1.SavePublicListRequest
+	38, // 87: ai_poi.list.v1.ListService.UnsaveList:input_type -> ai_poi.list.v1.UnsaveListRequest
+	40, // 88: ai_poi.list.v1.ListService.GetSavedLists:input_type -> ai_poi.list.v1.GetSavedListsRequest
+	42, // 89: ai_poi.list.v1.ListService.SearchPublicLists:input_type -> ai_poi.list.v1.SearchPublicListsRequest
+	11, // 90: ai_poi.list.v1.ListService.CreateList:output_type -> ai_poi.list.v1.CreateListResponse
+	13, // 91: ai_poi.list.v1.ListService.GetLists:output_type -> ai_poi.list.v1.GetListsResponse
+	15, // 92: ai_poi.list.v1.ListService.GetList:output_type -> ai_poi.list.v1.GetListResponse
+	17, // 93: ai_poi.list.v1.ListService.UpdateList:output_type -> ai_poi.list.v1.UpdateListResponse
+	19, // 94: ai_poi.list.v1.ListService.DeleteList:output_type -> ai_poi.list.v1.DeleteListResponse
+	21, // 95: ai_poi.list.v1.ListService.CreateItinerary:output_type -> ai_poi.list.v1.CreateItineraryResponse
+	23, // 96: ai_poi.list.v1.ListService.AddListItem:output_type -> ai_poi.list.v1.AddListItemResponse
+	25, // 97: ai_poi.list.v1.ListService.UpdateListItem:output_type -> ai_poi.list.v1.UpdateListItemResponse
+	27, // 98: ai_poi.list.v1.ListService.RemoveListItem:output_type -> ai_poi.list.v1.RemoveListItemResponse
+	29, // 99: ai_poi.list.v1.ListService.GetListItems:output_type -> ai_poi.list.v1.GetListItemsResponse
+	31, // 100: ai_poi.list.v1.ListService.GetListRestaurants:output_type -> ai_poi.list.v1.GetListRestaurantsResponse
+	33, // 101: ai_poi.list.v1.ListService.GetListHotels:output_type -> ai_poi.list.v1.GetListHotelsResponse
+	35, // 102: ai_poi.list.v1.ListService.GetListItineraries:output_type -> ai_poi.list.v1.GetListItinerariesResponse
+	37, // 103: ai_poi.list.v1.ListService.SavePublicList:output_type -> ai_poi.list.v1.SavePublicListResponse
+	39, // 104: ai_poi.list.v1.ListService.UnsaveList:output_type -> ai_poi.list.v1.UnsaveListResponse
+	41, // 105: ai_poi.list.v1.ListService.GetSavedLists:output_type -> ai_poi.list.v1.GetSavedListsResponse
+	43, // 106: ai_poi.list.v1.ListService.SearchPublicLists:output_type -> ai_poi.list.v1.SearchPublicListsResponse
+	90, // [90:107] is the sub-list for method output_type
+	73, // [73:90] is the sub-list for method input_type
+	73, // [73:73] is the sub-list for extension type_name
+	73, // [73:73] is the sub-list for extension extendee
+	0,  // [0:73] is the sub-list for field type_name
 }
 
 func init() { file_list_proto_init() }
@@ -3581,7 +4046,7 @@ func file_list_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_list_proto_rawDesc), len(file_list_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   45,
+			NumMessages:   47,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -24,12 +24,14 @@ service AiPoiService {
 message GetServiceInfoRequest {
   bool include_endpoints = 1;
   bool include_version_info = 2;
+  BaseRequest request = 100;
 }
 
 message GetServiceInfoResponse {
   ServiceInfo service_info = 1;
   repeated ServiceEndpoint endpoints = 2;
   repeated ai_poi.common.v1.ApiVersion versions = 3;
+  BaseResponse response = 100;
 }
 
 message ServiceInfo {
@@ -58,11 +60,13 @@ message GetFeatureFlagsRequest {
   string client_version = 2;
   string platform = 3; // "web", "ios", "android"
   map<string, string> user_attributes = 4;
+  BaseRequest request = 100;
 }
 
 message GetFeatureFlagsResponse {
   repeated ai_poi.common.v1.FeatureFlag flags = 1;
   map<string, string> experiments = 2; // A/B test assignments
+  BaseResponse response = 100;
 }
 
 // Service dependencies and their health status
@@ -72,4 +76,15 @@ message ServiceDependencies {
   ai_poi.common.v1.ComponentHealth ai_service = 3;
   ai_poi.common.v1.ComponentHealth external_apis = 4;
   ai_poi.common.v1.ComponentHealth file_storage = 5;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

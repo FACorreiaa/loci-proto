@@ -31,13 +31,8 @@ const (
 type GetCustomerReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Be explicit with what you want to get, don't just"ID"
-	PublicId string `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
-	// Include the caller of the request to aid with quickly filtering through
-	// structured logs.
-	Downstream string `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
-	// It's good practice to include a request ID all requests to help with
-	// tracing and debugging.
-	RequestId     string `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	PublicId      string       `protobuf:"bytes,1,opt,name=public_id,json=publicId,proto3" json:"public_id,omitempty"`
+	Request       *BaseRequest `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -79,18 +74,11 @@ func (x *GetCustomerReq) GetPublicId() string {
 	return ""
 }
 
-func (x *GetCustomerReq) GetDownstream() string {
+func (x *GetCustomerReq) GetRequest() *BaseRequest {
 	if x != nil {
-		return x.Downstream
+		return x.Request
 	}
-	return ""
-}
-
-func (x *GetCustomerReq) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 type GetCustomerRes struct {
@@ -98,12 +86,8 @@ type GetCustomerRes struct {
 	Success bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"` // Optional: populate if success is false
 	// The customer object
-	Customer *XCustomer `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
-	// Return the service that handled the request. This is useful when handling
-	// switchovers from legacy services and you're still throttling
-	Upstream string `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
-	// Return the request ID so we know the response is idempotent
-	RequestId     string `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Customer      *XCustomer    `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
+	Response      *BaseResponse `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -159,26 +143,18 @@ func (x *GetCustomerRes) GetCustomer() *XCustomer {
 	return nil
 }
 
-func (x *GetCustomerRes) GetUpstream() string {
+func (x *GetCustomerRes) GetResponse() *BaseResponse {
 	if x != nil {
-		return x.Upstream
+		return x.Response
 	}
-	return ""
-}
-
-func (x *GetCustomerRes) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 type CreateCustomerReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The customer object
-	Customer      *XCustomer `protobuf:"bytes,1,opt,name=customer,proto3" json:"customer,omitempty"`
-	Downstream    string     `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
-	RequestId     string     `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Customer      *XCustomer   `protobuf:"bytes,1,opt,name=customer,proto3" json:"customer,omitempty"`
+	Request       *BaseRequest `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -220,18 +196,11 @@ func (x *CreateCustomerReq) GetCustomer() *XCustomer {
 	return nil
 }
 
-func (x *CreateCustomerReq) GetDownstream() string {
+func (x *CreateCustomerReq) GetRequest() *BaseRequest {
 	if x != nil {
-		return x.Downstream
+		return x.Request
 	}
-	return ""
-}
-
-func (x *CreateCustomerReq) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 type CreateCustomerRes struct {
@@ -239,9 +208,8 @@ type CreateCustomerRes struct {
 	Success bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// The customer object
-	Customer      *XCustomer `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
-	Upstream      string     `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
-	RequestId     string     `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Customer      *XCustomer    `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
+	Response      *BaseResponse `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -297,18 +265,11 @@ func (x *CreateCustomerRes) GetCustomer() *XCustomer {
 	return nil
 }
 
-func (x *CreateCustomerRes) GetUpstream() string {
+func (x *CreateCustomerRes) GetResponse() *BaseResponse {
 	if x != nil {
-		return x.Upstream
+		return x.Response
 	}
-	return ""
-}
-
-func (x *CreateCustomerRes) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 type UpdateCustomerReq struct {
@@ -317,9 +278,8 @@ type UpdateCustomerReq struct {
 	// This saves us from having to return the entire customer object and saves
 	// on implementation complexity due to not all customer fields being
 	// returned (so we can't just dump the entire object into the DB).
-	Updates       []*XDiff `protobuf:"bytes,2,rep,name=updates,proto3" json:"updates,omitempty"`
-	Downstream    string   `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
-	RequestId     string   `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Updates       []*XDiff     `protobuf:"bytes,2,rep,name=updates,proto3" json:"updates,omitempty"`
+	Request       *BaseRequest `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -368,18 +328,11 @@ func (x *UpdateCustomerReq) GetUpdates() []*XDiff {
 	return nil
 }
 
-func (x *UpdateCustomerReq) GetDownstream() string {
+func (x *UpdateCustomerReq) GetRequest() *BaseRequest {
 	if x != nil {
-		return x.Downstream
+		return x.Request
 	}
-	return ""
-}
-
-func (x *UpdateCustomerReq) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 type UpdateCustomerRes struct {
@@ -387,9 +340,8 @@ type UpdateCustomerRes struct {
 	Success bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// The customer object
-	Customer      *XCustomer `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
-	Upstream      string     `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
-	RequestId     string     `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Customer      *XCustomer    `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
+	Response      *BaseResponse `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -445,26 +397,18 @@ func (x *UpdateCustomerRes) GetCustomer() *XCustomer {
 	return nil
 }
 
-func (x *UpdateCustomerRes) GetUpstream() string {
+func (x *UpdateCustomerRes) GetResponse() *BaseResponse {
 	if x != nil {
-		return x.Upstream
+		return x.Response
 	}
-	return ""
-}
-
-func (x *UpdateCustomerRes) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 type DeleteCustomerReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CustomerId    string                 `protobuf:"bytes,1,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	HardDelete    bool                   `protobuf:"varint,2,opt,name=hard_delete,json=hardDelete,proto3" json:"hard_delete,omitempty"` // soft delete by default
-	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
-	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -513,18 +457,11 @@ func (x *DeleteCustomerReq) GetHardDelete() bool {
 	return false
 }
 
-func (x *DeleteCustomerReq) GetDownstream() string {
+func (x *DeleteCustomerReq) GetRequest() *BaseRequest {
 	if x != nil {
-		return x.Downstream
+		return x.Request
 	}
-	return ""
-}
-
-func (x *DeleteCustomerReq) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
+	return nil
 }
 
 // NilRes effectively mirrors google.protobuf.Empty, we use our own type though
@@ -532,6 +469,7 @@ func (x *DeleteCustomerReq) GetRequestId() string {
 // support.
 type NilRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -564,6 +502,13 @@ func (x *NilRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use NilRes.ProtoReflect.Descriptor instead.
 func (*NilRes) Descriptor() ([]byte, []int) {
 	return file_customer_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *NilRes) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
 }
 
 // -- Subtype messages
@@ -808,66 +753,157 @@ func (x *XDiff) GetNewValue() string {
 	return ""
 }
 
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_customer_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_customer_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_customer_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_customer_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_customer_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_customer_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_customer_proto protoreflect.FileDescriptor
 
 const file_customer_proto_rawDesc = "" +
 	"\n" +
-	"\x0ecustomer.proto\x12\x17highlyregarded.customer\"n\n" +
+	"\x0ecustomer.proto\x12\x17highlyregarded.customer\"m\n" +
 	"\x0eGetCustomerReq\x12\x1b\n" +
-	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x1f\n" +
-	"\n" +
-	"downstream\x18\xe6\a \x01(\tR\n" +
-	"downstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\xc1\x01\n" +
+	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12>\n" +
+	"\arequest\x18d \x01(\v2$.highlyregarded.customer.BaseRequestR\arequest\"\xc7\x01\n" +
 	"\x0eGetCustomerRes\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12>\n" +
-	"\bcustomer\x18\x03 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12\x1b\n" +
-	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\x94\x01\n" +
+	"\bcustomer\x18\x03 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12A\n" +
+	"\bresponse\x18d \x01(\v2%.highlyregarded.customer.BaseResponseR\bresponse\"\x93\x01\n" +
 	"\x11CreateCustomerReq\x12>\n" +
-	"\bcustomer\x18\x01 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12\x1f\n" +
-	"\n" +
-	"downstream\x18\xe6\a \x01(\tR\n" +
-	"downstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\xc4\x01\n" +
+	"\bcustomer\x18\x01 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12>\n" +
+	"\arequest\x18d \x01(\v2$.highlyregarded.customer.BaseRequestR\arequest\"\xca\x01\n" +
 	"\x11CreateCustomerRes\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12>\n" +
-	"\bcustomer\x18\x03 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12\x1b\n" +
-	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\xaf\x01\n" +
+	"\bcustomer\x18\x03 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12A\n" +
+	"\bresponse\x18d \x01(\v2%.highlyregarded.customer.BaseResponseR\bresponse\"\xae\x01\n" +
 	"\x11UpdateCustomerReq\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
 	"customerId\x128\n" +
-	"\aupdates\x18\x02 \x03(\v2\x1e.highlyregarded.customer.XDiffR\aupdates\x12\x1f\n" +
-	"\n" +
-	"downstream\x18\xe6\a \x01(\tR\n" +
-	"downstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\xc4\x01\n" +
+	"\aupdates\x18\x02 \x03(\v2\x1e.highlyregarded.customer.XDiffR\aupdates\x12>\n" +
+	"\arequest\x18d \x01(\v2$.highlyregarded.customer.BaseRequestR\arequest\"\xca\x01\n" +
 	"\x11UpdateCustomerRes\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12>\n" +
-	"\bcustomer\x18\x03 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12\x1b\n" +
-	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\x96\x01\n" +
+	"\bcustomer\x18\x03 \x01(\v2\".highlyregarded.customer.XCustomerR\bcustomer\x12A\n" +
+	"\bresponse\x18d \x01(\v2%.highlyregarded.customer.BaseResponseR\bresponse\"\x95\x01\n" +
 	"\x11DeleteCustomerReq\x12\x1f\n" +
 	"\vcustomer_id\x18\x01 \x01(\tR\n" +
 	"customerId\x12\x1f\n" +
 	"\vhard_delete\x18\x02 \x01(\bR\n" +
-	"hardDelete\x12\x1f\n" +
-	"\n" +
-	"downstream\x18\xe6\a \x01(\tR\n" +
-	"downstream\x12\x1e\n" +
-	"\n" +
-	"request_id\x18\xe7\a \x01(\tR\trequestId\"\b\n" +
-	"\x06NilRes\"\xa7\x01\n" +
+	"hardDelete\x12>\n" +
+	"\arequest\x18d \x01(\v2$.highlyregarded.customer.BaseRequestR\arequest\"K\n" +
+	"\x06NilRes\x12A\n" +
+	"\bresponse\x18d \x01(\v2%.highlyregarded.customer.BaseResponseR\bresponse\"\xa7\x01\n" +
 	"\tXCustomer\x12\x1b\n" +
 	"\tpublic_id\x18\x01 \x01(\tR\bpublicId\x12\x1d\n" +
 	"\n" +
@@ -887,7 +923,18 @@ const file_customer_proto_rawDesc = "" +
 	"\x05XDiff\x12\x14\n" +
 	"\x05field\x18\x01 \x01(\tR\x05field\x12\x1b\n" +
 	"\told_value\x18\x02 \x01(\tR\boldValue\x12\x1b\n" +
-	"\tnew_value\x18\x03 \x01(\tR\bnewValue2\x9e\x03\n" +
+	"\tnew_value\x18\x03 \x01(\tR\bnewValue\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\x9e\x03\n" +
 	"\bCustomer\x12_\n" +
 	"\vGetCustomer\x12'.highlyregarded.customer.GetCustomerReq\x1a'.highlyregarded.customer.GetCustomerRes\x12h\n" +
 	"\x0eCreateCustomer\x12*.highlyregarded.customer.CreateCustomerReq\x1a*.highlyregarded.customer.CreateCustomerRes\x12h\n" +
@@ -906,7 +953,7 @@ func file_customer_proto_rawDescGZIP() []byte {
 	return file_customer_proto_rawDescData
 }
 
-var file_customer_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_customer_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_customer_proto_goTypes = []any{
 	(*GetCustomerReq)(nil),    // 0: highlyregarded.customer.GetCustomerReq
 	(*GetCustomerRes)(nil),    // 1: highlyregarded.customer.GetCustomerRes
@@ -919,27 +966,37 @@ var file_customer_proto_goTypes = []any{
 	(*XCustomer)(nil),         // 8: highlyregarded.customer.XCustomer
 	(*XName)(nil),             // 9: highlyregarded.customer.XName
 	(*XDiff)(nil),             // 10: highlyregarded.customer.XDiff
+	(*BaseRequest)(nil),       // 11: highlyregarded.customer.BaseRequest
+	(*BaseResponse)(nil),      // 12: highlyregarded.customer.BaseResponse
 }
 var file_customer_proto_depIdxs = []int32{
-	8,  // 0: highlyregarded.customer.GetCustomerRes.customer:type_name -> highlyregarded.customer.XCustomer
-	8,  // 1: highlyregarded.customer.CreateCustomerReq.customer:type_name -> highlyregarded.customer.XCustomer
-	8,  // 2: highlyregarded.customer.CreateCustomerRes.customer:type_name -> highlyregarded.customer.XCustomer
-	10, // 3: highlyregarded.customer.UpdateCustomerReq.updates:type_name -> highlyregarded.customer.XDiff
-	8,  // 4: highlyregarded.customer.UpdateCustomerRes.customer:type_name -> highlyregarded.customer.XCustomer
-	9,  // 5: highlyregarded.customer.XCustomer.name:type_name -> highlyregarded.customer.XName
-	0,  // 6: highlyregarded.customer.Customer.GetCustomer:input_type -> highlyregarded.customer.GetCustomerReq
-	2,  // 7: highlyregarded.customer.Customer.CreateCustomer:input_type -> highlyregarded.customer.CreateCustomerReq
-	4,  // 8: highlyregarded.customer.Customer.UpdateCustomer:input_type -> highlyregarded.customer.UpdateCustomerReq
-	6,  // 9: highlyregarded.customer.Customer.DeleteCustomer:input_type -> highlyregarded.customer.DeleteCustomerReq
-	1,  // 10: highlyregarded.customer.Customer.GetCustomer:output_type -> highlyregarded.customer.GetCustomerRes
-	3,  // 11: highlyregarded.customer.Customer.CreateCustomer:output_type -> highlyregarded.customer.CreateCustomerRes
-	5,  // 12: highlyregarded.customer.Customer.UpdateCustomer:output_type -> highlyregarded.customer.UpdateCustomerRes
-	7,  // 13: highlyregarded.customer.Customer.DeleteCustomer:output_type -> highlyregarded.customer.NilRes
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	11, // 0: highlyregarded.customer.GetCustomerReq.request:type_name -> highlyregarded.customer.BaseRequest
+	8,  // 1: highlyregarded.customer.GetCustomerRes.customer:type_name -> highlyregarded.customer.XCustomer
+	12, // 2: highlyregarded.customer.GetCustomerRes.response:type_name -> highlyregarded.customer.BaseResponse
+	8,  // 3: highlyregarded.customer.CreateCustomerReq.customer:type_name -> highlyregarded.customer.XCustomer
+	11, // 4: highlyregarded.customer.CreateCustomerReq.request:type_name -> highlyregarded.customer.BaseRequest
+	8,  // 5: highlyregarded.customer.CreateCustomerRes.customer:type_name -> highlyregarded.customer.XCustomer
+	12, // 6: highlyregarded.customer.CreateCustomerRes.response:type_name -> highlyregarded.customer.BaseResponse
+	10, // 7: highlyregarded.customer.UpdateCustomerReq.updates:type_name -> highlyregarded.customer.XDiff
+	11, // 8: highlyregarded.customer.UpdateCustomerReq.request:type_name -> highlyregarded.customer.BaseRequest
+	8,  // 9: highlyregarded.customer.UpdateCustomerRes.customer:type_name -> highlyregarded.customer.XCustomer
+	12, // 10: highlyregarded.customer.UpdateCustomerRes.response:type_name -> highlyregarded.customer.BaseResponse
+	11, // 11: highlyregarded.customer.DeleteCustomerReq.request:type_name -> highlyregarded.customer.BaseRequest
+	12, // 12: highlyregarded.customer.NilRes.response:type_name -> highlyregarded.customer.BaseResponse
+	9,  // 13: highlyregarded.customer.XCustomer.name:type_name -> highlyregarded.customer.XName
+	0,  // 14: highlyregarded.customer.Customer.GetCustomer:input_type -> highlyregarded.customer.GetCustomerReq
+	2,  // 15: highlyregarded.customer.Customer.CreateCustomer:input_type -> highlyregarded.customer.CreateCustomerReq
+	4,  // 16: highlyregarded.customer.Customer.UpdateCustomer:input_type -> highlyregarded.customer.UpdateCustomerReq
+	6,  // 17: highlyregarded.customer.Customer.DeleteCustomer:input_type -> highlyregarded.customer.DeleteCustomerReq
+	1,  // 18: highlyregarded.customer.Customer.GetCustomer:output_type -> highlyregarded.customer.GetCustomerRes
+	3,  // 19: highlyregarded.customer.Customer.CreateCustomer:output_type -> highlyregarded.customer.CreateCustomerRes
+	5,  // 20: highlyregarded.customer.Customer.UpdateCustomer:output_type -> highlyregarded.customer.UpdateCustomerRes
+	7,  // 21: highlyregarded.customer.Customer.DeleteCustomer:output_type -> highlyregarded.customer.NilRes
+	18, // [18:22] is the sub-list for method output_type
+	14, // [14:18] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_customer_proto_init() }
@@ -953,7 +1010,7 @@ func file_customer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_customer_proto_rawDesc), len(file_customer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

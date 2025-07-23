@@ -1979,6 +1979,7 @@ func (x *AuditInfo) GetVersion() int32 {
 type HealthCheckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Service       string                 `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"` // Specific service to check, empty for all
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2020,6 +2021,13 @@ func (x *HealthCheckRequest) GetService() string {
 	return ""
 }
 
+func (x *HealthCheckRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 // Health check response
 type HealthCheckResponse struct {
 	state         protoimpl.MessageState      `protogen:"open.v1"`
@@ -2027,6 +2035,7 @@ type HealthCheckResponse struct {
 	Version       string                      `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	Timestamp     *timestamppb.Timestamp      `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	Components    map[string]*ComponentHealth `protobuf:"bytes,4,rep,name=components,proto3" json:"components,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Response      *BaseResponse               `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2085,6 +2094,13 @@ func (x *HealthCheckResponse) GetTimestamp() *timestamppb.Timestamp {
 func (x *HealthCheckResponse) GetComponents() map[string]*ComponentHealth {
 	if x != nil {
 		return x.Components
+	}
+	return nil
+}
+
+func (x *HealthCheckResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -2364,6 +2380,118 @@ func (x *RateLimitInfo) GetRetryAfterSeconds() int32 {
 	return 0
 }
 
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_common_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_common_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_common_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_common_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_common_proto protoreflect.FileDescriptor
 
 const file_common_proto_rawDesc = "" +
@@ -2526,16 +2654,18 @@ const file_common_proto_rawDesc = "" +
 	"created_by\x18\x03 \x01(\tR\tcreatedBy\x12\x1d\n" +
 	"\n" +
 	"updated_by\x18\x04 \x01(\tR\tupdatedBy\x12\x18\n" +
-	"\aversion\x18\x05 \x01(\x05R\aversion\".\n" +
+	"\aversion\x18\x05 \x01(\x05R\aversion\"g\n" +
 	"\x12HealthCheckRequest\x12\x18\n" +
-	"\aservice\x18\x01 \x01(\tR\aservice\"\xba\x02\n" +
+	"\aservice\x18\x01 \x01(\tR\aservice\x127\n" +
+	"\arequest\x18d \x01(\v2\x1d.ai_poi.common.v1.BaseRequestR\arequest\"\xf6\x02\n" +
 	"\x13HealthCheckResponse\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12\x18\n" +
 	"\aversion\x18\x02 \x01(\tR\aversion\x128\n" +
 	"\ttimestamp\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12U\n" +
 	"\n" +
 	"components\x18\x04 \x03(\v25.ai_poi.common.v1.HealthCheckResponse.ComponentsEntryR\n" +
-	"components\x1a`\n" +
+	"components\x12:\n" +
+	"\bresponse\x18d \x01(\v2\x1e.ai_poi.common.v1.BaseResponseR\bresponse\x1a`\n" +
 	"\x0fComponentsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x127\n" +
 	"\x05value\x18\x02 \x01(\v2!.ai_poi.common.v1.ComponentHealthR\x05value:\x028\x01\"\xc9\x01\n" +
@@ -2571,7 +2701,18 @@ const file_common_proto_rawDesc = "" +
 	"\x0erequests_limit\x18\x02 \x01(\x05R\rrequestsLimit\x129\n" +
 	"\n" +
 	"reset_time\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tresetTime\x12.\n" +
-	"\x13retry_after_seconds\x18\x04 \x01(\x05R\x11retryAfterSeconds*\xd8\x01\n" +
+	"\x13retry_after_seconds\x18\x04 \x01(\x05R\x11retryAfterSeconds\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status*\xd8\x01\n" +
 	"\tDayOfWeek\x12\x1b\n" +
 	"\x17DAY_OF_WEEK_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12DAY_OF_WEEK_MONDAY\x10\x01\x12\x17\n" +
@@ -2607,7 +2748,7 @@ func file_common_proto_rawDescGZIP() []byte {
 }
 
 var file_common_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_common_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_common_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
 var file_common_proto_goTypes = []any{
 	(DayOfWeek)(0),                // 0: ai_poi.common.v1.DayOfWeek
 	(PriceRange)(0),               // 1: ai_poi.common.v1.PriceRange
@@ -2643,19 +2784,21 @@ var file_common_proto_goTypes = []any{
 	(*FeatureFlag)(nil),           // 31: ai_poi.common.v1.FeatureFlag
 	(*ApiVersion)(nil),            // 32: ai_poi.common.v1.ApiVersion
 	(*RateLimitInfo)(nil),         // 33: ai_poi.common.v1.RateLimitInfo
-	nil,                           // 34: ai_poi.common.v1.Response.MetadataEntry
-	nil,                           // 35: ai_poi.common.v1.ErrorDetails.DetailsEntry
-	nil,                           // 36: ai_poi.common.v1.FilterOptions.CustomFiltersEntry
-	nil,                           // 37: ai_poi.common.v1.HealthCheckResponse.ComponentsEntry
-	nil,                           // 38: ai_poi.common.v1.ComponentHealth.DetailsEntry
-	nil,                           // 39: ai_poi.common.v1.FeatureFlag.ParametersEntry
-	(*timestamppb.Timestamp)(nil), // 40: google.protobuf.Timestamp
+	(*BaseRequest)(nil),           // 34: ai_poi.common.v1.BaseRequest
+	(*BaseResponse)(nil),          // 35: ai_poi.common.v1.BaseResponse
+	nil,                           // 36: ai_poi.common.v1.Response.MetadataEntry
+	nil,                           // 37: ai_poi.common.v1.ErrorDetails.DetailsEntry
+	nil,                           // 38: ai_poi.common.v1.FilterOptions.CustomFiltersEntry
+	nil,                           // 39: ai_poi.common.v1.HealthCheckResponse.ComponentsEntry
+	nil,                           // 40: ai_poi.common.v1.ComponentHealth.DetailsEntry
+	nil,                           // 41: ai_poi.common.v1.FeatureFlag.ParametersEntry
+	(*timestamppb.Timestamp)(nil), // 42: google.protobuf.Timestamp
 }
 var file_common_proto_depIdxs = []int32{
 	4,  // 0: ai_poi.common.v1.Response.error:type_name -> ai_poi.common.v1.ErrorDetails
-	34, // 1: ai_poi.common.v1.Response.metadata:type_name -> ai_poi.common.v1.Response.MetadataEntry
+	36, // 1: ai_poi.common.v1.Response.metadata:type_name -> ai_poi.common.v1.Response.MetadataEntry
 	5,  // 2: ai_poi.common.v1.ErrorDetails.field_errors:type_name -> ai_poi.common.v1.FieldError
-	35, // 3: ai_poi.common.v1.ErrorDetails.details:type_name -> ai_poi.common.v1.ErrorDetails.DetailsEntry
+	37, // 3: ai_poi.common.v1.ErrorDetails.details:type_name -> ai_poi.common.v1.ErrorDetails.DetailsEntry
 	8,  // 4: ai_poi.common.v1.GeoBounds.southwest:type_name -> ai_poi.common.v1.Coordinates
 	8,  // 5: ai_poi.common.v1.GeoBounds.northeast:type_name -> ai_poi.common.v1.Coordinates
 	12, // 6: ai_poi.common.v1.ContactInfo.social_media:type_name -> ai_poi.common.v1.SocialMedia
@@ -2663,31 +2806,33 @@ var file_common_proto_depIdxs = []int32{
 	16, // 8: ai_poi.common.v1.OpeningHours.special_hours:type_name -> ai_poi.common.v1.SpecialHours
 	0,  // 9: ai_poi.common.v1.DaySchedule.day:type_name -> ai_poi.common.v1.DayOfWeek
 	15, // 10: ai_poi.common.v1.DaySchedule.time_slots:type_name -> ai_poi.common.v1.TimeSlot
-	40, // 11: ai_poi.common.v1.SpecialHours.date:type_name -> google.protobuf.Timestamp
+	42, // 11: ai_poi.common.v1.SpecialHours.date:type_name -> google.protobuf.Timestamp
 	15, // 12: ai_poi.common.v1.SpecialHours.time_slots:type_name -> ai_poi.common.v1.TimeSlot
 	18, // 13: ai_poi.common.v1.Rating.breakdown:type_name -> ai_poi.common.v1.RatingBreakdown
 	20, // 14: ai_poi.common.v1.Media.photos:type_name -> ai_poi.common.v1.Photo
 	21, // 15: ai_poi.common.v1.Media.videos:type_name -> ai_poi.common.v1.Video
 	22, // 16: ai_poi.common.v1.Media.virtual_tours:type_name -> ai_poi.common.v1.VirtualTour
-	40, // 17: ai_poi.common.v1.Photo.taken_at:type_name -> google.protobuf.Timestamp
+	42, // 17: ai_poi.common.v1.Photo.taken_at:type_name -> google.protobuf.Timestamp
 	2,  // 18: ai_poi.common.v1.SortOptions.direction:type_name -> ai_poi.common.v1.SortDirection
 	1,  // 19: ai_poi.common.v1.FilterOptions.price_ranges:type_name -> ai_poi.common.v1.PriceRange
-	36, // 20: ai_poi.common.v1.FilterOptions.custom_filters:type_name -> ai_poi.common.v1.FilterOptions.CustomFiltersEntry
+	38, // 20: ai_poi.common.v1.FilterOptions.custom_filters:type_name -> ai_poi.common.v1.FilterOptions.CustomFiltersEntry
 	25, // 21: ai_poi.common.v1.MultilingualText.translations:type_name -> ai_poi.common.v1.LocalizedString
-	40, // 22: ai_poi.common.v1.AuditInfo.created_at:type_name -> google.protobuf.Timestamp
-	40, // 23: ai_poi.common.v1.AuditInfo.updated_at:type_name -> google.protobuf.Timestamp
-	40, // 24: ai_poi.common.v1.HealthCheckResponse.timestamp:type_name -> google.protobuf.Timestamp
-	37, // 25: ai_poi.common.v1.HealthCheckResponse.components:type_name -> ai_poi.common.v1.HealthCheckResponse.ComponentsEntry
-	38, // 26: ai_poi.common.v1.ComponentHealth.details:type_name -> ai_poi.common.v1.ComponentHealth.DetailsEntry
-	39, // 27: ai_poi.common.v1.FeatureFlag.parameters:type_name -> ai_poi.common.v1.FeatureFlag.ParametersEntry
-	40, // 28: ai_poi.common.v1.ApiVersion.sunset_date:type_name -> google.protobuf.Timestamp
-	40, // 29: ai_poi.common.v1.RateLimitInfo.reset_time:type_name -> google.protobuf.Timestamp
-	30, // 30: ai_poi.common.v1.HealthCheckResponse.ComponentsEntry.value:type_name -> ai_poi.common.v1.ComponentHealth
-	31, // [31:31] is the sub-list for method output_type
-	31, // [31:31] is the sub-list for method input_type
-	31, // [31:31] is the sub-list for extension type_name
-	31, // [31:31] is the sub-list for extension extendee
-	0,  // [0:31] is the sub-list for field type_name
+	42, // 22: ai_poi.common.v1.AuditInfo.created_at:type_name -> google.protobuf.Timestamp
+	42, // 23: ai_poi.common.v1.AuditInfo.updated_at:type_name -> google.protobuf.Timestamp
+	34, // 24: ai_poi.common.v1.HealthCheckRequest.request:type_name -> ai_poi.common.v1.BaseRequest
+	42, // 25: ai_poi.common.v1.HealthCheckResponse.timestamp:type_name -> google.protobuf.Timestamp
+	39, // 26: ai_poi.common.v1.HealthCheckResponse.components:type_name -> ai_poi.common.v1.HealthCheckResponse.ComponentsEntry
+	35, // 27: ai_poi.common.v1.HealthCheckResponse.response:type_name -> ai_poi.common.v1.BaseResponse
+	40, // 28: ai_poi.common.v1.ComponentHealth.details:type_name -> ai_poi.common.v1.ComponentHealth.DetailsEntry
+	41, // 29: ai_poi.common.v1.FeatureFlag.parameters:type_name -> ai_poi.common.v1.FeatureFlag.ParametersEntry
+	42, // 30: ai_poi.common.v1.ApiVersion.sunset_date:type_name -> google.protobuf.Timestamp
+	42, // 31: ai_poi.common.v1.RateLimitInfo.reset_time:type_name -> google.protobuf.Timestamp
+	30, // 32: ai_poi.common.v1.HealthCheckResponse.ComponentsEntry.value:type_name -> ai_poi.common.v1.ComponentHealth
+	33, // [33:33] is the sub-list for method output_type
+	33, // [33:33] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_common_proto_init() }
@@ -2701,7 +2846,7 @@ func file_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_common_proto_rawDesc), len(file_common_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   37,
+			NumMessages:   39,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

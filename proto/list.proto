@@ -159,12 +159,14 @@ message CreateListRequest {
   string city_id = 4;
   bool is_itinerary = 5;
   bool is_public = 6;
+  BaseRequest request = 100;
 }
 
 message CreateListResponse {
   bool success = 1;
   string message = 2;
   List list = 3;
+  BaseResponse response = 100;
 }
 
 message GetListsRequest {
@@ -172,21 +174,25 @@ message GetListsRequest {
   int32 limit = 2;
   int32 offset = 3;
   bool include_items = 4;
+  BaseRequest request = 100;
 }
 
 message GetListsResponse {
   repeated ListWithItems lists = 1;
   int32 total_count = 2;
+  BaseResponse response = 100;
 }
 
 message GetListRequest {
   string user_id = 1;
   string list_id = 2;
   bool include_detailed_items = 3;
+  BaseRequest request = 100;
 }
 
 message GetListResponse {
   ListWithDetailedItems list = 1;
+  BaseResponse response = 100;
 }
 
 message UpdateListRequest {
@@ -197,22 +203,26 @@ message UpdateListRequest {
   string image_url = 5;
   bool is_public = 6;
   string city_id = 7;
+  BaseRequest request = 100;
 }
 
 message UpdateListResponse {
   bool success = 1;
   string message = 2;
   List list = 3;
+  BaseResponse response = 100;
 }
 
 message DeleteListRequest {
   string user_id = 1;
   string list_id = 2;
+  BaseRequest request = 100;
 }
 
 message DeleteListResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 // Itinerary creation
@@ -222,12 +232,14 @@ message CreateItineraryRequest {
   string name = 3;
   string description = 4;
   bool is_public = 5;
+  BaseRequest request = 100;
 }
 
 message CreateItineraryResponse {
   bool success = 1;
   string message = 2;
   List itinerary = 3;
+  BaseResponse response = 100;
 }
 
 // List item management
@@ -243,12 +255,14 @@ message AddListItemRequest {
   int32 duration_minutes = 9;
   string source_llm_interaction_id = 10;
   string item_ai_description = 11;
+  BaseRequest request = 100;
 }
 
 message AddListItemResponse {
   bool success = 1;
   string message = 2;
   ListItem item = 3;
+  BaseResponse response = 100;
 }
 
 message UpdateListItemRequest {
@@ -263,12 +277,14 @@ message UpdateListItemRequest {
   int32 duration_minutes = 9;
   string source_llm_interaction_id = 10;
   string item_ai_description = 11;
+  BaseRequest request = 100;
 }
 
 message UpdateListItemResponse {
   bool success = 1;
   string message = 2;
   ListItem item = 3;
+  BaseResponse response = 100;
 }
 
 message RemoveListItemRequest {
@@ -276,82 +292,98 @@ message RemoveListItemRequest {
   string list_id = 2;
   string item_id = 3;
   ContentType content_type = 4;
+  BaseRequest request = 100;
 }
 
 message RemoveListItemResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 message GetListItemsRequest {
   string user_id = 1;
   string list_id = 2;
   bool include_content_details = 3;
+  BaseRequest request = 100;
 }
 
 message GetListItemsResponse {
   repeated ListItemWithContent items = 1;
   int32 total_count = 2;
+  BaseResponse response = 100;
 }
 
 // Content-specific item requests
 message GetListRestaurantsRequest {
   string user_id = 1;
   string list_id = 2;
+  BaseRequest request = 100;
 }
 
 message GetListRestaurantsResponse {
   repeated RestaurantDetailedInfo restaurants = 1;
+  BaseResponse response = 100;
 }
 
 message GetListHotelsRequest {
   string user_id = 1;
   string list_id = 2;
+  BaseRequest request = 100;
 }
 
 message GetListHotelsResponse {
   repeated HotelDetailedInfo hotels = 1;
+  BaseResponse response = 100;
 }
 
 message GetListItinerariesRequest {
   string user_id = 1;
   string list_id = 2;
+  BaseRequest request = 100;
 }
 
 message GetListItinerariesResponse {
   repeated UserSavedItinerary itineraries = 1;
+  BaseResponse response = 100;
 }
 
 // Public list management
 message SavePublicListRequest {
   string user_id = 1;
   string list_id = 2;
+  BaseRequest request = 100;
 }
 
 message SavePublicListResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 message UnsaveListRequest {
   string user_id = 1;
   string list_id = 2;
+  BaseRequest request = 100;
 }
 
 message UnsaveListResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 message GetSavedListsRequest {
   string user_id = 1;
   int32 limit = 2;
   int32 offset = 3;
+  BaseRequest request = 100;
 }
 
 message GetSavedListsResponse {
   repeated ListWithItems lists = 1;
   int32 total_count = 2;
+  BaseResponse response = 100;
 }
 
 message SearchPublicListsRequest {
@@ -361,16 +393,29 @@ message SearchPublicListsRequest {
   int32 limit = 4;
   int32 offset = 5;
   string sort_by = 6; // "popularity", "recent", "name"
+  BaseRequest request = 100;
 }
 
 message SearchPublicListsResponse {
   repeated ListWithItems lists = 1;
   int32 total_count = 2;
   SearchMetadata metadata = 3;
+  BaseResponse response = 100;
 }
 
 message SearchMetadata {
   double query_time_ms = 1;
   string search_method = 2;
   map<string, string> filters_applied = 3;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

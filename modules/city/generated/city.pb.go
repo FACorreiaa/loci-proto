@@ -599,6 +599,7 @@ type GetCitiesRequest struct {
 	IncludeStatistics bool                   `protobuf:"varint,3,opt,name=include_statistics,json=includeStatistics,proto3" json:"include_statistics,omitempty"`
 	CountryCode       string                 `protobuf:"bytes,4,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`  // Filter by country
 	PopularOnly       bool                   `protobuf:"varint,5,opt,name=popular_only,json=popularOnly,proto3" json:"popular_only,omitempty"` // Only popular destinations
+	Request           *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -668,10 +669,18 @@ func (x *GetCitiesRequest) GetPopularOnly() bool {
 	return false
 }
 
+func (x *GetCitiesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetCitiesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Cities        []*City                `protobuf:"bytes,1,rep,name=cities,proto3" json:"cities,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -720,11 +729,19 @@ func (x *GetCitiesResponse) GetTotalCount() int32 {
 	return 0
 }
 
+func (x *GetCitiesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetCityRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	CityId            string                 `protobuf:"bytes,1,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	IncludeStatistics bool                   `protobuf:"varint,2,opt,name=include_statistics,json=includeStatistics,proto3" json:"include_statistics,omitempty"`
 	IncludeWeather    bool                   `protobuf:"varint,3,opt,name=include_weather,json=includeWeather,proto3" json:"include_weather,omitempty"`
+	Request           *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -780,11 +797,19 @@ func (x *GetCityRequest) GetIncludeWeather() bool {
 	return false
 }
 
+func (x *GetCityRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetCityResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	City          *City                  `protobuf:"bytes,1,opt,name=city,proto3" json:"city,omitempty"`
 	Statistics    *CityStatistics        `protobuf:"bytes,2,opt,name=statistics,proto3" json:"statistics,omitempty"`
 	Weather       *WeatherInfo           `protobuf:"bytes,3,opt,name=weather,proto3" json:"weather,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -840,6 +865,13 @@ func (x *GetCityResponse) GetWeather() *WeatherInfo {
 	return nil
 }
 
+func (x *GetCityResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type SearchCitiesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
@@ -847,6 +879,7 @@ type SearchCitiesRequest struct {
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
 	FuzzySearch   bool                   `protobuf:"varint,5,opt,name=fuzzy_search,json=fuzzySearch,proto3" json:"fuzzy_search,omitempty"` // Enable fuzzy matching
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -916,11 +949,19 @@ func (x *SearchCitiesRequest) GetFuzzySearch() bool {
 	return false
 }
 
+func (x *SearchCitiesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type SearchCitiesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Results       []*CitySearchResult    `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	Metadata      *SearchMetadata        `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -972,6 +1013,13 @@ func (x *SearchCitiesResponse) GetTotalCount() int32 {
 func (x *SearchCitiesResponse) GetMetadata() *SearchMetadata {
 	if x != nil {
 		return x.Metadata
+	}
+	return nil
+}
+
+func (x *SearchCitiesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1100,6 +1148,7 @@ type GetCityStatisticsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CityId        string                 `protobuf:"bytes,1,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	IncludeTrends bool                   `protobuf:"varint,2,opt,name=include_trends,json=includeTrends,proto3" json:"include_trends,omitempty"`
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1148,10 +1197,18 @@ func (x *GetCityStatisticsRequest) GetIncludeTrends() bool {
 	return false
 }
 
+func (x *GetCityStatisticsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetCityStatisticsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Statistics    *CityStatistics        `protobuf:"bytes,1,opt,name=statistics,proto3" json:"statistics,omitempty"`
 	Trends        []*TrendData           `protobuf:"bytes,2,rep,name=trends,proto3" json:"trends,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1196,6 +1253,13 @@ func (x *GetCityStatisticsResponse) GetStatistics() *CityStatistics {
 func (x *GetCityStatisticsResponse) GetTrends() []*TrendData {
 	if x != nil {
 		return x.Trends
+	}
+	return nil
+}
+
+func (x *GetCityStatisticsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1312,6 +1376,118 @@ func (x *DataPoint) GetValue() float64 {
 	return 0
 }
 
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_city_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_city_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_city_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_city_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_city_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_city_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_city_proto protoreflect.FileDescriptor
 
 const file_city_proto_rawDesc = "" +
@@ -1382,38 +1558,44 @@ const file_city_proto_rawDesc = "" +
 	"\bhumidity\x18\x04 \x01(\x05R\bhumidity\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12!\n" +
 	"\fforecast_url\x18\x06 \x01(\tR\vforecastUrl\x12=\n" +
-	"\flast_updated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\vlastUpdated\"\xb5\x01\n" +
+	"\flast_updated\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\vlastUpdated\"\xec\x01\n" +
 	"\x10GetCitiesRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12-\n" +
 	"\x12include_statistics\x18\x03 \x01(\bR\x11includeStatistics\x12!\n" +
 	"\fcountry_code\x18\x04 \x01(\tR\vcountryCode\x12!\n" +
-	"\fpopular_only\x18\x05 \x01(\bR\vpopularOnly\"b\n" +
+	"\fpopular_only\x18\x05 \x01(\bR\vpopularOnly\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.city.v1.BaseRequestR\arequest\"\x9c\x01\n" +
 	"\x11GetCitiesResponse\x12,\n" +
 	"\x06cities\x18\x01 \x03(\v2\x14.ai_poi.city.v1.CityR\x06cities\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\x81\x01\n" +
+	"totalCount\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.city.v1.BaseResponseR\bresponse\"\xb8\x01\n" +
 	"\x0eGetCityRequest\x12\x17\n" +
 	"\acity_id\x18\x01 \x01(\tR\x06cityId\x12-\n" +
 	"\x12include_statistics\x18\x02 \x01(\bR\x11includeStatistics\x12'\n" +
-	"\x0finclude_weather\x18\x03 \x01(\bR\x0eincludeWeather\"\xb2\x01\n" +
+	"\x0finclude_weather\x18\x03 \x01(\bR\x0eincludeWeather\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.city.v1.BaseRequestR\arequest\"\xec\x01\n" +
 	"\x0fGetCityResponse\x12(\n" +
 	"\x04city\x18\x01 \x01(\v2\x14.ai_poi.city.v1.CityR\x04city\x12>\n" +
 	"\n" +
 	"statistics\x18\x02 \x01(\v2\x1e.ai_poi.city.v1.CityStatisticsR\n" +
 	"statistics\x125\n" +
-	"\aweather\x18\x03 \x01(\v2\x1b.ai_poi.city.v1.WeatherInfoR\aweather\"\x9f\x01\n" +
+	"\aweather\x18\x03 \x01(\v2\x1b.ai_poi.city.v1.WeatherInfoR\aweather\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.city.v1.BaseResponseR\bresponse\"\xd6\x01\n" +
 	"\x13SearchCitiesRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12!\n" +
 	"\fcountry_code\x18\x02 \x01(\tR\vcountryCode\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x04 \x01(\x05R\x06offset\x12!\n" +
-	"\ffuzzy_search\x18\x05 \x01(\bR\vfuzzySearch\"\xaf\x01\n" +
+	"\ffuzzy_search\x18\x05 \x01(\bR\vfuzzySearch\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.city.v1.BaseRequestR\arequest\"\xe9\x01\n" +
 	"\x14SearchCitiesResponse\x12:\n" +
 	"\aresults\x18\x01 \x03(\v2 .ai_poi.city.v1.CitySearchResultR\aresults\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12:\n" +
-	"\bmetadata\x18\x03 \x01(\v2\x1e.ai_poi.city.v1.SearchMetadataR\bmetadata\"\x88\x01\n" +
+	"\bmetadata\x18\x03 \x01(\v2\x1e.ai_poi.city.v1.SearchMetadataR\bmetadata\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.city.v1.BaseResponseR\bresponse\"\x88\x01\n" +
 	"\x10CitySearchResult\x12(\n" +
 	"\x04city\x18\x01 \x01(\v2\x14.ai_poi.city.v1.CityR\x04city\x12'\n" +
 	"\x0frelevance_score\x18\x02 \x01(\x01R\x0erelevanceScore\x12!\n" +
@@ -1421,15 +1603,17 @@ const file_city_proto_rawDesc = "" +
 	"\x0eSearchMetadata\x12\"\n" +
 	"\rquery_time_ms\x18\x01 \x01(\x01R\vqueryTimeMs\x12#\n" +
 	"\rsearch_method\x18\x02 \x01(\tR\fsearchMethod\x12.\n" +
-	"\x13fuzzy_matching_used\x18\x03 \x01(\bR\x11fuzzyMatchingUsed\"Z\n" +
+	"\x13fuzzy_matching_used\x18\x03 \x01(\bR\x11fuzzyMatchingUsed\"\x91\x01\n" +
 	"\x18GetCityStatisticsRequest\x12\x17\n" +
 	"\acity_id\x18\x01 \x01(\tR\x06cityId\x12%\n" +
-	"\x0einclude_trends\x18\x02 \x01(\bR\rincludeTrends\"\x8e\x01\n" +
+	"\x0einclude_trends\x18\x02 \x01(\bR\rincludeTrends\x125\n" +
+	"\arequest\x18d \x01(\v2\x1b.ai_poi.city.v1.BaseRequestR\arequest\"\xc8\x01\n" +
 	"\x19GetCityStatisticsResponse\x12>\n" +
 	"\n" +
 	"statistics\x18\x01 \x01(\v2\x1e.ai_poi.city.v1.CityStatisticsR\n" +
 	"statistics\x121\n" +
-	"\x06trends\x18\x02 \x03(\v2\x19.ai_poi.city.v1.TrendDataR\x06trends\"w\n" +
+	"\x06trends\x18\x02 \x03(\v2\x19.ai_poi.city.v1.TrendDataR\x06trends\x128\n" +
+	"\bresponse\x18d \x01(\v2\x1c.ai_poi.city.v1.BaseResponseR\bresponse\"w\n" +
 	"\tTrendData\x12\x16\n" +
 	"\x06metric\x18\x01 \x01(\tR\x06metric\x12:\n" +
 	"\vdata_points\x18\x02 \x03(\v2\x19.ai_poi.city.v1.DataPointR\n" +
@@ -1437,7 +1621,18 @@ const file_city_proto_rawDesc = "" +
 	"\x06period\x18\x03 \x01(\tR\x06period\"[\n" +
 	"\tDataPoint\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x01R\x05value2\xf0\x02\n" +
+	"\x05value\x18\x02 \x01(\x01R\x05value\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\xf0\x02\n" +
 	"\vCityService\x12P\n" +
 	"\tGetCities\x12 .ai_poi.city.v1.GetCitiesRequest\x1a!.ai_poi.city.v1.GetCitiesResponse\x12J\n" +
 	"\aGetCity\x12\x1e.ai_poi.city.v1.GetCityRequest\x1a\x1f.ai_poi.city.v1.GetCityResponse\x12Y\n" +
@@ -1456,7 +1651,7 @@ func file_city_proto_rawDescGZIP() []byte {
 	return file_city_proto_rawDescData
 }
 
-var file_city_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_city_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_city_proto_goTypes = []any{
 	(*City)(nil),                      // 0: ai_poi.city.v1.City
 	(*CityMetadata)(nil),              // 1: ai_poi.city.v1.CityMetadata
@@ -1475,39 +1670,49 @@ var file_city_proto_goTypes = []any{
 	(*GetCityStatisticsResponse)(nil), // 14: ai_poi.city.v1.GetCityStatisticsResponse
 	(*TrendData)(nil),                 // 15: ai_poi.city.v1.TrendData
 	(*DataPoint)(nil),                 // 16: ai_poi.city.v1.DataPoint
-	(*timestamppb.Timestamp)(nil),     // 17: google.protobuf.Timestamp
+	(*BaseRequest)(nil),               // 17: ai_poi.city.v1.BaseRequest
+	(*BaseResponse)(nil),              // 18: ai_poi.city.v1.BaseResponse
+	(*timestamppb.Timestamp)(nil),     // 19: google.protobuf.Timestamp
 }
 var file_city_proto_depIdxs = []int32{
 	1,  // 0: ai_poi.city.v1.City.metadata:type_name -> ai_poi.city.v1.CityMetadata
-	17, // 1: ai_poi.city.v1.City.created_at:type_name -> google.protobuf.Timestamp
-	17, // 2: ai_poi.city.v1.City.updated_at:type_name -> google.protobuf.Timestamp
+	19, // 1: ai_poi.city.v1.City.created_at:type_name -> google.protobuf.Timestamp
+	19, // 2: ai_poi.city.v1.City.updated_at:type_name -> google.protobuf.Timestamp
 	3,  // 3: ai_poi.city.v1.CityStatistics.poi_by_category:type_name -> ai_poi.city.v1.CategoryCount
-	17, // 4: ai_poi.city.v1.CityStatistics.last_updated:type_name -> google.protobuf.Timestamp
-	17, // 5: ai_poi.city.v1.WeatherInfo.last_updated:type_name -> google.protobuf.Timestamp
-	0,  // 6: ai_poi.city.v1.GetCitiesResponse.cities:type_name -> ai_poi.city.v1.City
-	0,  // 7: ai_poi.city.v1.GetCityResponse.city:type_name -> ai_poi.city.v1.City
-	2,  // 8: ai_poi.city.v1.GetCityResponse.statistics:type_name -> ai_poi.city.v1.CityStatistics
-	4,  // 9: ai_poi.city.v1.GetCityResponse.weather:type_name -> ai_poi.city.v1.WeatherInfo
-	11, // 10: ai_poi.city.v1.SearchCitiesResponse.results:type_name -> ai_poi.city.v1.CitySearchResult
-	12, // 11: ai_poi.city.v1.SearchCitiesResponse.metadata:type_name -> ai_poi.city.v1.SearchMetadata
-	0,  // 12: ai_poi.city.v1.CitySearchResult.city:type_name -> ai_poi.city.v1.City
-	2,  // 13: ai_poi.city.v1.GetCityStatisticsResponse.statistics:type_name -> ai_poi.city.v1.CityStatistics
-	15, // 14: ai_poi.city.v1.GetCityStatisticsResponse.trends:type_name -> ai_poi.city.v1.TrendData
-	16, // 15: ai_poi.city.v1.TrendData.data_points:type_name -> ai_poi.city.v1.DataPoint
-	17, // 16: ai_poi.city.v1.DataPoint.timestamp:type_name -> google.protobuf.Timestamp
-	5,  // 17: ai_poi.city.v1.CityService.GetCities:input_type -> ai_poi.city.v1.GetCitiesRequest
-	7,  // 18: ai_poi.city.v1.CityService.GetCity:input_type -> ai_poi.city.v1.GetCityRequest
-	9,  // 19: ai_poi.city.v1.CityService.SearchCities:input_type -> ai_poi.city.v1.SearchCitiesRequest
-	13, // 20: ai_poi.city.v1.CityService.GetCityStatistics:input_type -> ai_poi.city.v1.GetCityStatisticsRequest
-	6,  // 21: ai_poi.city.v1.CityService.GetCities:output_type -> ai_poi.city.v1.GetCitiesResponse
-	8,  // 22: ai_poi.city.v1.CityService.GetCity:output_type -> ai_poi.city.v1.GetCityResponse
-	10, // 23: ai_poi.city.v1.CityService.SearchCities:output_type -> ai_poi.city.v1.SearchCitiesResponse
-	14, // 24: ai_poi.city.v1.CityService.GetCityStatistics:output_type -> ai_poi.city.v1.GetCityStatisticsResponse
-	21, // [21:25] is the sub-list for method output_type
-	17, // [17:21] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	19, // 4: ai_poi.city.v1.CityStatistics.last_updated:type_name -> google.protobuf.Timestamp
+	19, // 5: ai_poi.city.v1.WeatherInfo.last_updated:type_name -> google.protobuf.Timestamp
+	17, // 6: ai_poi.city.v1.GetCitiesRequest.request:type_name -> ai_poi.city.v1.BaseRequest
+	0,  // 7: ai_poi.city.v1.GetCitiesResponse.cities:type_name -> ai_poi.city.v1.City
+	18, // 8: ai_poi.city.v1.GetCitiesResponse.response:type_name -> ai_poi.city.v1.BaseResponse
+	17, // 9: ai_poi.city.v1.GetCityRequest.request:type_name -> ai_poi.city.v1.BaseRequest
+	0,  // 10: ai_poi.city.v1.GetCityResponse.city:type_name -> ai_poi.city.v1.City
+	2,  // 11: ai_poi.city.v1.GetCityResponse.statistics:type_name -> ai_poi.city.v1.CityStatistics
+	4,  // 12: ai_poi.city.v1.GetCityResponse.weather:type_name -> ai_poi.city.v1.WeatherInfo
+	18, // 13: ai_poi.city.v1.GetCityResponse.response:type_name -> ai_poi.city.v1.BaseResponse
+	17, // 14: ai_poi.city.v1.SearchCitiesRequest.request:type_name -> ai_poi.city.v1.BaseRequest
+	11, // 15: ai_poi.city.v1.SearchCitiesResponse.results:type_name -> ai_poi.city.v1.CitySearchResult
+	12, // 16: ai_poi.city.v1.SearchCitiesResponse.metadata:type_name -> ai_poi.city.v1.SearchMetadata
+	18, // 17: ai_poi.city.v1.SearchCitiesResponse.response:type_name -> ai_poi.city.v1.BaseResponse
+	0,  // 18: ai_poi.city.v1.CitySearchResult.city:type_name -> ai_poi.city.v1.City
+	17, // 19: ai_poi.city.v1.GetCityStatisticsRequest.request:type_name -> ai_poi.city.v1.BaseRequest
+	2,  // 20: ai_poi.city.v1.GetCityStatisticsResponse.statistics:type_name -> ai_poi.city.v1.CityStatistics
+	15, // 21: ai_poi.city.v1.GetCityStatisticsResponse.trends:type_name -> ai_poi.city.v1.TrendData
+	18, // 22: ai_poi.city.v1.GetCityStatisticsResponse.response:type_name -> ai_poi.city.v1.BaseResponse
+	16, // 23: ai_poi.city.v1.TrendData.data_points:type_name -> ai_poi.city.v1.DataPoint
+	19, // 24: ai_poi.city.v1.DataPoint.timestamp:type_name -> google.protobuf.Timestamp
+	5,  // 25: ai_poi.city.v1.CityService.GetCities:input_type -> ai_poi.city.v1.GetCitiesRequest
+	7,  // 26: ai_poi.city.v1.CityService.GetCity:input_type -> ai_poi.city.v1.GetCityRequest
+	9,  // 27: ai_poi.city.v1.CityService.SearchCities:input_type -> ai_poi.city.v1.SearchCitiesRequest
+	13, // 28: ai_poi.city.v1.CityService.GetCityStatistics:input_type -> ai_poi.city.v1.GetCityStatisticsRequest
+	6,  // 29: ai_poi.city.v1.CityService.GetCities:output_type -> ai_poi.city.v1.GetCitiesResponse
+	8,  // 30: ai_poi.city.v1.CityService.GetCity:output_type -> ai_poi.city.v1.GetCityResponse
+	10, // 31: ai_poi.city.v1.CityService.SearchCities:output_type -> ai_poi.city.v1.SearchCitiesResponse
+	14, // 32: ai_poi.city.v1.CityService.GetCityStatistics:output_type -> ai_poi.city.v1.GetCityStatisticsResponse
+	29, // [29:33] is the sub-list for method output_type
+	25, // [25:29] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_city_proto_init() }
@@ -1521,7 +1726,7 @@ func file_city_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_city_proto_rawDesc), len(file_city_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

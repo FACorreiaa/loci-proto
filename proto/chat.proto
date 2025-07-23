@@ -178,6 +178,7 @@ message StartChatRequest {
   string initial_message = 3;
   ChatContextType context_type = 4;
   map<string, string> metadata = 5;
+  BaseRequest request = 100;
 }
 
 message ContinueChatRequest {
@@ -185,12 +186,14 @@ message ContinueChatRequest {
   string user_id = 2;
   string message = 3;
   ChatContextType context_type = 4;
+  BaseRequest request = 100;
 }
 
 message FreeChatRequest {
   string message = 1;
   string session_token = 2; // For session continuity without auth
   ChatContextType context_type = 3;
+  BaseRequest request = 100;
 }
 
 message GetChatSessionsRequest {
@@ -198,11 +201,13 @@ message GetChatSessionsRequest {
   string profile_id = 2;
   int32 limit = 3;
   int32 offset = 4;
+  BaseRequest request = 100;
 }
 
 message GetChatSessionsResponse {
   repeated ChatSession sessions = 1;
   int32 total_count = 2;
+  BaseResponse response = 100;
 }
 
 message ChatSession {
@@ -223,23 +228,27 @@ message SaveItineraryRequest {
   string title = 3;
   string description = 4;
   ItineraryResponse itinerary_data = 5;
+  BaseRequest request = 100;
 }
 
 message SaveItineraryResponse {
   string itinerary_id = 1;
   bool success = 2;
   string message = 3;
+  BaseResponse response = 100;
 }
 
 message GetSavedItinerariesRequest {
   string user_id = 1;
   int32 limit = 2;
   int32 offset = 3;
+  BaseRequest request = 100;
 }
 
 message GetSavedItinerariesResponse {
   repeated UserSavedItinerary itineraries = 1;
   int32 total_count = 2;
+  BaseResponse response = 100;
 }
 
 message UserSavedItinerary {
@@ -256,11 +265,13 @@ message UserSavedItinerary {
 message RemoveItineraryRequest {
   string user_id = 1;
   string itinerary_id = 2;
+  BaseRequest request = 100;
 }
 
 message RemoveItineraryResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 // POI details request
@@ -268,10 +279,12 @@ message GetPOIDetailsRequest {
   string poi_id = 1;
   bool include_reviews = 2;
   bool include_photos = 3;
+  BaseRequest request = 100;
 }
 
 message GetPOIDetailsResponse {
   POIDetailedInfo poi = 1;
+  BaseResponse response = 100;
 }
 
 // POI detailed information (reference to poi.proto)
@@ -290,4 +303,15 @@ message POIDetailedInfo {
   string website = 12;
   repeated string photos = 13;
   map<string, string> metadata = 14;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

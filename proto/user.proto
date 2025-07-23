@@ -169,53 +169,63 @@ message UserStats {
 // Request/Response messages
 message GetUserProfileRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message GetUserProfileResponse {
   UserProfile profile = 1;
   UserStats stats = 2;
+  BaseResponse response = 100;
 }
 
 message UpdateUserProfileRequest {
   string user_id = 1;
   UserProfile profile = 2;
   repeated string update_fields = 3; // Field mask for partial updates
+  BaseRequest request = 100;
 }
 
 message UpdateUserProfileResponse {
   bool success = 1;
   string message = 2;
   UserProfile profile = 3;
+  BaseResponse response = 100;
 }
 
 // Search profiles
 message GetSearchProfilesRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message GetSearchProfilesResponse {
   repeated SearchProfile profiles = 1;
   string default_profile_id = 2;
+  BaseResponse response = 100;
 }
 
 message GetSearchProfileRequest {
   string user_id = 1;
   string profile_id = 2;
+  BaseRequest request = 100;
 }
 
 message GetSearchProfileResponse {
   SearchProfile profile = 1;
+  BaseResponse response = 100;
 }
 
 message CreateSearchProfileRequest {
   string user_id = 1;
   SearchProfile profile = 2;
+  BaseRequest request = 100;
 }
 
 message CreateSearchProfileResponse {
   bool success = 1;
   string message = 2;
   SearchProfile profile = 3;
+  BaseResponse response = 100;
 }
 
 message UpdateSearchProfileRequest {
@@ -223,131 +233,168 @@ message UpdateSearchProfileRequest {
   string profile_id = 2;
   SearchProfile profile = 3;
   repeated string update_fields = 4;
+  BaseRequest request = 100;
 }
 
 message UpdateSearchProfileResponse {
   bool success = 1;
   string message = 2;
   SearchProfile profile = 3;
+  BaseResponse response = 100;
 }
 
 message DeleteSearchProfileRequest {
   string user_id = 1;
   string profile_id = 2;
+  BaseRequest request = 100;
 }
 
 message DeleteSearchProfileResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 message GetDefaultProfileRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message GetDefaultProfileResponse {
   SearchProfile profile = 1;
+  BaseResponse response = 100;
 }
 
 message SetDefaultProfileRequest {
   string user_id = 1;
   string profile_id = 2;
+  BaseRequest request = 100;
 }
 
 message SetDefaultProfileResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 // Interests
 message GetInterestsRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message GetInterestsResponse {
   repeated Interest interests = 1;
+  BaseResponse response = 100;
 }
 
 message CreateInterestRequest {
   string user_id = 1;
   Interest interest = 2;
+  BaseRequest request = 100;
 }
 
 message CreateInterestResponse {
   bool success = 1;
   string message = 2;
   Interest interest = 3;
+  BaseResponse response = 100;
 }
 
 message UpdateInterestRequest {
   string user_id = 1;
   string interest_id = 2;
   Interest interest = 3;
+  BaseRequest request = 100;
 }
 
 message UpdateInterestResponse {
   bool success = 1;
   string message = 2;
   Interest interest = 3;
+  BaseResponse response = 100;
 }
 
 message DeleteInterestRequest {
   string user_id = 1;
   string interest_id = 2;
+  BaseRequest request = 100;
 }
 
 message DeleteInterestResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 // Tags
 message GetTagsRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message GetTagsResponse {
   repeated Tag tags = 1;
+  BaseResponse response = 100;
 }
 
 message GetTagRequest {
   string user_id = 1;
   string tag_id = 2;
+  BaseRequest request = 100;
 }
 
 message GetTagResponse {
   Tag tag = 1;
+  BaseResponse response = 100;
 }
 
 message CreateTagRequest {
   string user_id = 1;
   Tag tag = 2;
+  BaseRequest request = 100;
 }
 
 message CreateTagResponse {
   bool success = 1;
   string message = 2;
   Tag tag = 3;
+  BaseResponse response = 100;
 }
 
 message UpdateTagRequest {
   string user_id = 1;
   string tag_id = 2;
   Tag tag = 3;
+  BaseRequest request = 100;
 }
 
 message UpdateTagResponse {
   bool success = 1;
   string message = 2;
   Tag tag = 3;
+  BaseResponse response = 100;
 }
 
 message DeleteTagRequest {
   string user_id = 1;
   string tag_id = 2;
+  BaseRequest request = 100;
 }
 
 message DeleteTagResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

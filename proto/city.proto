@@ -96,23 +96,27 @@ message GetCitiesRequest {
   bool include_statistics = 3;
   string country_code = 4; // Filter by country
   bool popular_only = 5; // Only popular destinations
+  BaseRequest request = 100;
 }
 
 message GetCitiesResponse {
   repeated City cities = 1;
   int32 total_count = 2;
+  BaseResponse response = 100;
 }
 
 message GetCityRequest {
   string city_id = 1;
   bool include_statistics = 2;
   bool include_weather = 3;
+  BaseRequest request = 100;
 }
 
 message GetCityResponse {
   City city = 1;
   CityStatistics statistics = 2;
   WeatherInfo weather = 3;
+  BaseResponse response = 100;
 }
 
 message SearchCitiesRequest {
@@ -121,12 +125,14 @@ message SearchCitiesRequest {
   int32 limit = 3;
   int32 offset = 4;
   bool fuzzy_search = 5; // Enable fuzzy matching
+  BaseRequest request = 100;
 }
 
 message SearchCitiesResponse {
   repeated CitySearchResult results = 1;
   int32 total_count = 2;
   SearchMetadata metadata = 3;
+  BaseResponse response = 100;
 }
 
 message CitySearchResult {
@@ -144,11 +150,13 @@ message SearchMetadata {
 message GetCityStatisticsRequest {
   string city_id = 1;
   bool include_trends = 2;
+  BaseRequest request = 100;
 }
 
 message GetCityStatisticsResponse {
   CityStatistics statistics = 1;
   repeated TrendData trends = 2;
+  BaseResponse response = 100;
 }
 
 message TrendData {
@@ -160,4 +168,15 @@ message TrendData {
 message DataPoint {
   google.protobuf.Timestamp timestamp = 1;
   double value = 2;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

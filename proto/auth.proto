@@ -49,18 +49,21 @@ message RegisterRequest {
   string email = 2;
   string password = 3;
   string confirm_password = 4;
+  BaseRequest request = 100;
 }
 
 message RegisterResponse {
   bool success = 1;
   string message = 2;
   UserAuth user = 3;
+  BaseResponse response = 100;
 }
 
 // Login request and response
 message LoginRequest {
   string email = 1;
   string password = 2;
+  BaseRequest request = 100;
 }
 
 message LoginResponse {
@@ -70,32 +73,38 @@ message LoginResponse {
   string refresh_token = 4;
   int64 expires_in = 5;
   UserAuth user = 6;
+  BaseResponse response = 100;
 }
 
 // Token refresh
 message RefreshTokenRequest {
   string refresh_token = 1;
+  BaseRequest request = 100;
 }
 
 message TokenResponse {
   string access_token = 1;
   string refresh_token = 2;
   int64 expires_in = 3;
+  BaseResponse response = 100;
 }
 
 // Logout request
 message LogoutRequest {
   string user_id = 1;
+  BaseRequest request = 100;
 }
 
 message LogoutResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 // Session validation
 message ValidateSessionRequest {
   string access_token = 1;
+  BaseRequest request = 100;
 }
 
 message ValidateSessionResponse {
@@ -104,6 +113,7 @@ message ValidateSessionResponse {
   string email = 3;
   string role = 4;
   int64 expires_at = 5;
+  BaseResponse response = 100;
 }
 
 // Password update
@@ -111,25 +121,30 @@ message UpdatePasswordRequest {
   string user_id = 1;
   string current_password = 2;
   string new_password = 3;
+  BaseRequest request = 100;
 }
 
 message UpdatePasswordResponse {
   bool success = 1;
   string message = 2;
+  BaseResponse response = 100;
 }
 
 // Google OAuth
 message GoogleLoginRequest {
   string redirect_uri = 1;
+  BaseRequest request = 100;
 }
 
 message GoogleLoginResponse {
   string auth_url = 1;
+  BaseResponse response = 100;
 }
 
 message GoogleCallbackRequest {
   string code = 1;
   string state = 2;
+  BaseRequest request = 100;
 }
 
 // JWT Claims structure for reference
@@ -140,4 +155,15 @@ message Claims {
   int64 exp = 4;
   int64 iat = 5;
   string iss = 6;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

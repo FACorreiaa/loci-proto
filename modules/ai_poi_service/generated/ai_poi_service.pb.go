@@ -27,6 +27,7 @@ type GetServiceInfoRequest struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	IncludeEndpoints   bool                   `protobuf:"varint,1,opt,name=include_endpoints,json=includeEndpoints,proto3" json:"include_endpoints,omitempty"`
 	IncludeVersionInfo bool                   `protobuf:"varint,2,opt,name=include_version_info,json=includeVersionInfo,proto3" json:"include_version_info,omitempty"`
+	Request            *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -75,11 +76,19 @@ func (x *GetServiceInfoRequest) GetIncludeVersionInfo() bool {
 	return false
 }
 
+func (x *GetServiceInfoRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetServiceInfoResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ServiceInfo   *ServiceInfo           `protobuf:"bytes,1,opt,name=service_info,json=serviceInfo,proto3" json:"service_info,omitempty"`
 	Endpoints     []*ServiceEndpoint     `protobuf:"bytes,2,rep,name=endpoints,proto3" json:"endpoints,omitempty"`
 	Versions      []*v1.ApiVersion       `protobuf:"bytes,3,rep,name=versions,proto3" json:"versions,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -131,6 +140,13 @@ func (x *GetServiceInfoResponse) GetEndpoints() []*ServiceEndpoint {
 func (x *GetServiceInfoResponse) GetVersions() []*v1.ApiVersion {
 	if x != nil {
 		return x.Versions
+	}
+	return nil
+}
+
+func (x *GetServiceInfoResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -326,6 +342,7 @@ type GetFeatureFlagsRequest struct {
 	ClientVersion  string                 `protobuf:"bytes,2,opt,name=client_version,json=clientVersion,proto3" json:"client_version,omitempty"`
 	Platform       string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"` // "web", "ios", "android"
 	UserAttributes map[string]string      `protobuf:"bytes,4,rep,name=user_attributes,json=userAttributes,proto3" json:"user_attributes,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Request        *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -388,10 +405,18 @@ func (x *GetFeatureFlagsRequest) GetUserAttributes() map[string]string {
 	return nil
 }
 
+func (x *GetFeatureFlagsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetFeatureFlagsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Flags         []*v1.FeatureFlag      `protobuf:"bytes,1,rep,name=flags,proto3" json:"flags,omitempty"`
 	Experiments   map[string]string      `protobuf:"bytes,2,rep,name=experiments,proto3" json:"experiments,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // A/B test assignments
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -436,6 +461,13 @@ func (x *GetFeatureFlagsResponse) GetFlags() []*v1.FeatureFlag {
 func (x *GetFeatureFlagsResponse) GetExperiments() map[string]string {
 	if x != nil {
 		return x.Experiments
+	}
+	return nil
+}
+
+func (x *GetFeatureFlagsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -517,18 +549,132 @@ func (x *ServiceDependencies) GetFileStorage() *v1.ComponentHealth {
 	return nil
 }
 
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_ai_poi_service_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ai_poi_service_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_ai_poi_service_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_ai_poi_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ai_poi_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_ai_poi_service_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 var File_ai_poi_service_proto protoreflect.FileDescriptor
 
 const file_ai_poi_service_proto_rawDesc = "" +
 	"\n" +
-	"\x14ai_poi_service.proto\x12\tai_poi.v1\x1a\fcommon.proto\"v\n" +
+	"\x14ai_poi_service.proto\x12\tai_poi.v1\x1a\fcommon.proto\"\xa8\x01\n" +
 	"\x15GetServiceInfoRequest\x12+\n" +
 	"\x11include_endpoints\x18\x01 \x01(\bR\x10includeEndpoints\x120\n" +
-	"\x14include_version_info\x18\x02 \x01(\bR\x12includeVersionInfo\"\xc7\x01\n" +
+	"\x14include_version_info\x18\x02 \x01(\bR\x12includeVersionInfo\x120\n" +
+	"\arequest\x18d \x01(\v2\x16.ai_poi.v1.BaseRequestR\arequest\"\xfc\x01\n" +
 	"\x16GetServiceInfoResponse\x129\n" +
 	"\fservice_info\x18\x01 \x01(\v2\x16.ai_poi.v1.ServiceInfoR\vserviceInfo\x128\n" +
 	"\tendpoints\x18\x02 \x03(\v2\x1a.ai_poi.v1.ServiceEndpointR\tendpoints\x128\n" +
-	"\bversions\x18\x03 \x03(\v2\x1c.ai_poi.common.v1.ApiVersionR\bversions\"\xd0\x02\n" +
+	"\bversions\x18\x03 \x03(\v2\x1c.ai_poi.common.v1.ApiVersionR\bversions\x123\n" +
+	"\bresponse\x18d \x01(\v2\x17.ai_poi.v1.BaseResponseR\bresponse\"\xd0\x02\n" +
 	"\vServiceInfo\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\aversion\x18\x02 \x01(\tR\aversion\x12 \n" +
@@ -550,18 +696,20 @@ const file_ai_poi_service_proto_rawDesc = "" +
 	"\rrequires_auth\x18\x05 \x01(\bR\frequiresAuth\x121\n" +
 	"\x14required_permissions\x18\x06 \x03(\tR\x13requiredPermissions\x12>\n" +
 	"\n" +
-	"rate_limit\x18\a \x01(\v2\x1f.ai_poi.common.v1.RateLimitInfoR\trateLimit\"\x97\x02\n" +
+	"rate_limit\x18\a \x01(\v2\x1f.ai_poi.common.v1.RateLimitInfoR\trateLimit\"\xc9\x02\n" +
 	"\x16GetFeatureFlagsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12%\n" +
 	"\x0eclient_version\x18\x02 \x01(\tR\rclientVersion\x12\x1a\n" +
 	"\bplatform\x18\x03 \x01(\tR\bplatform\x12^\n" +
-	"\x0fuser_attributes\x18\x04 \x03(\v25.ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntryR\x0euserAttributes\x1aA\n" +
+	"\x0fuser_attributes\x18\x04 \x03(\v25.ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntryR\x0euserAttributes\x120\n" +
+	"\arequest\x18d \x01(\v2\x16.ai_poi.v1.BaseRequestR\arequest\x1aA\n" +
 	"\x13UserAttributesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xe5\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x9a\x02\n" +
 	"\x17GetFeatureFlagsResponse\x123\n" +
 	"\x05flags\x18\x01 \x03(\v2\x1d.ai_poi.common.v1.FeatureFlagR\x05flags\x12U\n" +
-	"\vexperiments\x18\x02 \x03(\v23.ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntryR\vexperiments\x1a>\n" +
+	"\vexperiments\x18\x02 \x03(\v23.ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntryR\vexperiments\x123\n" +
+	"\bresponse\x18d \x01(\v2\x17.ai_poi.v1.BaseResponseR\bresponse\x1a>\n" +
 	"\x10ExperimentsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xe8\x02\n" +
@@ -572,7 +720,18 @@ const file_ai_poi_service_proto_rawDesc = "" +
 	"\n" +
 	"ai_service\x18\x03 \x01(\v2!.ai_poi.common.v1.ComponentHealthR\taiService\x12F\n" +
 	"\rexternal_apis\x18\x04 \x01(\v2!.ai_poi.common.v1.ComponentHealthR\fexternalApis\x12D\n" +
-	"\ffile_storage\x18\x05 \x01(\v2!.ai_poi.common.v1.ComponentHealthR\vfileStorage2\x9b\x02\n" +
+	"\ffile_storage\x18\x05 \x01(\v2!.ai_poi.common.v1.ComponentHealthR\vfileStorage\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status2\x9b\x02\n" +
 	"\fAiPoiService\x12Z\n" +
 	"\vHealthCheck\x12$.ai_poi.common.v1.HealthCheckRequest\x1a%.ai_poi.common.v1.HealthCheckResponse\x12U\n" +
 	"\x0eGetServiceInfo\x12 .ai_poi.v1.GetServiceInfoRequest\x1a!.ai_poi.v1.GetServiceInfoResponse\x12X\n" +
@@ -590,7 +749,7 @@ func file_ai_poi_service_proto_rawDescGZIP() []byte {
 	return file_ai_poi_service_proto_rawDescData
 }
 
-var file_ai_poi_service_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_ai_poi_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_ai_poi_service_proto_goTypes = []any{
 	(*GetServiceInfoRequest)(nil),   // 0: ai_poi.v1.GetServiceInfoRequest
 	(*GetServiceInfoResponse)(nil),  // 1: ai_poi.v1.GetServiceInfoResponse
@@ -599,41 +758,47 @@ var file_ai_poi_service_proto_goTypes = []any{
 	(*GetFeatureFlagsRequest)(nil),  // 4: ai_poi.v1.GetFeatureFlagsRequest
 	(*GetFeatureFlagsResponse)(nil), // 5: ai_poi.v1.GetFeatureFlagsResponse
 	(*ServiceDependencies)(nil),     // 6: ai_poi.v1.ServiceDependencies
-	nil,                             // 7: ai_poi.v1.ServiceInfo.ConfigurationEntry
-	nil,                             // 8: ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntry
-	nil,                             // 9: ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntry
-	(*v1.ApiVersion)(nil),           // 10: ai_poi.common.v1.ApiVersion
-	(*v1.RateLimitInfo)(nil),        // 11: ai_poi.common.v1.RateLimitInfo
-	(*v1.FeatureFlag)(nil),          // 12: ai_poi.common.v1.FeatureFlag
-	(*v1.ComponentHealth)(nil),      // 13: ai_poi.common.v1.ComponentHealth
-	(*v1.HealthCheckRequest)(nil),   // 14: ai_poi.common.v1.HealthCheckRequest
-	(*v1.HealthCheckResponse)(nil),  // 15: ai_poi.common.v1.HealthCheckResponse
+	(*BaseRequest)(nil),             // 7: ai_poi.v1.BaseRequest
+	(*BaseResponse)(nil),            // 8: ai_poi.v1.BaseResponse
+	nil,                             // 9: ai_poi.v1.ServiceInfo.ConfigurationEntry
+	nil,                             // 10: ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntry
+	nil,                             // 11: ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntry
+	(*v1.ApiVersion)(nil),           // 12: ai_poi.common.v1.ApiVersion
+	(*v1.RateLimitInfo)(nil),        // 13: ai_poi.common.v1.RateLimitInfo
+	(*v1.FeatureFlag)(nil),          // 14: ai_poi.common.v1.FeatureFlag
+	(*v1.ComponentHealth)(nil),      // 15: ai_poi.common.v1.ComponentHealth
+	(*v1.HealthCheckRequest)(nil),   // 16: ai_poi.common.v1.HealthCheckRequest
+	(*v1.HealthCheckResponse)(nil),  // 17: ai_poi.common.v1.HealthCheckResponse
 }
 var file_ai_poi_service_proto_depIdxs = []int32{
-	2,  // 0: ai_poi.v1.GetServiceInfoResponse.service_info:type_name -> ai_poi.v1.ServiceInfo
-	3,  // 1: ai_poi.v1.GetServiceInfoResponse.endpoints:type_name -> ai_poi.v1.ServiceEndpoint
-	10, // 2: ai_poi.v1.GetServiceInfoResponse.versions:type_name -> ai_poi.common.v1.ApiVersion
-	7,  // 3: ai_poi.v1.ServiceInfo.configuration:type_name -> ai_poi.v1.ServiceInfo.ConfigurationEntry
-	11, // 4: ai_poi.v1.ServiceEndpoint.rate_limit:type_name -> ai_poi.common.v1.RateLimitInfo
-	8,  // 5: ai_poi.v1.GetFeatureFlagsRequest.user_attributes:type_name -> ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntry
-	12, // 6: ai_poi.v1.GetFeatureFlagsResponse.flags:type_name -> ai_poi.common.v1.FeatureFlag
-	9,  // 7: ai_poi.v1.GetFeatureFlagsResponse.experiments:type_name -> ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntry
-	13, // 8: ai_poi.v1.ServiceDependencies.database:type_name -> ai_poi.common.v1.ComponentHealth
-	13, // 9: ai_poi.v1.ServiceDependencies.redis_cache:type_name -> ai_poi.common.v1.ComponentHealth
-	13, // 10: ai_poi.v1.ServiceDependencies.ai_service:type_name -> ai_poi.common.v1.ComponentHealth
-	13, // 11: ai_poi.v1.ServiceDependencies.external_apis:type_name -> ai_poi.common.v1.ComponentHealth
-	13, // 12: ai_poi.v1.ServiceDependencies.file_storage:type_name -> ai_poi.common.v1.ComponentHealth
-	14, // 13: ai_poi.v1.AiPoiService.HealthCheck:input_type -> ai_poi.common.v1.HealthCheckRequest
-	0,  // 14: ai_poi.v1.AiPoiService.GetServiceInfo:input_type -> ai_poi.v1.GetServiceInfoRequest
-	4,  // 15: ai_poi.v1.AiPoiService.GetFeatureFlags:input_type -> ai_poi.v1.GetFeatureFlagsRequest
-	15, // 16: ai_poi.v1.AiPoiService.HealthCheck:output_type -> ai_poi.common.v1.HealthCheckResponse
-	1,  // 17: ai_poi.v1.AiPoiService.GetServiceInfo:output_type -> ai_poi.v1.GetServiceInfoResponse
-	5,  // 18: ai_poi.v1.AiPoiService.GetFeatureFlags:output_type -> ai_poi.v1.GetFeatureFlagsResponse
-	16, // [16:19] is the sub-list for method output_type
-	13, // [13:16] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	7,  // 0: ai_poi.v1.GetServiceInfoRequest.request:type_name -> ai_poi.v1.BaseRequest
+	2,  // 1: ai_poi.v1.GetServiceInfoResponse.service_info:type_name -> ai_poi.v1.ServiceInfo
+	3,  // 2: ai_poi.v1.GetServiceInfoResponse.endpoints:type_name -> ai_poi.v1.ServiceEndpoint
+	12, // 3: ai_poi.v1.GetServiceInfoResponse.versions:type_name -> ai_poi.common.v1.ApiVersion
+	8,  // 4: ai_poi.v1.GetServiceInfoResponse.response:type_name -> ai_poi.v1.BaseResponse
+	9,  // 5: ai_poi.v1.ServiceInfo.configuration:type_name -> ai_poi.v1.ServiceInfo.ConfigurationEntry
+	13, // 6: ai_poi.v1.ServiceEndpoint.rate_limit:type_name -> ai_poi.common.v1.RateLimitInfo
+	10, // 7: ai_poi.v1.GetFeatureFlagsRequest.user_attributes:type_name -> ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntry
+	7,  // 8: ai_poi.v1.GetFeatureFlagsRequest.request:type_name -> ai_poi.v1.BaseRequest
+	14, // 9: ai_poi.v1.GetFeatureFlagsResponse.flags:type_name -> ai_poi.common.v1.FeatureFlag
+	11, // 10: ai_poi.v1.GetFeatureFlagsResponse.experiments:type_name -> ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntry
+	8,  // 11: ai_poi.v1.GetFeatureFlagsResponse.response:type_name -> ai_poi.v1.BaseResponse
+	15, // 12: ai_poi.v1.ServiceDependencies.database:type_name -> ai_poi.common.v1.ComponentHealth
+	15, // 13: ai_poi.v1.ServiceDependencies.redis_cache:type_name -> ai_poi.common.v1.ComponentHealth
+	15, // 14: ai_poi.v1.ServiceDependencies.ai_service:type_name -> ai_poi.common.v1.ComponentHealth
+	15, // 15: ai_poi.v1.ServiceDependencies.external_apis:type_name -> ai_poi.common.v1.ComponentHealth
+	15, // 16: ai_poi.v1.ServiceDependencies.file_storage:type_name -> ai_poi.common.v1.ComponentHealth
+	16, // 17: ai_poi.v1.AiPoiService.HealthCheck:input_type -> ai_poi.common.v1.HealthCheckRequest
+	0,  // 18: ai_poi.v1.AiPoiService.GetServiceInfo:input_type -> ai_poi.v1.GetServiceInfoRequest
+	4,  // 19: ai_poi.v1.AiPoiService.GetFeatureFlags:input_type -> ai_poi.v1.GetFeatureFlagsRequest
+	17, // 20: ai_poi.v1.AiPoiService.HealthCheck:output_type -> ai_poi.common.v1.HealthCheckResponse
+	1,  // 21: ai_poi.v1.AiPoiService.GetServiceInfo:output_type -> ai_poi.v1.GetServiceInfoResponse
+	5,  // 22: ai_poi.v1.AiPoiService.GetFeatureFlags:output_type -> ai_poi.v1.GetFeatureFlagsResponse
+	20, // [20:23] is the sub-list for method output_type
+	17, // [17:20] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_ai_poi_service_proto_init() }
@@ -647,7 +812,7 @@ func file_ai_poi_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ai_poi_service_proto_rawDesc), len(file_ai_poi_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

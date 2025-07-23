@@ -212,34 +212,40 @@ message CreateReviewRequest {
   google.protobuf.Timestamp visit_date = 7;
   ReviewAspects aspects = 8;
   string language = 9;
+  BaseRequest request = 100;
 }
 
 message CreateReviewResponse {
   ai_poi.common.v1.Response response = 1;
   Review review = 2;
+  BaseResponse base_response = 100;
 }
 
 message GetPOIReviewsRequest {
   string poi_id = 1;
   ai_poi.common.v1.PaginationRequest pagination = 2;
   ReviewFilter filter = 3;
+  BaseRequest request = 100;
 }
 
 message GetPOIReviewsResponse {
   repeated Review reviews = 1;
   ai_poi.common.v1.PaginationResponse pagination = 2;
   ReviewStatistics statistics = 3;
+  BaseResponse response = 100;
 }
 
 message GetReviewRequest {
   string review_id = 1;
   string user_id = 2; // Optional, for permission checking
+  BaseRequest request = 100;
 }
 
 message GetReviewResponse {
   Review review = 1;
   bool can_edit = 2;
   bool can_delete = 3;
+  BaseResponse response = 100;
 }
 
 message UpdateReviewRequest {
@@ -251,32 +257,38 @@ message UpdateReviewRequest {
   repeated string photo_urls = 6;
   google.protobuf.Timestamp visit_date = 7;
   ReviewAspects aspects = 8;
+  BaseRequest request = 100;
 }
 
 message UpdateReviewResponse {
   ai_poi.common.v1.Response response = 1;
   Review review = 2;
+  BaseResponse base_response = 100;
 }
 
 message DeleteReviewRequest {
   string user_id = 1;
   string review_id = 2;
+  BaseRequest request = 100;
 }
 
 message DeleteReviewResponse {
   ai_poi.common.v1.Response response = 1;
+  BaseResponse base_response = 100;
 }
 
 message GetUserReviewsRequest {
   string user_id = 1;
   ai_poi.common.v1.PaginationRequest pagination = 2;
   ReviewFilter filter = 3;
+  BaseRequest request = 100;
 }
 
 message GetUserReviewsResponse {
   repeated Review reviews = 1;
   ai_poi.common.v1.PaginationResponse pagination = 2;
   UserReviewStatistics statistics = 3;
+  BaseResponse response = 100;
 }
 
 message UserReviewStatistics {
@@ -291,11 +303,13 @@ message LikeReviewRequest {
   string user_id = 1;
   string review_id = 2;
   bool is_like = 3; // true for like, false for unlike
+  BaseRequest request = 100;
 }
 
 message LikeReviewResponse {
   ai_poi.common.v1.Response response = 1;
   int32 new_helpful_count = 2;
+  BaseResponse base_response = 100;
 }
 
 message ReportReviewRequest {
@@ -303,18 +317,33 @@ message ReportReviewRequest {
   string review_id = 2;
   string reason = 3; // "spam", "inappropriate", "fake", "offensive"
   string details = 4;
+  BaseRequest request = 100;
 }
 
 message ReportReviewResponse {
   ai_poi.common.v1.Response response = 1;
+  BaseResponse base_response = 100;
 }
 
 message GetReviewStatisticsRequest {
   string poi_id = 1;
   bool include_trends = 2;
   bool include_tags = 3;
+  BaseRequest request = 100;
 }
 
 message GetReviewStatisticsResponse {
   ReviewStatistics statistics = 1;
+  BaseResponse response = 100;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }

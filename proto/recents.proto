@@ -137,6 +137,7 @@ message GetRecentInteractionsRequest {
   int32 offset = 3;
   InteractionFilter filter = 4;
   bool group_by_city = 5; // Group results by city
+  BaseRequest request = 100;
 }
 
 message GetRecentInteractionsResponse {
@@ -144,6 +145,7 @@ message GetRecentInteractionsResponse {
   int32 total_count = 2;
   repeated CityInteractionSummary city_summaries = 3; // When group_by_city is true
   InteractionAnalytics analytics = 4;
+  BaseResponse response = 100;
 }
 
 // Summary of interactions by city
@@ -172,12 +174,14 @@ message GetCityInteractionsRequest {
   bool include_details = 3;
   google.protobuf.Timestamp start_date = 4;
   google.protobuf.Timestamp end_date = 5;
+  BaseRequest request = 100;
 }
 
 message GetCityInteractionsResponse {
   CityInteractions city_interactions = 1;
   repeated RecentInteraction detailed_interactions = 2; // When include_details is true
   CityInsights insights = 3;
+  BaseResponse response = 100;
 }
 
 // Insights about user behavior in a city
@@ -198,12 +202,14 @@ message RecordInteractionRequest {
   string city_id = 6;
   InteractionContext context = 7;
   map<string, string> metadata = 8;
+  BaseRequest request = 100;
 }
 
 message RecordInteractionResponse {
   bool success = 1;
   string interaction_id = 2;
   string message = 3;
+  BaseResponse response = 100;
 }
 
 message GetInteractionHistoryRequest {
@@ -214,6 +220,7 @@ message GetInteractionHistoryRequest {
   string sort_by = 5; // "date", "frequency", "relevance"
   string sort_order = 6; // "asc", "desc"
   bool include_analytics = 7;
+  BaseRequest request = 100;
 }
 
 message GetInteractionHistoryResponse {
@@ -221,6 +228,7 @@ message GetInteractionHistoryResponse {
   int32 total_count = 2;
   InteractionAnalytics analytics = 3;
   repeated TrendData trends = 4; // Historical trends
+  BaseResponse response = 100;
 }
 
 // Trend data for interactions over time
@@ -241,11 +249,24 @@ message GetFrequentPlacesRequest {
   double min_frequency_score = 3; // Minimum frequency score to include
   string time_range = 4; // "30d", "90d", "1y", "all"
   repeated string place_types = 5; // Filter by place types
+  BaseRequest request = 100;
 }
 
 message GetFrequentPlacesResponse {
   repeated FrequentPlace places = 1;
   FrequentPlaceInsights insights = 2;
+  BaseResponse response = 100;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }
 
 // Insights about user's frequent places

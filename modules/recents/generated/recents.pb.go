@@ -867,6 +867,7 @@ type GetRecentInteractionsRequest struct {
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	Filter        *InteractionFilter     `protobuf:"bytes,4,opt,name=filter,proto3" json:"filter,omitempty"`
 	GroupByCity   bool                   `protobuf:"varint,5,opt,name=group_by_city,json=groupByCity,proto3" json:"group_by_city,omitempty"` // Group results by city
+	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -936,12 +937,20 @@ func (x *GetRecentInteractionsRequest) GetGroupByCity() bool {
 	return false
 }
 
+func (x *GetRecentInteractionsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetRecentInteractionsResponse struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	Interactions  []*RecentInteraction      `protobuf:"bytes,1,rep,name=interactions,proto3" json:"interactions,omitempty"`
 	TotalCount    int32                     `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	CitySummaries []*CityInteractionSummary `protobuf:"bytes,3,rep,name=city_summaries,json=citySummaries,proto3" json:"city_summaries,omitempty"` // When group_by_city is true
 	Analytics     *InteractionAnalytics     `protobuf:"bytes,4,opt,name=analytics,proto3" json:"analytics,omitempty"`
+	Response      *BaseResponse             `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1000,6 +1009,13 @@ func (x *GetRecentInteractionsResponse) GetCitySummaries() []*CityInteractionSum
 func (x *GetRecentInteractionsResponse) GetAnalytics() *InteractionAnalytics {
 	if x != nil {
 		return x.Analytics
+	}
+	return nil
+}
+
+func (x *GetRecentInteractionsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1181,6 +1197,7 @@ type GetCityInteractionsRequest struct {
 	IncludeDetails bool                   `protobuf:"varint,3,opt,name=include_details,json=includeDetails,proto3" json:"include_details,omitempty"`
 	StartDate      *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
 	EndDate        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	Request        *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1250,11 +1267,19 @@ func (x *GetCityInteractionsRequest) GetEndDate() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *GetCityInteractionsRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetCityInteractionsResponse struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
 	CityInteractions     *CityInteractions      `protobuf:"bytes,1,opt,name=city_interactions,json=cityInteractions,proto3" json:"city_interactions,omitempty"`
 	DetailedInteractions []*RecentInteraction   `protobuf:"bytes,2,rep,name=detailed_interactions,json=detailedInteractions,proto3" json:"detailed_interactions,omitempty"` // When include_details is true
 	Insights             *CityInsights          `protobuf:"bytes,3,opt,name=insights,proto3" json:"insights,omitempty"`
+	Response             *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -1306,6 +1331,13 @@ func (x *GetCityInteractionsResponse) GetDetailedInteractions() []*RecentInterac
 func (x *GetCityInteractionsResponse) GetInsights() *CityInsights {
 	if x != nil {
 		return x.Insights
+	}
+	return nil
+}
+
+func (x *GetCityInteractionsResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1397,6 +1429,7 @@ type RecordInteractionRequest struct {
 	CityId          string                 `protobuf:"bytes,6,opt,name=city_id,json=cityId,proto3" json:"city_id,omitempty"`
 	Context         *InteractionContext    `protobuf:"bytes,7,opt,name=context,proto3" json:"context,omitempty"`
 	Metadata        map[string]string      `protobuf:"bytes,8,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Request         *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -1487,11 +1520,19 @@ func (x *RecordInteractionRequest) GetMetadata() map[string]string {
 	return nil
 }
 
+func (x *RecordInteractionRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type RecordInteractionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	InteractionId string                 `protobuf:"bytes,2,opt,name=interaction_id,json=interactionId,proto3" json:"interaction_id,omitempty"`
 	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1547,6 +1588,13 @@ func (x *RecordInteractionResponse) GetMessage() string {
 	return ""
 }
 
+func (x *RecordInteractionResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 type GetInteractionHistoryRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	UserId           string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -1556,6 +1604,7 @@ type GetInteractionHistoryRequest struct {
 	SortBy           string                 `protobuf:"bytes,5,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`          // "date", "frequency", "relevance"
 	SortOrder        string                 `protobuf:"bytes,6,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"` // "asc", "desc"
 	IncludeAnalytics bool                   `protobuf:"varint,7,opt,name=include_analytics,json=includeAnalytics,proto3" json:"include_analytics,omitempty"`
+	Request          *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1639,12 +1688,20 @@ func (x *GetInteractionHistoryRequest) GetIncludeAnalytics() bool {
 	return false
 }
 
+func (x *GetInteractionHistoryRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetInteractionHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Interactions  []*RecentInteraction   `protobuf:"bytes,1,rep,name=interactions,proto3" json:"interactions,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	Analytics     *InteractionAnalytics  `protobuf:"bytes,3,opt,name=analytics,proto3" json:"analytics,omitempty"`
 	Trends        []*TrendData           `protobuf:"bytes,4,rep,name=trends,proto3" json:"trends,omitempty"` // Historical trends
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1703,6 +1760,13 @@ func (x *GetInteractionHistoryResponse) GetAnalytics() *InteractionAnalytics {
 func (x *GetInteractionHistoryResponse) GetTrends() []*TrendData {
 	if x != nil {
 		return x.Trends
+	}
+	return nil
+}
+
+func (x *GetInteractionHistoryResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
 	}
 	return nil
 }
@@ -1827,6 +1891,7 @@ type GetFrequentPlacesRequest struct {
 	MinFrequencyScore float64                `protobuf:"fixed64,3,opt,name=min_frequency_score,json=minFrequencyScore,proto3" json:"min_frequency_score,omitempty"` // Minimum frequency score to include
 	TimeRange         string                 `protobuf:"bytes,4,opt,name=time_range,json=timeRange,proto3" json:"time_range,omitempty"`                             // "30d", "90d", "1y", "all"
 	PlaceTypes        []string               `protobuf:"bytes,5,rep,name=place_types,json=placeTypes,proto3" json:"place_types,omitempty"`                          // Filter by place types
+	Request           *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -1896,10 +1961,18 @@ func (x *GetFrequentPlacesRequest) GetPlaceTypes() []string {
 	return nil
 }
 
+func (x *GetFrequentPlacesRequest) GetRequest() *BaseRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
 type GetFrequentPlacesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Places        []*FrequentPlace       `protobuf:"bytes,1,rep,name=places,proto3" json:"places,omitempty"`
 	Insights      *FrequentPlaceInsights `protobuf:"bytes,2,opt,name=insights,proto3" json:"insights,omitempty"`
+	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1948,6 +2021,125 @@ func (x *GetFrequentPlacesResponse) GetInsights() *FrequentPlaceInsights {
 	return nil
 }
 
+func (x *GetFrequentPlacesResponse) GetResponse() *BaseResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
+type BaseRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Downstream    string                 `protobuf:"bytes,998,opt,name=downstream,proto3" json:"downstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseRequest) Reset() {
+	*x = BaseRequest{}
+	mi := &file_recents_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseRequest) ProtoMessage() {}
+
+func (x *BaseRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_recents_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseRequest.ProtoReflect.Descriptor instead.
+func (*BaseRequest) Descriptor() ([]byte, []int) {
+	return file_recents_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *BaseRequest) GetDownstream() string {
+	if x != nil {
+		return x.Downstream
+	}
+	return ""
+}
+
+func (x *BaseRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+type BaseResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Upstream      string                 `protobuf:"bytes,998,opt,name=upstream,proto3" json:"upstream,omitempty"`
+	RequestId     string                 `protobuf:"bytes,999,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Status        string                 `protobuf:"bytes,1000,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BaseResponse) Reset() {
+	*x = BaseResponse{}
+	mi := &file_recents_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BaseResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BaseResponse) ProtoMessage() {}
+
+func (x *BaseResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_recents_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BaseResponse.ProtoReflect.Descriptor instead.
+func (*BaseResponse) Descriptor() ([]byte, []int) {
+	return file_recents_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *BaseResponse) GetUpstream() string {
+	if x != nil {
+		return x.Upstream
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *BaseResponse) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
 // Insights about user's frequent places
 type FrequentPlaceInsights struct {
 	state                     protoimpl.MessageState `protogen:"open.v1"`
@@ -1962,7 +2154,7 @@ type FrequentPlaceInsights struct {
 
 func (x *FrequentPlaceInsights) Reset() {
 	*x = FrequentPlaceInsights{}
-	mi := &file_recents_proto_msgTypes[22]
+	mi := &file_recents_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1974,7 +2166,7 @@ func (x *FrequentPlaceInsights) String() string {
 func (*FrequentPlaceInsights) ProtoMessage() {}
 
 func (x *FrequentPlaceInsights) ProtoReflect() protoreflect.Message {
-	mi := &file_recents_proto_msgTypes[22]
+	mi := &file_recents_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1987,7 +2179,7 @@ func (x *FrequentPlaceInsights) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FrequentPlaceInsights.ProtoReflect.Descriptor instead.
 func (*FrequentPlaceInsights) Descriptor() ([]byte, []int) {
-	return file_recents_proto_rawDescGZIP(), []int{22}
+	return file_recents_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *FrequentPlaceInsights) GetTravelPattern() string {
@@ -2124,19 +2316,21 @@ const file_recents_proto_rawDesc = "" +
 	"\fsearch_query\x18\x06 \x01(\tR\vsearchQuery\x12\x1e\n" +
 	"\n" +
 	"categories\x18\a \x03(\tR\n" +
-	"categories\"\xc7\x01\n" +
+	"categories\"\x81\x02\n" +
 	"\x1cGetRecentInteractionsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12<\n" +
 	"\x06filter\x18\x04 \x01(\v2$.ai_poi.recents.v1.InteractionFilterR\x06filter\x12\"\n" +
-	"\rgroup_by_city\x18\x05 \x01(\bR\vgroupByCity\"\xa3\x02\n" +
+	"\rgroup_by_city\x18\x05 \x01(\bR\vgroupByCity\x128\n" +
+	"\arequest\x18d \x01(\v2\x1e.ai_poi.recents.v1.BaseRequestR\arequest\"\xe0\x02\n" +
 	"\x1dGetRecentInteractionsResponse\x12H\n" +
 	"\finteractions\x18\x01 \x03(\v2$.ai_poi.recents.v1.RecentInteractionR\finteractions\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12P\n" +
 	"\x0ecity_summaries\x18\x03 \x03(\v2).ai_poi.recents.v1.CityInteractionSummaryR\rcitySummaries\x12E\n" +
-	"\tanalytics\x18\x04 \x01(\v2'.ai_poi.recents.v1.InteractionAnalyticsR\tanalytics\"\xb7\x02\n" +
+	"\tanalytics\x18\x04 \x01(\v2'.ai_poi.recents.v1.InteractionAnalyticsR\tanalytics\x12;\n" +
+	"\bresponse\x18d \x01(\v2\x1f.ai_poi.recents.v1.BaseResponseR\bresponse\"\xb7\x02\n" +
 	"\x16CityInteractionSummary\x12\x17\n" +
 	"\acity_id\x18\x01 \x01(\tR\x06cityId\x12\x1b\n" +
 	"\tcity_name\x18\x02 \x01(\tR\bcityName\x12\x18\n" +
@@ -2150,24 +2344,26 @@ const file_recents_proto_rawDesc = "" +
 	"\x15unique_cities_visited\x18\x03 \x01(\x05R\x13uniqueCitiesVisited\x12%\n" +
 	"\x0etop_categories\x18\x04 \x03(\tR\rtopCategories\x124\n" +
 	"\x17most_active_time_of_day\x18\x05 \x01(\tR\x13mostActiveTimeOfDay\x12?\n" +
-	"\x1caverage_interactions_per_day\x18\x06 \x01(\x01R\x19averageInteractionsPerDay\"\xed\x01\n" +
+	"\x1caverage_interactions_per_day\x18\x06 \x01(\x01R\x19averageInteractionsPerDay\"\xa7\x02\n" +
 	"\x1aGetCityInteractionsRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tcity_name\x18\x02 \x01(\tR\bcityName\x12'\n" +
 	"\x0finclude_details\x18\x03 \x01(\bR\x0eincludeDetails\x129\n" +
 	"\n" +
 	"start_date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
-	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\"\x87\x02\n" +
+	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x128\n" +
+	"\arequest\x18d \x01(\v2\x1e.ai_poi.recents.v1.BaseRequestR\arequest\"\xc4\x02\n" +
 	"\x1bGetCityInteractionsResponse\x12P\n" +
 	"\x11city_interactions\x18\x01 \x01(\v2#.ai_poi.recents.v1.CityInteractionsR\x10cityInteractions\x12Y\n" +
 	"\x15detailed_interactions\x18\x02 \x03(\v2$.ai_poi.recents.v1.RecentInteractionR\x14detailedInteractions\x12;\n" +
-	"\binsights\x18\x03 \x01(\v2\x1f.ai_poi.recents.v1.CityInsightsR\binsights\"\xed\x01\n" +
+	"\binsights\x18\x03 \x01(\v2\x1f.ai_poi.recents.v1.CityInsightsR\binsights\x12;\n" +
+	"\bresponse\x18d \x01(\v2\x1f.ai_poi.recents.v1.BaseResponseR\bresponse\"\xed\x01\n" +
 	"\fCityInsights\x12+\n" +
 	"\x11discovery_pattern\x18\x01 \x01(\tR\x10discoveryPattern\x121\n" +
 	"\x14suggested_categories\x18\x02 \x03(\tR\x13suggestedCategories\x12)\n" +
 	"\x10unexplored_areas\x18\x03 \x03(\tR\x0funexploredAreas\x12)\n" +
 	"\x10engagement_score\x18\x04 \x01(\x01R\x0fengagementScore\x12'\n" +
-	"\x0fvisit_frequency\x18\x05 \x01(\tR\x0evisitFrequency\"\xcf\x03\n" +
+	"\x0fvisit_frequency\x18\x05 \x01(\tR\x0evisitFrequency\"\x89\x04\n" +
 	"\x18RecordInteractionRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12M\n" +
 	"\x10interaction_type\x18\x02 \x01(\x0e2\".ai_poi.recents.v1.InteractionTypeR\x0finteractionType\x12\x1b\n" +
@@ -2178,14 +2374,16 @@ const file_recents_proto_rawDesc = "" +
 	"entityName\x12\x17\n" +
 	"\acity_id\x18\x06 \x01(\tR\x06cityId\x12?\n" +
 	"\acontext\x18\a \x01(\v2%.ai_poi.recents.v1.InteractionContextR\acontext\x12U\n" +
-	"\bmetadata\x18\b \x03(\v29.ai_poi.recents.v1.RecordInteractionRequest.MetadataEntryR\bmetadata\x1a;\n" +
+	"\bmetadata\x18\b \x03(\v29.ai_poi.recents.v1.RecordInteractionRequest.MetadataEntryR\bmetadata\x128\n" +
+	"\arequest\x18d \x01(\v2\x1e.ai_poi.recents.v1.BaseRequestR\arequest\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"v\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xb3\x01\n" +
 	"\x19RecordInteractionResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12%\n" +
 	"\x0einteraction_id\x18\x02 \x01(\tR\rinteractionId\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\"\x88\x02\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\x12;\n" +
+	"\bresponse\x18d \x01(\v2\x1f.ai_poi.recents.v1.BaseResponseR\bresponse\"\xc2\x02\n" +
 	"\x1cGetInteractionHistoryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12<\n" +
 	"\x06filter\x18\x02 \x01(\v2$.ai_poi.recents.v1.InteractionFilterR\x06filter\x12\x14\n" +
@@ -2194,20 +2392,22 @@ const file_recents_proto_rawDesc = "" +
 	"\asort_by\x18\x05 \x01(\tR\x06sortBy\x12\x1d\n" +
 	"\n" +
 	"sort_order\x18\x06 \x01(\tR\tsortOrder\x12+\n" +
-	"\x11include_analytics\x18\a \x01(\bR\x10includeAnalytics\"\x87\x02\n" +
+	"\x11include_analytics\x18\a \x01(\bR\x10includeAnalytics\x128\n" +
+	"\arequest\x18d \x01(\v2\x1e.ai_poi.recents.v1.BaseRequestR\arequest\"\xc4\x02\n" +
 	"\x1dGetInteractionHistoryResponse\x12H\n" +
 	"\finteractions\x18\x01 \x03(\v2$.ai_poi.recents.v1.RecentInteractionR\finteractions\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12E\n" +
 	"\tanalytics\x18\x03 \x01(\v2'.ai_poi.recents.v1.InteractionAnalyticsR\tanalytics\x124\n" +
-	"\x06trends\x18\x04 \x03(\v2\x1c.ai_poi.recents.v1.TrendDataR\x06trends\"\xb8\x01\n" +
+	"\x06trends\x18\x04 \x03(\v2\x1c.ai_poi.recents.v1.TrendDataR\x06trends\x12;\n" +
+	"\bresponse\x18d \x01(\v2\x1f.ai_poi.recents.v1.BaseResponseR\bresponse\"\xb8\x01\n" +
 	"\tTrendData\x12.\n" +
 	"\x04date\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04date\x12+\n" +
 	"\x11interaction_count\x18\x02 \x01(\x05R\x10interactionCount\x12N\n" +
 	"\x0etype_breakdown\x18\x03 \x03(\v2'.ai_poi.recents.v1.InteractionTypeCountR\rtypeBreakdown\"d\n" +
 	"\x14InteractionTypeCount\x126\n" +
 	"\x04type\x18\x01 \x01(\x0e2\".ai_poi.recents.v1.InteractionTypeR\x04type\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\x05R\x05count\"\xb9\x01\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count\"\xf3\x01\n" +
 	"\x18GetFrequentPlacesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12.\n" +
@@ -2215,10 +2415,23 @@ const file_recents_proto_rawDesc = "" +
 	"\n" +
 	"time_range\x18\x04 \x01(\tR\ttimeRange\x12\x1f\n" +
 	"\vplace_types\x18\x05 \x03(\tR\n" +
-	"placeTypes\"\x9b\x01\n" +
+	"placeTypes\x128\n" +
+	"\arequest\x18d \x01(\v2\x1e.ai_poi.recents.v1.BaseRequestR\arequest\"\xd8\x01\n" +
 	"\x19GetFrequentPlacesResponse\x128\n" +
 	"\x06places\x18\x01 \x03(\v2 .ai_poi.recents.v1.FrequentPlaceR\x06places\x12D\n" +
-	"\binsights\x18\x02 \x01(\v2(.ai_poi.recents.v1.FrequentPlaceInsightsR\binsights\"\x8a\x02\n" +
+	"\binsights\x18\x02 \x01(\v2(.ai_poi.recents.v1.FrequentPlaceInsightsR\binsights\x12;\n" +
+	"\bresponse\x18d \x01(\v2\x1f.ai_poi.recents.v1.BaseResponseR\bresponse\"N\n" +
+	"\vBaseRequest\x12\x1f\n" +
+	"\n" +
+	"downstream\x18\xe6\a \x01(\tR\n" +
+	"downstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\"d\n" +
+	"\fBaseResponse\x12\x1b\n" +
+	"\bupstream\x18\xe6\a \x01(\tR\bupstream\x12\x1e\n" +
+	"\n" +
+	"request_id\x18\xe7\a \x01(\tR\trequestId\x12\x17\n" +
+	"\x06status\x18\xe8\a \x01(\tR\x06status\"\x8a\x02\n" +
 	"\x15FrequentPlaceInsights\x12%\n" +
 	"\x0etravel_pattern\x18\x01 \x01(\tR\rtravelPattern\x12/\n" +
 	"\x13favorite_categories\x18\x02 \x03(\tR\x12favoriteCategories\x12>\n" +
@@ -2258,7 +2471,7 @@ func file_recents_proto_rawDescGZIP() []byte {
 }
 
 var file_recents_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_recents_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_recents_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_recents_proto_goTypes = []any{
 	(InteractionType)(0),                  // 0: ai_poi.recents.v1.InteractionType
 	(*RecentInteraction)(nil),             // 1: ai_poi.recents.v1.RecentInteraction
@@ -2283,66 +2496,78 @@ var file_recents_proto_goTypes = []any{
 	(*InteractionTypeCount)(nil),          // 20: ai_poi.recents.v1.InteractionTypeCount
 	(*GetFrequentPlacesRequest)(nil),      // 21: ai_poi.recents.v1.GetFrequentPlacesRequest
 	(*GetFrequentPlacesResponse)(nil),     // 22: ai_poi.recents.v1.GetFrequentPlacesResponse
-	(*FrequentPlaceInsights)(nil),         // 23: ai_poi.recents.v1.FrequentPlaceInsights
-	nil,                                   // 24: ai_poi.recents.v1.RecentInteraction.MetadataEntry
-	nil,                                   // 25: ai_poi.recents.v1.InteractionContext.CustomPropertiesEntry
-	nil,                                   // 26: ai_poi.recents.v1.RecordInteractionRequest.MetadataEntry
-	(*timestamppb.Timestamp)(nil),         // 27: google.protobuf.Timestamp
+	(*BaseRequest)(nil),                   // 23: ai_poi.recents.v1.BaseRequest
+	(*BaseResponse)(nil),                  // 24: ai_poi.recents.v1.BaseResponse
+	(*FrequentPlaceInsights)(nil),         // 25: ai_poi.recents.v1.FrequentPlaceInsights
+	nil,                                   // 26: ai_poi.recents.v1.RecentInteraction.MetadataEntry
+	nil,                                   // 27: ai_poi.recents.v1.InteractionContext.CustomPropertiesEntry
+	nil,                                   // 28: ai_poi.recents.v1.RecordInteractionRequest.MetadataEntry
+	(*timestamppb.Timestamp)(nil),         // 29: google.protobuf.Timestamp
 }
 var file_recents_proto_depIdxs = []int32{
 	0,  // 0: ai_poi.recents.v1.RecentInteraction.interaction_type:type_name -> ai_poi.recents.v1.InteractionType
 	2,  // 1: ai_poi.recents.v1.RecentInteraction.context:type_name -> ai_poi.recents.v1.InteractionContext
-	24, // 2: ai_poi.recents.v1.RecentInteraction.metadata:type_name -> ai_poi.recents.v1.RecentInteraction.MetadataEntry
-	27, // 3: ai_poi.recents.v1.RecentInteraction.created_at:type_name -> google.protobuf.Timestamp
+	26, // 2: ai_poi.recents.v1.RecentInteraction.metadata:type_name -> ai_poi.recents.v1.RecentInteraction.MetadataEntry
+	29, // 3: ai_poi.recents.v1.RecentInteraction.created_at:type_name -> google.protobuf.Timestamp
 	3,  // 4: ai_poi.recents.v1.InteractionContext.location:type_name -> ai_poi.recents.v1.GeoLocation
-	25, // 5: ai_poi.recents.v1.InteractionContext.custom_properties:type_name -> ai_poi.recents.v1.InteractionContext.CustomPropertiesEntry
-	27, // 6: ai_poi.recents.v1.CityInteractions.first_interaction:type_name -> google.protobuf.Timestamp
-	27, // 7: ai_poi.recents.v1.CityInteractions.last_interaction:type_name -> google.protobuf.Timestamp
+	27, // 5: ai_poi.recents.v1.InteractionContext.custom_properties:type_name -> ai_poi.recents.v1.InteractionContext.CustomPropertiesEntry
+	29, // 6: ai_poi.recents.v1.CityInteractions.first_interaction:type_name -> google.protobuf.Timestamp
+	29, // 7: ai_poi.recents.v1.CityInteractions.last_interaction:type_name -> google.protobuf.Timestamp
 	5,  // 8: ai_poi.recents.v1.CityInteractions.preferences:type_name -> ai_poi.recents.v1.CityPreferences
-	27, // 9: ai_poi.recents.v1.FrequentPlace.first_visit:type_name -> google.protobuf.Timestamp
-	27, // 10: ai_poi.recents.v1.FrequentPlace.last_visit:type_name -> google.protobuf.Timestamp
+	29, // 9: ai_poi.recents.v1.FrequentPlace.first_visit:type_name -> google.protobuf.Timestamp
+	29, // 10: ai_poi.recents.v1.FrequentPlace.last_visit:type_name -> google.protobuf.Timestamp
 	0,  // 11: ai_poi.recents.v1.FrequentPlace.interaction_types:type_name -> ai_poi.recents.v1.InteractionType
 	0,  // 12: ai_poi.recents.v1.InteractionFilter.interaction_types:type_name -> ai_poi.recents.v1.InteractionType
-	27, // 13: ai_poi.recents.v1.InteractionFilter.start_date:type_name -> google.protobuf.Timestamp
-	27, // 14: ai_poi.recents.v1.InteractionFilter.end_date:type_name -> google.protobuf.Timestamp
+	29, // 13: ai_poi.recents.v1.InteractionFilter.start_date:type_name -> google.protobuf.Timestamp
+	29, // 14: ai_poi.recents.v1.InteractionFilter.end_date:type_name -> google.protobuf.Timestamp
 	7,  // 15: ai_poi.recents.v1.GetRecentInteractionsRequest.filter:type_name -> ai_poi.recents.v1.InteractionFilter
-	1,  // 16: ai_poi.recents.v1.GetRecentInteractionsResponse.interactions:type_name -> ai_poi.recents.v1.RecentInteraction
-	10, // 17: ai_poi.recents.v1.GetRecentInteractionsResponse.city_summaries:type_name -> ai_poi.recents.v1.CityInteractionSummary
-	11, // 18: ai_poi.recents.v1.GetRecentInteractionsResponse.analytics:type_name -> ai_poi.recents.v1.InteractionAnalytics
-	27, // 19: ai_poi.recents.v1.CityInteractionSummary.latest_interaction:type_name -> google.protobuf.Timestamp
-	1,  // 20: ai_poi.recents.v1.CityInteractionSummary.recent_interactions:type_name -> ai_poi.recents.v1.RecentInteraction
-	27, // 21: ai_poi.recents.v1.GetCityInteractionsRequest.start_date:type_name -> google.protobuf.Timestamp
-	27, // 22: ai_poi.recents.v1.GetCityInteractionsRequest.end_date:type_name -> google.protobuf.Timestamp
-	4,  // 23: ai_poi.recents.v1.GetCityInteractionsResponse.city_interactions:type_name -> ai_poi.recents.v1.CityInteractions
-	1,  // 24: ai_poi.recents.v1.GetCityInteractionsResponse.detailed_interactions:type_name -> ai_poi.recents.v1.RecentInteraction
-	14, // 25: ai_poi.recents.v1.GetCityInteractionsResponse.insights:type_name -> ai_poi.recents.v1.CityInsights
-	0,  // 26: ai_poi.recents.v1.RecordInteractionRequest.interaction_type:type_name -> ai_poi.recents.v1.InteractionType
-	2,  // 27: ai_poi.recents.v1.RecordInteractionRequest.context:type_name -> ai_poi.recents.v1.InteractionContext
-	26, // 28: ai_poi.recents.v1.RecordInteractionRequest.metadata:type_name -> ai_poi.recents.v1.RecordInteractionRequest.MetadataEntry
-	7,  // 29: ai_poi.recents.v1.GetInteractionHistoryRequest.filter:type_name -> ai_poi.recents.v1.InteractionFilter
-	1,  // 30: ai_poi.recents.v1.GetInteractionHistoryResponse.interactions:type_name -> ai_poi.recents.v1.RecentInteraction
-	11, // 31: ai_poi.recents.v1.GetInteractionHistoryResponse.analytics:type_name -> ai_poi.recents.v1.InteractionAnalytics
-	19, // 32: ai_poi.recents.v1.GetInteractionHistoryResponse.trends:type_name -> ai_poi.recents.v1.TrendData
-	27, // 33: ai_poi.recents.v1.TrendData.date:type_name -> google.protobuf.Timestamp
-	20, // 34: ai_poi.recents.v1.TrendData.type_breakdown:type_name -> ai_poi.recents.v1.InteractionTypeCount
-	0,  // 35: ai_poi.recents.v1.InteractionTypeCount.type:type_name -> ai_poi.recents.v1.InteractionType
-	6,  // 36: ai_poi.recents.v1.GetFrequentPlacesResponse.places:type_name -> ai_poi.recents.v1.FrequentPlace
-	23, // 37: ai_poi.recents.v1.GetFrequentPlacesResponse.insights:type_name -> ai_poi.recents.v1.FrequentPlaceInsights
-	8,  // 38: ai_poi.recents.v1.RecentsService.GetRecentInteractions:input_type -> ai_poi.recents.v1.GetRecentInteractionsRequest
-	12, // 39: ai_poi.recents.v1.RecentsService.GetCityInteractions:input_type -> ai_poi.recents.v1.GetCityInteractionsRequest
-	15, // 40: ai_poi.recents.v1.RecentsService.RecordInteraction:input_type -> ai_poi.recents.v1.RecordInteractionRequest
-	17, // 41: ai_poi.recents.v1.RecentsService.GetInteractionHistory:input_type -> ai_poi.recents.v1.GetInteractionHistoryRequest
-	21, // 42: ai_poi.recents.v1.RecentsService.GetFrequentPlaces:input_type -> ai_poi.recents.v1.GetFrequentPlacesRequest
-	9,  // 43: ai_poi.recents.v1.RecentsService.GetRecentInteractions:output_type -> ai_poi.recents.v1.GetRecentInteractionsResponse
-	13, // 44: ai_poi.recents.v1.RecentsService.GetCityInteractions:output_type -> ai_poi.recents.v1.GetCityInteractionsResponse
-	16, // 45: ai_poi.recents.v1.RecentsService.RecordInteraction:output_type -> ai_poi.recents.v1.RecordInteractionResponse
-	18, // 46: ai_poi.recents.v1.RecentsService.GetInteractionHistory:output_type -> ai_poi.recents.v1.GetInteractionHistoryResponse
-	22, // 47: ai_poi.recents.v1.RecentsService.GetFrequentPlaces:output_type -> ai_poi.recents.v1.GetFrequentPlacesResponse
-	43, // [43:48] is the sub-list for method output_type
-	38, // [38:43] is the sub-list for method input_type
-	38, // [38:38] is the sub-list for extension type_name
-	38, // [38:38] is the sub-list for extension extendee
-	0,  // [0:38] is the sub-list for field type_name
+	23, // 16: ai_poi.recents.v1.GetRecentInteractionsRequest.request:type_name -> ai_poi.recents.v1.BaseRequest
+	1,  // 17: ai_poi.recents.v1.GetRecentInteractionsResponse.interactions:type_name -> ai_poi.recents.v1.RecentInteraction
+	10, // 18: ai_poi.recents.v1.GetRecentInteractionsResponse.city_summaries:type_name -> ai_poi.recents.v1.CityInteractionSummary
+	11, // 19: ai_poi.recents.v1.GetRecentInteractionsResponse.analytics:type_name -> ai_poi.recents.v1.InteractionAnalytics
+	24, // 20: ai_poi.recents.v1.GetRecentInteractionsResponse.response:type_name -> ai_poi.recents.v1.BaseResponse
+	29, // 21: ai_poi.recents.v1.CityInteractionSummary.latest_interaction:type_name -> google.protobuf.Timestamp
+	1,  // 22: ai_poi.recents.v1.CityInteractionSummary.recent_interactions:type_name -> ai_poi.recents.v1.RecentInteraction
+	29, // 23: ai_poi.recents.v1.GetCityInteractionsRequest.start_date:type_name -> google.protobuf.Timestamp
+	29, // 24: ai_poi.recents.v1.GetCityInteractionsRequest.end_date:type_name -> google.protobuf.Timestamp
+	23, // 25: ai_poi.recents.v1.GetCityInteractionsRequest.request:type_name -> ai_poi.recents.v1.BaseRequest
+	4,  // 26: ai_poi.recents.v1.GetCityInteractionsResponse.city_interactions:type_name -> ai_poi.recents.v1.CityInteractions
+	1,  // 27: ai_poi.recents.v1.GetCityInteractionsResponse.detailed_interactions:type_name -> ai_poi.recents.v1.RecentInteraction
+	14, // 28: ai_poi.recents.v1.GetCityInteractionsResponse.insights:type_name -> ai_poi.recents.v1.CityInsights
+	24, // 29: ai_poi.recents.v1.GetCityInteractionsResponse.response:type_name -> ai_poi.recents.v1.BaseResponse
+	0,  // 30: ai_poi.recents.v1.RecordInteractionRequest.interaction_type:type_name -> ai_poi.recents.v1.InteractionType
+	2,  // 31: ai_poi.recents.v1.RecordInteractionRequest.context:type_name -> ai_poi.recents.v1.InteractionContext
+	28, // 32: ai_poi.recents.v1.RecordInteractionRequest.metadata:type_name -> ai_poi.recents.v1.RecordInteractionRequest.MetadataEntry
+	23, // 33: ai_poi.recents.v1.RecordInteractionRequest.request:type_name -> ai_poi.recents.v1.BaseRequest
+	24, // 34: ai_poi.recents.v1.RecordInteractionResponse.response:type_name -> ai_poi.recents.v1.BaseResponse
+	7,  // 35: ai_poi.recents.v1.GetInteractionHistoryRequest.filter:type_name -> ai_poi.recents.v1.InteractionFilter
+	23, // 36: ai_poi.recents.v1.GetInteractionHistoryRequest.request:type_name -> ai_poi.recents.v1.BaseRequest
+	1,  // 37: ai_poi.recents.v1.GetInteractionHistoryResponse.interactions:type_name -> ai_poi.recents.v1.RecentInteraction
+	11, // 38: ai_poi.recents.v1.GetInteractionHistoryResponse.analytics:type_name -> ai_poi.recents.v1.InteractionAnalytics
+	19, // 39: ai_poi.recents.v1.GetInteractionHistoryResponse.trends:type_name -> ai_poi.recents.v1.TrendData
+	24, // 40: ai_poi.recents.v1.GetInteractionHistoryResponse.response:type_name -> ai_poi.recents.v1.BaseResponse
+	29, // 41: ai_poi.recents.v1.TrendData.date:type_name -> google.protobuf.Timestamp
+	20, // 42: ai_poi.recents.v1.TrendData.type_breakdown:type_name -> ai_poi.recents.v1.InteractionTypeCount
+	0,  // 43: ai_poi.recents.v1.InteractionTypeCount.type:type_name -> ai_poi.recents.v1.InteractionType
+	23, // 44: ai_poi.recents.v1.GetFrequentPlacesRequest.request:type_name -> ai_poi.recents.v1.BaseRequest
+	6,  // 45: ai_poi.recents.v1.GetFrequentPlacesResponse.places:type_name -> ai_poi.recents.v1.FrequentPlace
+	25, // 46: ai_poi.recents.v1.GetFrequentPlacesResponse.insights:type_name -> ai_poi.recents.v1.FrequentPlaceInsights
+	24, // 47: ai_poi.recents.v1.GetFrequentPlacesResponse.response:type_name -> ai_poi.recents.v1.BaseResponse
+	8,  // 48: ai_poi.recents.v1.RecentsService.GetRecentInteractions:input_type -> ai_poi.recents.v1.GetRecentInteractionsRequest
+	12, // 49: ai_poi.recents.v1.RecentsService.GetCityInteractions:input_type -> ai_poi.recents.v1.GetCityInteractionsRequest
+	15, // 50: ai_poi.recents.v1.RecentsService.RecordInteraction:input_type -> ai_poi.recents.v1.RecordInteractionRequest
+	17, // 51: ai_poi.recents.v1.RecentsService.GetInteractionHistory:input_type -> ai_poi.recents.v1.GetInteractionHistoryRequest
+	21, // 52: ai_poi.recents.v1.RecentsService.GetFrequentPlaces:input_type -> ai_poi.recents.v1.GetFrequentPlacesRequest
+	9,  // 53: ai_poi.recents.v1.RecentsService.GetRecentInteractions:output_type -> ai_poi.recents.v1.GetRecentInteractionsResponse
+	13, // 54: ai_poi.recents.v1.RecentsService.GetCityInteractions:output_type -> ai_poi.recents.v1.GetCityInteractionsResponse
+	16, // 55: ai_poi.recents.v1.RecentsService.RecordInteraction:output_type -> ai_poi.recents.v1.RecordInteractionResponse
+	18, // 56: ai_poi.recents.v1.RecentsService.GetInteractionHistory:output_type -> ai_poi.recents.v1.GetInteractionHistoryResponse
+	22, // 57: ai_poi.recents.v1.RecentsService.GetFrequentPlaces:output_type -> ai_poi.recents.v1.GetFrequentPlacesResponse
+	53, // [53:58] is the sub-list for method output_type
+	48, // [48:53] is the sub-list for method input_type
+	48, // [48:48] is the sub-list for extension type_name
+	48, // [48:48] is the sub-list for extension extendee
+	0,  // [0:48] is the sub-list for field type_name
 }
 
 func init() { file_recents_proto_init() }
@@ -2356,7 +2581,7 @@ func file_recents_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_recents_proto_rawDesc), len(file_recents_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   26,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -236,6 +236,7 @@ message AuditInfo {
 // Health check request
 message HealthCheckRequest {
   string service = 1; // Specific service to check, empty for all
+  BaseRequest request = 100;
 }
 
 // Health check response
@@ -244,6 +245,7 @@ message HealthCheckResponse {
   string version = 2;
   google.protobuf.Timestamp timestamp = 3;
   map<string, ComponentHealth> components = 4;
+  BaseResponse response = 100;
 }
 
 message ComponentHealth {
@@ -275,4 +277,15 @@ message RateLimitInfo {
   int32 requests_limit = 2;
   google.protobuf.Timestamp reset_time = 3;
   int32 retry_after_seconds = 4;
+}
+
+message BaseRequest {
+  string downstream = 998;
+  string request_id = 999;
+}
+
+message BaseResponse {
+  string upstream = 998;
+  string request_id = 999;
+  string status = 1000;
 }
