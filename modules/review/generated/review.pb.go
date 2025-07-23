@@ -7,7 +7,7 @@
 package v1
 
 import (
-	v1 "github.com/FACorreiaa/loci-proto/proto/common/v1"
+	generated "github.com/FACorreiaa/loci-proto/modules/common/generated"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -622,16 +622,16 @@ func (x *BusinessResponse) GetResponderTitle() string {
 
 // Review statistics for a POI
 type ReviewStatistics struct {
-	state                protoimpl.MessageState `protogen:"open.v1"`
-	PoiId                string                 `protobuf:"bytes,1,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
-	OverallRating        float64                `protobuf:"fixed64,2,opt,name=overall_rating,json=overallRating,proto3" json:"overall_rating,omitempty"`
-	TotalReviews         int32                  `protobuf:"varint,3,opt,name=total_reviews,json=totalReviews,proto3" json:"total_reviews,omitempty"`
-	RatingBreakdown      *v1.RatingBreakdown    `protobuf:"bytes,4,opt,name=rating_breakdown,json=ratingBreakdown,proto3" json:"rating_breakdown,omitempty"`
-	AspectAverages       *ReviewAspectAverages  `protobuf:"bytes,5,opt,name=aspect_averages,json=aspectAverages,proto3" json:"aspect_averages,omitempty"`
-	Trends               *RecentReviewTrends    `protobuf:"bytes,6,opt,name=trends,proto3" json:"trends,omitempty"`
-	Tags                 []*ReviewTag           `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"` // Most mentioned tags/keywords
-	LanguageDistribution *LanguageDistribution  `protobuf:"bytes,8,opt,name=language_distribution,json=languageDistribution,proto3" json:"language_distribution,omitempty"`
-	LastUpdated          *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
+	state                protoimpl.MessageState     `protogen:"open.v1"`
+	PoiId                string                     `protobuf:"bytes,1,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
+	OverallRating        float64                    `protobuf:"fixed64,2,opt,name=overall_rating,json=overallRating,proto3" json:"overall_rating,omitempty"`
+	TotalReviews         int32                      `protobuf:"varint,3,opt,name=total_reviews,json=totalReviews,proto3" json:"total_reviews,omitempty"`
+	RatingBreakdown      *generated.RatingBreakdown `protobuf:"bytes,4,opt,name=rating_breakdown,json=ratingBreakdown,proto3" json:"rating_breakdown,omitempty"`
+	AspectAverages       *ReviewAspectAverages      `protobuf:"bytes,5,opt,name=aspect_averages,json=aspectAverages,proto3" json:"aspect_averages,omitempty"`
+	Trends               *RecentReviewTrends        `protobuf:"bytes,6,opt,name=trends,proto3" json:"trends,omitempty"`
+	Tags                 []*ReviewTag               `protobuf:"bytes,7,rep,name=tags,proto3" json:"tags,omitempty"` // Most mentioned tags/keywords
+	LanguageDistribution *LanguageDistribution      `protobuf:"bytes,8,opt,name=language_distribution,json=languageDistribution,proto3" json:"language_distribution,omitempty"`
+	LastUpdated          *timestamppb.Timestamp     `protobuf:"bytes,9,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -687,7 +687,7 @@ func (x *ReviewStatistics) GetTotalReviews() int32 {
 	return 0
 }
 
-func (x *ReviewStatistics) GetRatingBreakdown() *v1.RatingBreakdown {
+func (x *ReviewStatistics) GetRatingBreakdown() *generated.RatingBreakdown {
 	if x != nil {
 		return x.RatingBreakdown
 	}
@@ -1175,16 +1175,16 @@ func (x *LanguageCount) GetPercentage() float64 {
 
 // Review filter options
 type ReviewFilter struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	RatingFilters  []float64              `protobuf:"fixed64,1,rep,packed,name=rating_filters,json=ratingFilters,proto3" json:"rating_filters,omitempty"` // Filter by specific ratings
-	StartDate      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
-	EndDate        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
-	Languages      []string               `protobuf:"bytes,4,rep,name=languages,proto3" json:"languages,omitempty"`
-	VerifiedOnly   bool                   `protobuf:"varint,5,opt,name=verified_only,json=verifiedOnly,proto3" json:"verified_only,omitempty"`
-	WithPhotosOnly bool                   `protobuf:"varint,6,opt,name=with_photos_only,json=withPhotosOnly,proto3" json:"with_photos_only,omitempty"`
-	Keywords       []string               `protobuf:"bytes,7,rep,name=keywords,proto3" json:"keywords,omitempty"`
-	SortBy         ReviewSortBy           `protobuf:"varint,8,opt,name=sort_by,json=sortBy,proto3,enum=ai_poi.review.v1.ReviewSortBy" json:"sort_by,omitempty"`
-	SortDirection  v1.SortDirection       `protobuf:"varint,9,opt,name=sort_direction,json=sortDirection,proto3,enum=ai_poi.common.v1.SortDirection" json:"sort_direction,omitempty"`
+	state          protoimpl.MessageState  `protogen:"open.v1"`
+	RatingFilters  []float64               `protobuf:"fixed64,1,rep,packed,name=rating_filters,json=ratingFilters,proto3" json:"rating_filters,omitempty"` // Filter by specific ratings
+	StartDate      *timestamppb.Timestamp  `protobuf:"bytes,2,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
+	EndDate        *timestamppb.Timestamp  `protobuf:"bytes,3,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	Languages      []string                `protobuf:"bytes,4,rep,name=languages,proto3" json:"languages,omitempty"`
+	VerifiedOnly   bool                    `protobuf:"varint,5,opt,name=verified_only,json=verifiedOnly,proto3" json:"verified_only,omitempty"`
+	WithPhotosOnly bool                    `protobuf:"varint,6,opt,name=with_photos_only,json=withPhotosOnly,proto3" json:"with_photos_only,omitempty"`
+	Keywords       []string                `protobuf:"bytes,7,rep,name=keywords,proto3" json:"keywords,omitempty"`
+	SortBy         ReviewSortBy            `protobuf:"varint,8,opt,name=sort_by,json=sortBy,proto3,enum=ai_poi.review.v1.ReviewSortBy" json:"sort_by,omitempty"`
+	SortDirection  generated.SortDirection `protobuf:"varint,9,opt,name=sort_direction,json=sortDirection,proto3,enum=ai_poi.common.v1.SortDirection" json:"sort_direction,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1275,11 +1275,11 @@ func (x *ReviewFilter) GetSortBy() ReviewSortBy {
 	return ReviewSortBy_REVIEW_SORT_BY_UNSPECIFIED
 }
 
-func (x *ReviewFilter) GetSortDirection() v1.SortDirection {
+func (x *ReviewFilter) GetSortDirection() generated.SortDirection {
 	if x != nil {
 		return x.SortDirection
 	}
-	return v1.SortDirection(0)
+	return generated.SortDirection(0)
 }
 
 // Request/Response messages
@@ -1401,7 +1401,7 @@ func (x *CreateReviewRequest) GetRequest() *BaseRequest {
 
 type CreateReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Response      *v1.Response           `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+	Response      *generated.Response    `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	Review        *Review                `protobuf:"bytes,2,opt,name=review,proto3" json:"review,omitempty"`
 	BaseResponse  *BaseResponse          `protobuf:"bytes,100,opt,name=base_response,json=baseResponse,proto3" json:"base_response,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1438,7 +1438,7 @@ func (*CreateReviewResponse) Descriptor() ([]byte, []int) {
 	return file_review_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *CreateReviewResponse) GetResponse() *v1.Response {
+func (x *CreateReviewResponse) GetResponse() *generated.Response {
 	if x != nil {
 		return x.Response
 	}
@@ -1460,11 +1460,11 @@ func (x *CreateReviewResponse) GetBaseResponse() *BaseResponse {
 }
 
 type GetPOIReviewsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PoiId         string                 `protobuf:"bytes,1,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
-	Pagination    *v1.PaginationRequest  `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Filter        *ReviewFilter          `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
-	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
+	state         protoimpl.MessageState       `protogen:"open.v1"`
+	PoiId         string                       `protobuf:"bytes,1,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"`
+	Pagination    *generated.PaginationRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Filter        *ReviewFilter                `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
+	Request       *BaseRequest                 `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1506,7 +1506,7 @@ func (x *GetPOIReviewsRequest) GetPoiId() string {
 	return ""
 }
 
-func (x *GetPOIReviewsRequest) GetPagination() *v1.PaginationRequest {
+func (x *GetPOIReviewsRequest) GetPagination() *generated.PaginationRequest {
 	if x != nil {
 		return x.Pagination
 	}
@@ -1528,11 +1528,11 @@ func (x *GetPOIReviewsRequest) GetRequest() *BaseRequest {
 }
 
 type GetPOIReviewsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Reviews       []*Review              `protobuf:"bytes,1,rep,name=reviews,proto3" json:"reviews,omitempty"`
-	Pagination    *v1.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Statistics    *ReviewStatistics      `protobuf:"bytes,3,opt,name=statistics,proto3" json:"statistics,omitempty"`
-	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	Reviews       []*Review                     `protobuf:"bytes,1,rep,name=reviews,proto3" json:"reviews,omitempty"`
+	Pagination    *generated.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Statistics    *ReviewStatistics             `protobuf:"bytes,3,opt,name=statistics,proto3" json:"statistics,omitempty"`
+	Response      *BaseResponse                 `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1574,7 +1574,7 @@ func (x *GetPOIReviewsResponse) GetReviews() []*Review {
 	return nil
 }
 
-func (x *GetPOIReviewsResponse) GetPagination() *v1.PaginationResponse {
+func (x *GetPOIReviewsResponse) GetPagination() *generated.PaginationResponse {
 	if x != nil {
 		return x.Pagination
 	}
@@ -1833,7 +1833,7 @@ func (x *UpdateReviewRequest) GetRequest() *BaseRequest {
 
 type UpdateReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Response      *v1.Response           `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+	Response      *generated.Response    `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	Review        *Review                `protobuf:"bytes,2,opt,name=review,proto3" json:"review,omitempty"`
 	BaseResponse  *BaseResponse          `protobuf:"bytes,100,opt,name=base_response,json=baseResponse,proto3" json:"base_response,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1870,7 +1870,7 @@ func (*UpdateReviewResponse) Descriptor() ([]byte, []int) {
 	return file_review_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *UpdateReviewResponse) GetResponse() *v1.Response {
+func (x *UpdateReviewResponse) GetResponse() *generated.Response {
 	if x != nil {
 		return x.Response
 	}
@@ -1953,7 +1953,7 @@ func (x *DeleteReviewRequest) GetRequest() *BaseRequest {
 
 type DeleteReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Response      *v1.Response           `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+	Response      *generated.Response    `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	BaseResponse  *BaseResponse          `protobuf:"bytes,100,opt,name=base_response,json=baseResponse,proto3" json:"base_response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1989,7 +1989,7 @@ func (*DeleteReviewResponse) Descriptor() ([]byte, []int) {
 	return file_review_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *DeleteReviewResponse) GetResponse() *v1.Response {
+func (x *DeleteReviewResponse) GetResponse() *generated.Response {
 	if x != nil {
 		return x.Response
 	}
@@ -2004,11 +2004,11 @@ func (x *DeleteReviewResponse) GetBaseResponse() *BaseResponse {
 }
 
 type GetUserReviewsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Pagination    *v1.PaginationRequest  `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Filter        *ReviewFilter          `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
-	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
+	state         protoimpl.MessageState       `protogen:"open.v1"`
+	UserId        string                       `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Pagination    *generated.PaginationRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Filter        *ReviewFilter                `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
+	Request       *BaseRequest                 `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2050,7 +2050,7 @@ func (x *GetUserReviewsRequest) GetUserId() string {
 	return ""
 }
 
-func (x *GetUserReviewsRequest) GetPagination() *v1.PaginationRequest {
+func (x *GetUserReviewsRequest) GetPagination() *generated.PaginationRequest {
 	if x != nil {
 		return x.Pagination
 	}
@@ -2072,11 +2072,11 @@ func (x *GetUserReviewsRequest) GetRequest() *BaseRequest {
 }
 
 type GetUserReviewsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Reviews       []*Review              `protobuf:"bytes,1,rep,name=reviews,proto3" json:"reviews,omitempty"`
-	Pagination    *v1.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Statistics    *UserReviewStatistics  `protobuf:"bytes,3,opt,name=statistics,proto3" json:"statistics,omitempty"`
-	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	Reviews       []*Review                     `protobuf:"bytes,1,rep,name=reviews,proto3" json:"reviews,omitempty"`
+	Pagination    *generated.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Statistics    *UserReviewStatistics         `protobuf:"bytes,3,opt,name=statistics,proto3" json:"statistics,omitempty"`
+	Response      *BaseResponse                 `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2118,7 +2118,7 @@ func (x *GetUserReviewsResponse) GetReviews() []*Review {
 	return nil
 }
 
-func (x *GetUserReviewsResponse) GetPagination() *v1.PaginationResponse {
+func (x *GetUserReviewsResponse) GetPagination() *generated.PaginationResponse {
 	if x != nil {
 		return x.Pagination
 	}
@@ -2285,7 +2285,7 @@ func (x *LikeReviewRequest) GetRequest() *BaseRequest {
 
 type LikeReviewResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	Response        *v1.Response           `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+	Response        *generated.Response    `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	NewHelpfulCount int32                  `protobuf:"varint,2,opt,name=new_helpful_count,json=newHelpfulCount,proto3" json:"new_helpful_count,omitempty"`
 	BaseResponse    *BaseResponse          `protobuf:"bytes,100,opt,name=base_response,json=baseResponse,proto3" json:"base_response,omitempty"`
 	unknownFields   protoimpl.UnknownFields
@@ -2322,7 +2322,7 @@ func (*LikeReviewResponse) Descriptor() ([]byte, []int) {
 	return file_review_proto_rawDescGZIP(), []int{26}
 }
 
-func (x *LikeReviewResponse) GetResponse() *v1.Response {
+func (x *LikeReviewResponse) GetResponse() *generated.Response {
 	if x != nil {
 		return x.Response
 	}
@@ -2421,7 +2421,7 @@ func (x *ReportReviewRequest) GetRequest() *BaseRequest {
 
 type ReportReviewResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Response      *v1.Response           `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+	Response      *generated.Response    `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
 	BaseResponse  *BaseResponse          `protobuf:"bytes,100,opt,name=base_response,json=baseResponse,proto3" json:"base_response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2457,7 +2457,7 @@ func (*ReportReviewResponse) Descriptor() ([]byte, []int) {
 	return file_review_proto_rawDescGZIP(), []int{28}
 }
 
-func (x *ReportReviewResponse) GetResponse() *v1.Response {
+func (x *ReportReviewResponse) GetResponse() *generated.Response {
 	if x != nil {
 		return x.Response
 	}
@@ -2989,47 +2989,47 @@ func file_review_proto_rawDescGZIP() []byte {
 var file_review_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_review_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_review_proto_goTypes = []any{
-	(ReviewStatus)(0),                   // 0: ai_poi.review.v1.ReviewStatus
-	(ReviewSortBy)(0),                   // 1: ai_poi.review.v1.ReviewSortBy
-	(*Review)(nil),                      // 2: ai_poi.review.v1.Review
-	(*ReviewAspects)(nil),               // 3: ai_poi.review.v1.ReviewAspects
-	(*ReviewerInfo)(nil),                // 4: ai_poi.review.v1.ReviewerInfo
-	(*BusinessResponse)(nil),            // 5: ai_poi.review.v1.BusinessResponse
-	(*ReviewStatistics)(nil),            // 6: ai_poi.review.v1.ReviewStatistics
-	(*ReviewAspectAverages)(nil),        // 7: ai_poi.review.v1.ReviewAspectAverages
-	(*RecentReviewTrends)(nil),          // 8: ai_poi.review.v1.RecentReviewTrends
-	(*MonthlyReviewData)(nil),           // 9: ai_poi.review.v1.MonthlyReviewData
-	(*ReviewTag)(nil),                   // 10: ai_poi.review.v1.ReviewTag
-	(*LanguageDistribution)(nil),        // 11: ai_poi.review.v1.LanguageDistribution
-	(*LanguageCount)(nil),               // 12: ai_poi.review.v1.LanguageCount
-	(*ReviewFilter)(nil),                // 13: ai_poi.review.v1.ReviewFilter
-	(*CreateReviewRequest)(nil),         // 14: ai_poi.review.v1.CreateReviewRequest
-	(*CreateReviewResponse)(nil),        // 15: ai_poi.review.v1.CreateReviewResponse
-	(*GetPOIReviewsRequest)(nil),        // 16: ai_poi.review.v1.GetPOIReviewsRequest
-	(*GetPOIReviewsResponse)(nil),       // 17: ai_poi.review.v1.GetPOIReviewsResponse
-	(*GetReviewRequest)(nil),            // 18: ai_poi.review.v1.GetReviewRequest
-	(*GetReviewResponse)(nil),           // 19: ai_poi.review.v1.GetReviewResponse
-	(*UpdateReviewRequest)(nil),         // 20: ai_poi.review.v1.UpdateReviewRequest
-	(*UpdateReviewResponse)(nil),        // 21: ai_poi.review.v1.UpdateReviewResponse
-	(*DeleteReviewRequest)(nil),         // 22: ai_poi.review.v1.DeleteReviewRequest
-	(*DeleteReviewResponse)(nil),        // 23: ai_poi.review.v1.DeleteReviewResponse
-	(*GetUserReviewsRequest)(nil),       // 24: ai_poi.review.v1.GetUserReviewsRequest
-	(*GetUserReviewsResponse)(nil),      // 25: ai_poi.review.v1.GetUserReviewsResponse
-	(*UserReviewStatistics)(nil),        // 26: ai_poi.review.v1.UserReviewStatistics
-	(*LikeReviewRequest)(nil),           // 27: ai_poi.review.v1.LikeReviewRequest
-	(*LikeReviewResponse)(nil),          // 28: ai_poi.review.v1.LikeReviewResponse
-	(*ReportReviewRequest)(nil),         // 29: ai_poi.review.v1.ReportReviewRequest
-	(*ReportReviewResponse)(nil),        // 30: ai_poi.review.v1.ReportReviewResponse
-	(*GetReviewStatisticsRequest)(nil),  // 31: ai_poi.review.v1.GetReviewStatisticsRequest
-	(*GetReviewStatisticsResponse)(nil), // 32: ai_poi.review.v1.GetReviewStatisticsResponse
-	(*BaseRequest)(nil),                 // 33: ai_poi.review.v1.BaseRequest
-	(*BaseResponse)(nil),                // 34: ai_poi.review.v1.BaseResponse
-	(*timestamppb.Timestamp)(nil),       // 35: google.protobuf.Timestamp
-	(*v1.RatingBreakdown)(nil),          // 36: ai_poi.common.v1.RatingBreakdown
-	(v1.SortDirection)(0),               // 37: ai_poi.common.v1.SortDirection
-	(*v1.Response)(nil),                 // 38: ai_poi.common.v1.Response
-	(*v1.PaginationRequest)(nil),        // 39: ai_poi.common.v1.PaginationRequest
-	(*v1.PaginationResponse)(nil),       // 40: ai_poi.common.v1.PaginationResponse
+	(ReviewStatus)(0),                    // 0: ai_poi.review.v1.ReviewStatus
+	(ReviewSortBy)(0),                    // 1: ai_poi.review.v1.ReviewSortBy
+	(*Review)(nil),                       // 2: ai_poi.review.v1.Review
+	(*ReviewAspects)(nil),                // 3: ai_poi.review.v1.ReviewAspects
+	(*ReviewerInfo)(nil),                 // 4: ai_poi.review.v1.ReviewerInfo
+	(*BusinessResponse)(nil),             // 5: ai_poi.review.v1.BusinessResponse
+	(*ReviewStatistics)(nil),             // 6: ai_poi.review.v1.ReviewStatistics
+	(*ReviewAspectAverages)(nil),         // 7: ai_poi.review.v1.ReviewAspectAverages
+	(*RecentReviewTrends)(nil),           // 8: ai_poi.review.v1.RecentReviewTrends
+	(*MonthlyReviewData)(nil),            // 9: ai_poi.review.v1.MonthlyReviewData
+	(*ReviewTag)(nil),                    // 10: ai_poi.review.v1.ReviewTag
+	(*LanguageDistribution)(nil),         // 11: ai_poi.review.v1.LanguageDistribution
+	(*LanguageCount)(nil),                // 12: ai_poi.review.v1.LanguageCount
+	(*ReviewFilter)(nil),                 // 13: ai_poi.review.v1.ReviewFilter
+	(*CreateReviewRequest)(nil),          // 14: ai_poi.review.v1.CreateReviewRequest
+	(*CreateReviewResponse)(nil),         // 15: ai_poi.review.v1.CreateReviewResponse
+	(*GetPOIReviewsRequest)(nil),         // 16: ai_poi.review.v1.GetPOIReviewsRequest
+	(*GetPOIReviewsResponse)(nil),        // 17: ai_poi.review.v1.GetPOIReviewsResponse
+	(*GetReviewRequest)(nil),             // 18: ai_poi.review.v1.GetReviewRequest
+	(*GetReviewResponse)(nil),            // 19: ai_poi.review.v1.GetReviewResponse
+	(*UpdateReviewRequest)(nil),          // 20: ai_poi.review.v1.UpdateReviewRequest
+	(*UpdateReviewResponse)(nil),         // 21: ai_poi.review.v1.UpdateReviewResponse
+	(*DeleteReviewRequest)(nil),          // 22: ai_poi.review.v1.DeleteReviewRequest
+	(*DeleteReviewResponse)(nil),         // 23: ai_poi.review.v1.DeleteReviewResponse
+	(*GetUserReviewsRequest)(nil),        // 24: ai_poi.review.v1.GetUserReviewsRequest
+	(*GetUserReviewsResponse)(nil),       // 25: ai_poi.review.v1.GetUserReviewsResponse
+	(*UserReviewStatistics)(nil),         // 26: ai_poi.review.v1.UserReviewStatistics
+	(*LikeReviewRequest)(nil),            // 27: ai_poi.review.v1.LikeReviewRequest
+	(*LikeReviewResponse)(nil),           // 28: ai_poi.review.v1.LikeReviewResponse
+	(*ReportReviewRequest)(nil),          // 29: ai_poi.review.v1.ReportReviewRequest
+	(*ReportReviewResponse)(nil),         // 30: ai_poi.review.v1.ReportReviewResponse
+	(*GetReviewStatisticsRequest)(nil),   // 31: ai_poi.review.v1.GetReviewStatisticsRequest
+	(*GetReviewStatisticsResponse)(nil),  // 32: ai_poi.review.v1.GetReviewStatisticsResponse
+	(*BaseRequest)(nil),                  // 33: ai_poi.review.v1.BaseRequest
+	(*BaseResponse)(nil),                 // 34: ai_poi.review.v1.BaseResponse
+	(*timestamppb.Timestamp)(nil),        // 35: google.protobuf.Timestamp
+	(*generated.RatingBreakdown)(nil),    // 36: ai_poi.common.v1.RatingBreakdown
+	(generated.SortDirection)(0),         // 37: ai_poi.common.v1.SortDirection
+	(*generated.Response)(nil),           // 38: ai_poi.common.v1.Response
+	(*generated.PaginationRequest)(nil),  // 39: ai_poi.common.v1.PaginationRequest
+	(*generated.PaginationResponse)(nil), // 40: ai_poi.common.v1.PaginationResponse
 }
 var file_review_proto_depIdxs = []int32{
 	0,  // 0: ai_poi.review.v1.Review.status:type_name -> ai_poi.review.v1.ReviewStatus

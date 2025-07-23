@@ -4,11 +4,11 @@
 // - protoc             v5.29.3
 // source: ai_poi_service.proto
 
-package v1
+package generated
 
 import (
 	context "context"
-	v1 "github.com/FACorreiaa/loci-proto/proto/common/v1"
+	generated "github.com/FACorreiaa/loci-proto/modules/common/generated"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -33,7 +33,7 @@ const (
 // This service can act as a unified entry point to all sub-services
 type AiPoiServiceClient interface {
 	// Health check
-	HealthCheck(ctx context.Context, in *v1.HealthCheckRequest, opts ...grpc.CallOption) (*v1.HealthCheckResponse, error)
+	HealthCheck(ctx context.Context, in *generated.HealthCheckRequest, opts ...grpc.CallOption) (*generated.HealthCheckResponse, error)
 	// Get service information
 	GetServiceInfo(ctx context.Context, in *GetServiceInfoRequest, opts ...grpc.CallOption) (*GetServiceInfoResponse, error)
 	// Get feature flags for the user
@@ -48,9 +48,9 @@ func NewAiPoiServiceClient(cc grpc.ClientConnInterface) AiPoiServiceClient {
 	return &aiPoiServiceClient{cc}
 }
 
-func (c *aiPoiServiceClient) HealthCheck(ctx context.Context, in *v1.HealthCheckRequest, opts ...grpc.CallOption) (*v1.HealthCheckResponse, error) {
+func (c *aiPoiServiceClient) HealthCheck(ctx context.Context, in *generated.HealthCheckRequest, opts ...grpc.CallOption) (*generated.HealthCheckResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(v1.HealthCheckResponse)
+	out := new(generated.HealthCheckResponse)
 	err := c.cc.Invoke(ctx, AiPoiService_HealthCheck_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -86,7 +86,7 @@ func (c *aiPoiServiceClient) GetFeatureFlags(ctx context.Context, in *GetFeature
 // This service can act as a unified entry point to all sub-services
 type AiPoiServiceServer interface {
 	// Health check
-	HealthCheck(context.Context, *v1.HealthCheckRequest) (*v1.HealthCheckResponse, error)
+	HealthCheck(context.Context, *generated.HealthCheckRequest) (*generated.HealthCheckResponse, error)
 	// Get service information
 	GetServiceInfo(context.Context, *GetServiceInfoRequest) (*GetServiceInfoResponse, error)
 	// Get feature flags for the user
@@ -101,7 +101,7 @@ type AiPoiServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAiPoiServiceServer struct{}
 
-func (UnimplementedAiPoiServiceServer) HealthCheck(context.Context, *v1.HealthCheckRequest) (*v1.HealthCheckResponse, error) {
+func (UnimplementedAiPoiServiceServer) HealthCheck(context.Context, *generated.HealthCheckRequest) (*generated.HealthCheckResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HealthCheck not implemented")
 }
 func (UnimplementedAiPoiServiceServer) GetServiceInfo(context.Context, *GetServiceInfoRequest) (*GetServiceInfoResponse, error) {
@@ -132,7 +132,7 @@ func RegisterAiPoiServiceServer(s grpc.ServiceRegistrar, srv AiPoiServiceServer)
 }
 
 func _AiPoiService_HealthCheck_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1.HealthCheckRequest)
+	in := new(generated.HealthCheckRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -144,7 +144,7 @@ func _AiPoiService_HealthCheck_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: AiPoiService_HealthCheck_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AiPoiServiceServer).HealthCheck(ctx, req.(*v1.HealthCheckRequest))
+		return srv.(AiPoiServiceServer).HealthCheck(ctx, req.(*generated.HealthCheckRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

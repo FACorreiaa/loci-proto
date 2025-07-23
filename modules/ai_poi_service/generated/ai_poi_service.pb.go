@@ -4,10 +4,10 @@
 // 	protoc        v5.29.3
 // source: ai_poi_service.proto
 
-package v1
+package generated
 
 import (
-	v1 "github.com/FACorreiaa/loci-proto/proto/common/v1"
+	generated "github.com/FACorreiaa/loci-proto/modules/common/generated"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -84,11 +84,11 @@ func (x *GetServiceInfoRequest) GetRequest() *BaseRequest {
 }
 
 type GetServiceInfoResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ServiceInfo   *ServiceInfo           `protobuf:"bytes,1,opt,name=service_info,json=serviceInfo,proto3" json:"service_info,omitempty"`
-	Endpoints     []*ServiceEndpoint     `protobuf:"bytes,2,rep,name=endpoints,proto3" json:"endpoints,omitempty"`
-	Versions      []*v1.ApiVersion       `protobuf:"bytes,3,rep,name=versions,proto3" json:"versions,omitempty"`
-	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	ServiceInfo   *ServiceInfo            `protobuf:"bytes,1,opt,name=service_info,json=serviceInfo,proto3" json:"service_info,omitempty"`
+	Endpoints     []*ServiceEndpoint      `protobuf:"bytes,2,rep,name=endpoints,proto3" json:"endpoints,omitempty"`
+	Versions      []*generated.ApiVersion `protobuf:"bytes,3,rep,name=versions,proto3" json:"versions,omitempty"`
+	Response      *BaseResponse           `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -137,7 +137,7 @@ func (x *GetServiceInfoResponse) GetEndpoints() []*ServiceEndpoint {
 	return nil
 }
 
-func (x *GetServiceInfoResponse) GetVersions() []*v1.ApiVersion {
+func (x *GetServiceInfoResponse) GetVersions() []*generated.ApiVersion {
 	if x != nil {
 		return x.Versions
 	}
@@ -244,14 +244,14 @@ func (x *ServiceInfo) GetConfiguration() map[string]string {
 }
 
 type ServiceEndpoint struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	Name                string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Path                string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
-	Method              string                 `protobuf:"bytes,3,opt,name=method,proto3" json:"method,omitempty"` // HTTP method for REST endpoints
-	Description         string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	RequiresAuth        bool                   `protobuf:"varint,5,opt,name=requires_auth,json=requiresAuth,proto3" json:"requires_auth,omitempty"`
-	RequiredPermissions []string               `protobuf:"bytes,6,rep,name=required_permissions,json=requiredPermissions,proto3" json:"required_permissions,omitempty"`
-	RateLimit           *v1.RateLimitInfo      `protobuf:"bytes,7,opt,name=rate_limit,json=rateLimit,proto3" json:"rate_limit,omitempty"`
+	state               protoimpl.MessageState   `protogen:"open.v1"`
+	Name                string                   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Path                string                   `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	Method              string                   `protobuf:"bytes,3,opt,name=method,proto3" json:"method,omitempty"` // HTTP method for REST endpoints
+	Description         string                   `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	RequiresAuth        bool                     `protobuf:"varint,5,opt,name=requires_auth,json=requiresAuth,proto3" json:"requires_auth,omitempty"`
+	RequiredPermissions []string                 `protobuf:"bytes,6,rep,name=required_permissions,json=requiredPermissions,proto3" json:"required_permissions,omitempty"`
+	RateLimit           *generated.RateLimitInfo `protobuf:"bytes,7,opt,name=rate_limit,json=rateLimit,proto3" json:"rate_limit,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -328,7 +328,7 @@ func (x *ServiceEndpoint) GetRequiredPermissions() []string {
 	return nil
 }
 
-func (x *ServiceEndpoint) GetRateLimit() *v1.RateLimitInfo {
+func (x *ServiceEndpoint) GetRateLimit() *generated.RateLimitInfo {
 	if x != nil {
 		return x.RateLimit
 	}
@@ -413,10 +413,10 @@ func (x *GetFeatureFlagsRequest) GetRequest() *BaseRequest {
 }
 
 type GetFeatureFlagsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Flags         []*v1.FeatureFlag      `protobuf:"bytes,1,rep,name=flags,proto3" json:"flags,omitempty"`
-	Experiments   map[string]string      `protobuf:"bytes,2,rep,name=experiments,proto3" json:"experiments,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // A/B test assignments
-	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	Flags         []*generated.FeatureFlag `protobuf:"bytes,1,rep,name=flags,proto3" json:"flags,omitempty"`
+	Experiments   map[string]string        `protobuf:"bytes,2,rep,name=experiments,proto3" json:"experiments,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // A/B test assignments
+	Response      *BaseResponse            `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -451,7 +451,7 @@ func (*GetFeatureFlagsResponse) Descriptor() ([]byte, []int) {
 	return file_ai_poi_service_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetFeatureFlagsResponse) GetFlags() []*v1.FeatureFlag {
+func (x *GetFeatureFlagsResponse) GetFlags() []*generated.FeatureFlag {
 	if x != nil {
 		return x.Flags
 	}
@@ -474,12 +474,12 @@ func (x *GetFeatureFlagsResponse) GetResponse() *BaseResponse {
 
 // Service dependencies and their health status
 type ServiceDependencies struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Database      *v1.ComponentHealth    `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
-	RedisCache    *v1.ComponentHealth    `protobuf:"bytes,2,opt,name=redis_cache,json=redisCache,proto3" json:"redis_cache,omitempty"`
-	AiService     *v1.ComponentHealth    `protobuf:"bytes,3,opt,name=ai_service,json=aiService,proto3" json:"ai_service,omitempty"`
-	ExternalApis  *v1.ComponentHealth    `protobuf:"bytes,4,opt,name=external_apis,json=externalApis,proto3" json:"external_apis,omitempty"`
-	FileStorage   *v1.ComponentHealth    `protobuf:"bytes,5,opt,name=file_storage,json=fileStorage,proto3" json:"file_storage,omitempty"`
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Database      *generated.ComponentHealth `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
+	RedisCache    *generated.ComponentHealth `protobuf:"bytes,2,opt,name=redis_cache,json=redisCache,proto3" json:"redis_cache,omitempty"`
+	AiService     *generated.ComponentHealth `protobuf:"bytes,3,opt,name=ai_service,json=aiService,proto3" json:"ai_service,omitempty"`
+	ExternalApis  *generated.ComponentHealth `protobuf:"bytes,4,opt,name=external_apis,json=externalApis,proto3" json:"external_apis,omitempty"`
+	FileStorage   *generated.ComponentHealth `protobuf:"bytes,5,opt,name=file_storage,json=fileStorage,proto3" json:"file_storage,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -514,35 +514,35 @@ func (*ServiceDependencies) Descriptor() ([]byte, []int) {
 	return file_ai_poi_service_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ServiceDependencies) GetDatabase() *v1.ComponentHealth {
+func (x *ServiceDependencies) GetDatabase() *generated.ComponentHealth {
 	if x != nil {
 		return x.Database
 	}
 	return nil
 }
 
-func (x *ServiceDependencies) GetRedisCache() *v1.ComponentHealth {
+func (x *ServiceDependencies) GetRedisCache() *generated.ComponentHealth {
 	if x != nil {
 		return x.RedisCache
 	}
 	return nil
 }
 
-func (x *ServiceDependencies) GetAiService() *v1.ComponentHealth {
+func (x *ServiceDependencies) GetAiService() *generated.ComponentHealth {
 	if x != nil {
 		return x.AiService
 	}
 	return nil
 }
 
-func (x *ServiceDependencies) GetExternalApis() *v1.ComponentHealth {
+func (x *ServiceDependencies) GetExternalApis() *generated.ComponentHealth {
 	if x != nil {
 		return x.ExternalApis
 	}
 	return nil
 }
 
-func (x *ServiceDependencies) GetFileStorage() *v1.ComponentHealth {
+func (x *ServiceDependencies) GetFileStorage() *generated.ComponentHealth {
 	if x != nil {
 		return x.FileStorage
 	}
@@ -735,7 +735,7 @@ const file_ai_poi_service_proto_rawDesc = "" +
 	"\fAiPoiService\x12Z\n" +
 	"\vHealthCheck\x12$.ai_poi.common.v1.HealthCheckRequest\x1a%.ai_poi.common.v1.HealthCheckResponse\x12U\n" +
 	"\x0eGetServiceInfo\x12 .ai_poi.v1.GetServiceInfoRequest\x1a!.ai_poi.v1.GetServiceInfoResponse\x12X\n" +
-	"\x0fGetFeatureFlags\x12!.ai_poi.v1.GetFeatureFlagsRequest\x1a\".ai_poi.v1.GetFeatureFlagsResponseB+Z)github.com/FACorreiaa/loci-proto/proto/v1b\x06proto3"
+	"\x0fGetFeatureFlags\x12!.ai_poi.v1.GetFeatureFlagsRequest\x1a\".ai_poi.v1.GetFeatureFlagsResponseBCZAgithub.com/FACorreiaa/loci-proto/modules/ai_poi_service/generatedb\x06proto3"
 
 var (
 	file_ai_poi_service_proto_rawDescOnce sync.Once
@@ -751,24 +751,24 @@ func file_ai_poi_service_proto_rawDescGZIP() []byte {
 
 var file_ai_poi_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_ai_poi_service_proto_goTypes = []any{
-	(*GetServiceInfoRequest)(nil),   // 0: ai_poi.v1.GetServiceInfoRequest
-	(*GetServiceInfoResponse)(nil),  // 1: ai_poi.v1.GetServiceInfoResponse
-	(*ServiceInfo)(nil),             // 2: ai_poi.v1.ServiceInfo
-	(*ServiceEndpoint)(nil),         // 3: ai_poi.v1.ServiceEndpoint
-	(*GetFeatureFlagsRequest)(nil),  // 4: ai_poi.v1.GetFeatureFlagsRequest
-	(*GetFeatureFlagsResponse)(nil), // 5: ai_poi.v1.GetFeatureFlagsResponse
-	(*ServiceDependencies)(nil),     // 6: ai_poi.v1.ServiceDependencies
-	(*BaseRequest)(nil),             // 7: ai_poi.v1.BaseRequest
-	(*BaseResponse)(nil),            // 8: ai_poi.v1.BaseResponse
-	nil,                             // 9: ai_poi.v1.ServiceInfo.ConfigurationEntry
-	nil,                             // 10: ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntry
-	nil,                             // 11: ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntry
-	(*v1.ApiVersion)(nil),           // 12: ai_poi.common.v1.ApiVersion
-	(*v1.RateLimitInfo)(nil),        // 13: ai_poi.common.v1.RateLimitInfo
-	(*v1.FeatureFlag)(nil),          // 14: ai_poi.common.v1.FeatureFlag
-	(*v1.ComponentHealth)(nil),      // 15: ai_poi.common.v1.ComponentHealth
-	(*v1.HealthCheckRequest)(nil),   // 16: ai_poi.common.v1.HealthCheckRequest
-	(*v1.HealthCheckResponse)(nil),  // 17: ai_poi.common.v1.HealthCheckResponse
+	(*GetServiceInfoRequest)(nil),         // 0: ai_poi.v1.GetServiceInfoRequest
+	(*GetServiceInfoResponse)(nil),        // 1: ai_poi.v1.GetServiceInfoResponse
+	(*ServiceInfo)(nil),                   // 2: ai_poi.v1.ServiceInfo
+	(*ServiceEndpoint)(nil),               // 3: ai_poi.v1.ServiceEndpoint
+	(*GetFeatureFlagsRequest)(nil),        // 4: ai_poi.v1.GetFeatureFlagsRequest
+	(*GetFeatureFlagsResponse)(nil),       // 5: ai_poi.v1.GetFeatureFlagsResponse
+	(*ServiceDependencies)(nil),           // 6: ai_poi.v1.ServiceDependencies
+	(*BaseRequest)(nil),                   // 7: ai_poi.v1.BaseRequest
+	(*BaseResponse)(nil),                  // 8: ai_poi.v1.BaseResponse
+	nil,                                   // 9: ai_poi.v1.ServiceInfo.ConfigurationEntry
+	nil,                                   // 10: ai_poi.v1.GetFeatureFlagsRequest.UserAttributesEntry
+	nil,                                   // 11: ai_poi.v1.GetFeatureFlagsResponse.ExperimentsEntry
+	(*generated.ApiVersion)(nil),          // 12: ai_poi.common.v1.ApiVersion
+	(*generated.RateLimitInfo)(nil),       // 13: ai_poi.common.v1.RateLimitInfo
+	(*generated.FeatureFlag)(nil),         // 14: ai_poi.common.v1.FeatureFlag
+	(*generated.ComponentHealth)(nil),     // 15: ai_poi.common.v1.ComponentHealth
+	(*generated.HealthCheckRequest)(nil),  // 16: ai_poi.common.v1.HealthCheckRequest
+	(*generated.HealthCheckResponse)(nil), // 17: ai_poi.common.v1.HealthCheckResponse
 }
 var file_ai_poi_service_proto_depIdxs = []int32{
 	7,  // 0: ai_poi.v1.GetServiceInfoRequest.request:type_name -> ai_poi.v1.BaseRequest

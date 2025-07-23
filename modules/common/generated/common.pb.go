@@ -4,7 +4,7 @@
 // 	protoc        v5.29.3
 // source: common.proto
 
-package v1
+package generated
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -2733,7 +2733,7 @@ const file_common_proto_rawDesc = "" +
 	"\rSortDirection\x12\x1e\n" +
 	"\x1aSORT_DIRECTION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12SORT_DIRECTION_ASC\x10\x01\x12\x17\n" +
-	"\x13SORT_DIRECTION_DESC\x10\x02B2Z0github.com/FACorreiaa/loci-proto/proto/common/v1b\x06proto3"
+	"\x13SORT_DIRECTION_DESC\x10\x02B;Z9github.com/FACorreiaa/loci-proto/modules/common/generatedb\x06proto3"
 
 var (
 	file_common_proto_rawDescOnce sync.Once
