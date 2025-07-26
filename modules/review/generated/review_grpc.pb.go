@@ -36,19 +36,12 @@ const (
 //
 // ReviewService provides review and rating functionality for POIs
 type ReviewServiceClient interface {
-	// Create a new review
 	CreateReview(ctx context.Context, in *CreateReviewRequest, opts ...grpc.CallOption) (*CreateReviewResponse, error)
-	// Get reviews for a POI
 	GetPOIReviews(ctx context.Context, in *GetPOIReviewsRequest, opts ...grpc.CallOption) (*GetPOIReviewsResponse, error)
-	// Get a specific review
 	GetReview(ctx context.Context, in *GetReviewRequest, opts ...grpc.CallOption) (*GetReviewResponse, error)
-	// Update an existing review
 	UpdateReview(ctx context.Context, in *UpdateReviewRequest, opts ...grpc.CallOption) (*UpdateReviewResponse, error)
-	// Delete a review
 	DeleteReview(ctx context.Context, in *DeleteReviewRequest, opts ...grpc.CallOption) (*DeleteReviewResponse, error)
-	// Get user's reviews
 	GetUserReviews(ctx context.Context, in *GetUserReviewsRequest, opts ...grpc.CallOption) (*GetUserReviewsResponse, error)
-	// Like/unlike a review
 	LikeReview(ctx context.Context, in *LikeReviewRequest, opts ...grpc.CallOption) (*LikeReviewResponse, error)
 	// Report a review
 	ReportReview(ctx context.Context, in *ReportReviewRequest, opts ...grpc.CallOption) (*ReportReviewResponse, error)
@@ -160,19 +153,12 @@ func (c *reviewServiceClient) GetReviewStatistics(ctx context.Context, in *GetRe
 //
 // ReviewService provides review and rating functionality for POIs
 type ReviewServiceServer interface {
-	// Create a new review
 	CreateReview(context.Context, *CreateReviewRequest) (*CreateReviewResponse, error)
-	// Get reviews for a POI
 	GetPOIReviews(context.Context, *GetPOIReviewsRequest) (*GetPOIReviewsResponse, error)
-	// Get a specific review
 	GetReview(context.Context, *GetReviewRequest) (*GetReviewResponse, error)
-	// Update an existing review
 	UpdateReview(context.Context, *UpdateReviewRequest) (*UpdateReviewResponse, error)
-	// Delete a review
 	DeleteReview(context.Context, *DeleteReviewRequest) (*DeleteReviewResponse, error)
-	// Get user's reviews
 	GetUserReviews(context.Context, *GetUserReviewsRequest) (*GetUserReviewsResponse, error)
-	// Like/unlike a review
 	LikeReview(context.Context, *LikeReviewRequest) (*LikeReviewResponse, error)
 	// Report a review
 	ReportReview(context.Context, *ReportReviewRequest) (*ReportReviewResponse, error)

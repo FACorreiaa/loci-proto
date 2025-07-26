@@ -45,9 +45,7 @@ const (
 //
 // UserService provides user profile and preference management
 type UserServiceClient interface {
-	// Get user profile
 	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...grpc.CallOption) (*GetUserProfileResponse, error)
-	// Update user profile
 	UpdateUserProfile(ctx context.Context, in *UpdateUserProfileRequest, opts ...grpc.CallOption) (*UpdateUserProfileResponse, error)
 	// Search profile management
 	GetSearchProfiles(ctx context.Context, in *GetSearchProfilesRequest, opts ...grpc.CallOption) (*GetSearchProfilesResponse, error)
@@ -264,9 +262,7 @@ func (c *userServiceClient) DeleteTag(ctx context.Context, in *DeleteTagRequest,
 //
 // UserService provides user profile and preference management
 type UserServiceServer interface {
-	// Get user profile
 	GetUserProfile(context.Context, *GetUserProfileRequest) (*GetUserProfileResponse, error)
-	// Update user profile
 	UpdateUserProfile(context.Context, *UpdateUserProfileRequest) (*UpdateUserProfileResponse, error)
 	// Search profile management
 	GetSearchProfiles(context.Context, *GetSearchProfilesRequest) (*GetSearchProfilesResponse, error)

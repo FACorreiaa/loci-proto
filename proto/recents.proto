@@ -8,7 +8,6 @@ option go_package = "github.com/FACorreiaa/loci-proto/proto/recents/v1";
 
 // RecentsService provides recent user interactions and activity tracking
 service RecentsService {
-  // Get user's recent interactions
   rpc GetRecentInteractions(GetRecentInteractionsRequest) returns (GetRecentInteractionsResponse);
 
   // Get recent interactions for a specific city

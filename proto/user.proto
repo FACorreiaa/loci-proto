@@ -8,10 +8,7 @@ option go_package = "github.com/FACorreiaa/loci-proto/proto/user/v1";
 
 // UserService provides user profile and preference management
 service UserService {
-  // Get user profile
   rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse);
-
-  // Update user profile
   rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
 
   // Search profile management

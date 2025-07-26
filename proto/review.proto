@@ -9,30 +9,17 @@ option go_package = "github.com/facorreiaa/go-ai-poi-server/proto/review/v1";
 
 // ReviewService provides review and rating functionality for POIs
 service ReviewService {
-  // Create a new review
   rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse);
-  
-  // Get reviews for a POI
   rpc GetPOIReviews(GetPOIReviewsRequest) returns (GetPOIReviewsResponse);
-  
-  // Get a specific review
   rpc GetReview(GetReviewRequest) returns (GetReviewResponse);
-  
-  // Update an existing review
   rpc UpdateReview(UpdateReviewRequest) returns (UpdateReviewResponse);
-  
-  // Delete a review
   rpc DeleteReview(DeleteReviewRequest) returns (DeleteReviewResponse);
-  
-  // Get user's reviews
   rpc GetUserReviews(GetUserReviewsRequest) returns (GetUserReviewsResponse);
-  
-  // Like/unlike a review
   rpc LikeReview(LikeReviewRequest) returns (LikeReviewResponse);
-  
+
   // Report a review
   rpc ReportReview(ReportReviewRequest) returns (ReportReviewResponse);
-  
+
   // Get review statistics for a POI
   rpc GetReviewStatistics(GetReviewStatisticsRequest) returns (GetReviewStatisticsResponse);
 }
@@ -50,19 +37,19 @@ message Review {
   google.protobuf.Timestamp visit_date = 9;
   google.protobuf.Timestamp created_at = 10;
   google.protobuf.Timestamp updated_at = 11;
-  
+
   // Review metadata
   int32 helpful_count = 12; // Number of helpful votes
   int32 report_count = 13; // Number of reports
   bool is_verified = 14; // Verified reviewer
   string language = 15; // ISO 639-1 language code
-  
+
   // Review aspects (detailed ratings)
   ReviewAspects aspects = 16;
-  
+
   // User information (public)
   ReviewerInfo reviewer = 17;
-  
+
   // Response from business owner
   BusinessResponse business_response = 18;
 }
@@ -85,10 +72,10 @@ message ReviewAspects {
   double atmosphere_rating = 4;
   double cleanliness_rating = 5;
   double location_rating = 6;
-  
+
   // Restaurant-specific
   double food_rating = 7;
-  
+
   // Hotel-specific
   double room_rating = 8;
   double amenities_rating = 9;

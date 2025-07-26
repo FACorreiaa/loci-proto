@@ -32,7 +32,6 @@ const (
 //
 // RecentsService provides recent user interactions and activity tracking
 type RecentsServiceClient interface {
-	// Get user's recent interactions
 	GetRecentInteractions(ctx context.Context, in *GetRecentInteractionsRequest, opts ...grpc.CallOption) (*GetRecentInteractionsResponse, error)
 	// Get recent interactions for a specific city
 	GetCityInteractions(ctx context.Context, in *GetCityInteractionsRequest, opts ...grpc.CallOption) (*GetCityInteractionsResponse, error)
@@ -108,7 +107,6 @@ func (c *recentsServiceClient) GetFrequentPlaces(ctx context.Context, in *GetFre
 //
 // RecentsService provides recent user interactions and activity tracking
 type RecentsServiceServer interface {
-	// Get user's recent interactions
 	GetRecentInteractions(context.Context, *GetRecentInteractionsRequest) (*GetRecentInteractionsResponse, error)
 	// Get recent interactions for a specific city
 	GetCityInteractions(context.Context, *GetCityInteractionsRequest) (*GetCityInteractionsResponse, error)
