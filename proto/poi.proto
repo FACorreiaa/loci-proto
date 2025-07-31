@@ -402,6 +402,8 @@ message GenerateEmbeddingsResponse {
   int32 updated_count = 2;
   string status = 3;
   repeated string errors = 4;
+  string message = 5;
+  bool success = 6;
   BaseResponse response = 100;
 }
 
