@@ -51,6 +51,9 @@ type POIDetailedInfo struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,24,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,25,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Tags          []*Tags                `protobuf:"bytes,26,rep,name=tags,proto3" json:"tags,omitempty"`
+	PhoneNumber   string                 `protobuf:"bytes,27,opt,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"`
+	PriceLevel    string                 `protobuf:"bytes,28,opt,name=price_level,json=priceLevel,proto3" json:"price_level,omitempty"`
+	Source        string                 `protobuf:"bytes,29,opt,name=source,proto3" json:"source,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -265,6 +268,27 @@ func (x *POIDetailedInfo) GetTags() []*Tags {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *POIDetailedInfo) GetPhoneNumber() string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return ""
+}
+
+func (x *POIDetailedInfo) GetPriceLevel() string {
+	if x != nil {
+		return x.PriceLevel
+	}
+	return ""
+}
+
+func (x *POIDetailedInfo) GetSource() string {
+	if x != nil {
+		return x.Source
+	}
+	return ""
 }
 
 // Restaurant-specific information
@@ -3697,7 +3721,7 @@ var File_poi_proto protoreflect.FileDescriptor
 
 const file_poi_proto_rawDesc = "" +
 	"\n" +
-	"\tpoi.proto\x12\rai_poi.poi.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x99\a\n" +
+	"\tpoi.proto\x12\rai_poi.poi.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf5\a\n" +
 	"\x0fPOIDetailedInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
@@ -3729,7 +3753,11 @@ const file_poi_proto_rawDesc = "" +
 	"created_at\x18\x18 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x19 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12'\n" +
-	"\x04tags\x18\x1a \x03(\v2\x13.ai_poi.poi.v1.TagsR\x04tags\x1a;\n" +
+	"\x04tags\x18\x1a \x03(\v2\x13.ai_poi.poi.v1.TagsR\x04tags\x12!\n" +
+	"\fphone_number\x18\x1b \x01(\tR\vphoneNumber\x12\x1f\n" +
+	"\vprice_level\x18\x1c \x01(\tR\n" +
+	"priceLevel\x12\x16\n" +
+	"\x06source\x18\x1d \x01(\tR\x06source\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xc0\x02\n" +

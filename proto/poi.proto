@@ -66,6 +66,9 @@ message POIDetailedInfo {
   google.protobuf.Timestamp created_at = 24;
   google.protobuf.Timestamp updated_at = 25;
   repeated Tags tags = 26;
+  string phone_number = 27;
+  string price_level = 28;
+  string source = 29;
 }
 
 // Restaurant-specific information
