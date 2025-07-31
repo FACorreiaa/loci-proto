@@ -65,6 +65,7 @@ message POIDetailedInfo {
   map<string, string> metadata = 23;
   google.protobuf.Timestamp created_at = 24;
   google.protobuf.Timestamp updated_at = 25;
+  repeated Tags tags = 26;
 }
 
 // Restaurant-specific information
