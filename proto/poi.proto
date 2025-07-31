@@ -320,6 +320,8 @@ message GetFavoritesRequest {
   string user_id = 1;
   int32 page = 2;
   int32 page_size = 3;
+  int32 limit = 4;
+  int32 offset = 5;
   BaseRequest request = 100;
 }
 
@@ -328,6 +330,8 @@ message GetFavoritesResponse {
   int32 total_count = 2;
   int32 current_page = 3;
   int32 total_pages = 4;
+  int32 limit = 5;
+  int32 offset = 6;
   BaseResponse response = 100;
 }
 
@@ -336,12 +340,16 @@ message GetItinerariesRequest {
   string user_id = 1;
   int32 limit = 2;
   int32 offset = 3;
+  int32 page = 4;
+  int32 page_size = 5;
   BaseRequest request = 100;
 }
 
 message GetItinerariesResponse {
   repeated UserItinerary itineraries = 1;
   int32 total_count = 2;
+  int32 page = 3;
+  int32 page_size = 4;
   BaseResponse response = 100;
 }
 

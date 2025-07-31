@@ -2584,6 +2584,8 @@ type GetFavoritesRequest struct {
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
 	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2640,6 +2642,20 @@ func (x *GetFavoritesRequest) GetPageSize() int32 {
 	return 0
 }
 
+func (x *GetFavoritesRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetFavoritesRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 func (x *GetFavoritesRequest) GetRequest() *BaseRequest {
 	if x != nil {
 		return x.Request
@@ -2653,6 +2669,8 @@ type GetFavoritesResponse struct {
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	CurrentPage   int32                  `protobuf:"varint,3,opt,name=current_page,json=currentPage,proto3" json:"current_page,omitempty"`
 	TotalPages    int32                  `protobuf:"varint,4,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
+	Limit         int32                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
 	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2716,6 +2734,20 @@ func (x *GetFavoritesResponse) GetTotalPages() int32 {
 	return 0
 }
 
+func (x *GetFavoritesResponse) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetFavoritesResponse) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 func (x *GetFavoritesResponse) GetResponse() *BaseResponse {
 	if x != nil {
 		return x.Response
@@ -2729,6 +2761,8 @@ type GetItinerariesRequest struct {
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2785,6 +2819,20 @@ func (x *GetItinerariesRequest) GetOffset() int32 {
 	return 0
 }
 
+func (x *GetItinerariesRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetItinerariesRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
 func (x *GetItinerariesRequest) GetRequest() *BaseRequest {
 	if x != nil {
 		return x.Request
@@ -2796,6 +2844,8 @@ type GetItinerariesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Itineraries   []*UserItinerary       `protobuf:"bytes,1,rep,name=itineraries,proto3" json:"itineraries,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2841,6 +2891,20 @@ func (x *GetItinerariesResponse) GetItineraries() []*UserItinerary {
 func (x *GetItinerariesResponse) GetTotalCount() int32 {
 	if x != nil {
 		return x.TotalCount
+	}
+	return 0
+}
+
+func (x *GetItinerariesResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetItinerariesResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
 	}
 	return 0
 }
@@ -3853,29 +3917,37 @@ const file_poi_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x15\n" +
 	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\x127\n" +
-	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x95\x01\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xc3\x01\n" +
 	"\x13GetFavoritesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x124\n" +
-	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xf2\x01\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x14\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x05 \x01(\x05R\x06offset\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xa0\x02\n" +
 	"\x14GetFavoritesResponse\x12<\n" +
 	"\tfavorites\x18\x01 \x03(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\tfavorites\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x12!\n" +
 	"\fcurrent_page\x18\x03 \x01(\x05R\vcurrentPage\x12\x1f\n" +
 	"\vtotal_pages\x18\x04 \x01(\x05R\n" +
-	"totalPages\x127\n" +
-	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x94\x01\n" +
+	"totalPages\x12\x14\n" +
+	"\x05limit\x18\x05 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x06 \x01(\x05R\x06offset\x127\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xc5\x01\n" +
 	"\x15GetItinerariesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\x124\n" +
-	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xb2\x01\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12\x12\n" +
+	"\x04page\x18\x04 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\x124\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xe3\x01\n" +
 	"\x16GetItinerariesResponse\x12>\n" +
 	"\vitineraries\x18\x01 \x03(\v2\x1c.ai_poi.poi.v1.UserItineraryR\vitineraries\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\x127\n" +
+	"totalCount\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x127\n" +
 	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x87\x01\n" +
 	"\x13GetItineraryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
