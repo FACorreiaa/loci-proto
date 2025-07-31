@@ -46,13 +46,9 @@ const (
 type POIServiceClient interface {
 	// Get POIs by city
 	GetPOIsByCity(ctx context.Context, in *GetPOIsByCityRequest, opts ...grpc.CallOption) (*GetPOIsByCityResponse, error)
-	// Traditional POI search with filters
 	SearchPOIs(ctx context.Context, in *SearchPOIsRequest, opts ...grpc.CallOption) (*SearchPOIsResponse, error)
-	// Semantic search using AI embeddings
 	SearchPOIsSemantic(ctx context.Context, in *SearchPOIsSemanticRequest, opts ...grpc.CallOption) (*SearchPOIsSemanticResponse, error)
-	// Semantic search by city
 	SearchPOIsSemanticByCity(ctx context.Context, in *SearchPOIsSemanticByCityRequest, opts ...grpc.CallOption) (*SearchPOIsSemanticResponse, error)
-	// Hybrid spatial + semantic search
 	SearchPOIsHybrid(ctx context.Context, in *SearchPOIsHybridRequest, opts ...grpc.CallOption) (*SearchPOIsHybridResponse, error)
 	// Get nearby recommendations
 	GetNearbyRecommendations(ctx context.Context, in *GetNearbyRecommendationsRequest, opts ...grpc.CallOption) (*GetNearbyRecommendationsResponse, error)
@@ -259,13 +255,9 @@ func (c *pOIServiceClient) GenerateEmbeddings(ctx context.Context, in *GenerateE
 type POIServiceServer interface {
 	// Get POIs by city
 	GetPOIsByCity(context.Context, *GetPOIsByCityRequest) (*GetPOIsByCityResponse, error)
-	// Traditional POI search with filters
 	SearchPOIs(context.Context, *SearchPOIsRequest) (*SearchPOIsResponse, error)
-	// Semantic search using AI embeddings
 	SearchPOIsSemantic(context.Context, *SearchPOIsSemanticRequest) (*SearchPOIsSemanticResponse, error)
-	// Semantic search by city
 	SearchPOIsSemanticByCity(context.Context, *SearchPOIsSemanticByCityRequest) (*SearchPOIsSemanticResponse, error)
-	// Hybrid spatial + semantic search
 	SearchPOIsHybrid(context.Context, *SearchPOIsHybridRequest) (*SearchPOIsHybridResponse, error)
 	// Get nearby recommendations
 	GetNearbyRecommendations(context.Context, *GetNearbyRecommendationsRequest) (*GetNearbyRecommendationsResponse, error)

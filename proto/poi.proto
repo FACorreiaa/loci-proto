@@ -10,17 +10,9 @@ option go_package = "github.com/FACorreiaa/loci-proto/proto/poi/v1";
 service POIService {
   // Get POIs by city
   rpc GetPOIsByCity(GetPOIsByCityRequest) returns (GetPOIsByCityResponse);
-
-  // Traditional POI search with filters
   rpc SearchPOIs(SearchPOIsRequest) returns (SearchPOIsResponse);
-
-  // Semantic search using AI embeddings
   rpc SearchPOIsSemantic(SearchPOIsSemanticRequest) returns (SearchPOIsSemanticResponse);
-
-  // Semantic search by city
   rpc SearchPOIsSemanticByCity(SearchPOIsSemanticByCityRequest) returns (SearchPOIsSemanticResponse);
-
-  // Hybrid spatial + semantic search
   rpc SearchPOIsHybrid(SearchPOIsHybridRequest) returns (SearchPOIsHybridResponse);
 
   // Get nearby recommendations
@@ -386,6 +378,21 @@ message UserItinerary {
   string title = 4;
   string description = 5;
   string markdown_content = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  repeated Tags tags = 9;
+  string estimated_repeated_days  = 10;
+  int32 estimated_cost_level_11 = 11;
+  bool is_public = 12;
+}
+
+message Tags {
+  string id = 1;
+  string user_id = 2;
+  string name = 3;
+  string tag_type = 4;
+  string description = 5;
+  string source = 6;
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
 }
