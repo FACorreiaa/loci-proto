@@ -246,6 +246,7 @@ message DiscoverActivitiesRequest {
   double radius_meters = 2;
   repeated string activity_types = 3;
   int32 limit = 4;
+  string duration = 5;
   BaseRequest request = 100;
 }
 
@@ -276,6 +277,7 @@ message DiscoverAttractionsRequest {
   double radius_meters = 2;
   repeated string attraction_types = 3;
   int32 limit = 4;
+
   BaseRequest request = 100;
 }
 

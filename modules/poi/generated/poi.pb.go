@@ -1872,6 +1872,7 @@ type DiscoverActivitiesRequest struct {
 	RadiusMeters  float64                `protobuf:"fixed64,2,opt,name=radius_meters,json=radiusMeters,proto3" json:"radius_meters,omitempty"`
 	ActivityTypes []string               `protobuf:"bytes,3,rep,name=activity_types,json=activityTypes,proto3" json:"activity_types,omitempty"`
 	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Duration      string                 `protobuf:"bytes,5,opt,name=duration,proto3" json:"duration,omitempty"`
 	Request       *BaseRequest           `protobuf:"bytes,100,opt,name=request,proto3" json:"request,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1933,6 +1934,13 @@ func (x *DiscoverActivitiesRequest) GetLimit() int32 {
 		return x.Limit
 	}
 	return 0
+}
+
+func (x *DiscoverActivitiesRequest) GetDuration() string {
+	if x != nil {
+		return x.Duration
+	}
+	return ""
 }
 
 func (x *DiscoverActivitiesRequest) GetRequest() *BaseRequest {
@@ -3864,12 +3872,13 @@ const file_poi_proto_rawDesc = "" +
 	"\vrestaurants\x18\x01 \x03(\v2%.ai_poi.poi.v1.RestaurantDetailedInfoR\vrestaurants\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\x127\n" +
-	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xe8\x01\n" +
+	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\x84\x02\n" +
 	"\x19DiscoverActivitiesRequest\x123\n" +
 	"\blocation\x18\x01 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
 	"\rradius_meters\x18\x02 \x01(\x01R\fradiusMeters\x12%\n" +
 	"\x0eactivity_types\x18\x03 \x03(\tR\ractivityTypes\x12\x14\n" +
-	"\x05limit\x18\x04 \x01(\x05R\x05limit\x124\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x1a\n" +
+	"\bduration\x18\x05 \x01(\tR\bduration\x124\n" +
 	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xb6\x01\n" +
 	"\x1aDiscoverActivitiesResponse\x12>\n" +
 	"\n" +
