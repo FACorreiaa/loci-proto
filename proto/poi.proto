@@ -298,6 +298,7 @@ message AddToFavoritesResponse {
   bool success = 1;
   string message = 2;
   string poi_id = 3; // Actual POI ID after processing
+  string favorite_id = 4;
   BaseResponse response = 100;
 }
 
