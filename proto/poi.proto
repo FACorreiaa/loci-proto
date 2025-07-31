@@ -103,6 +103,7 @@ message HotelDetailedInfo {
 message GeoPoint {
   double latitude = 1;
   double longitude = 2;
+  double limit = 3;
 }
 
 // Search filters

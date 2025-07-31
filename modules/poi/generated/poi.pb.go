@@ -466,6 +466,7 @@ type GeoPoint struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Latitude      float64                `protobuf:"fixed64,1,opt,name=latitude,proto3" json:"latitude,omitempty"`
 	Longitude     float64                `protobuf:"fixed64,2,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	Limit         float64                `protobuf:"fixed64,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -510,6 +511,13 @@ func (x *GeoPoint) GetLatitude() float64 {
 func (x *GeoPoint) GetLongitude() float64 {
 	if x != nil {
 		return x.Longitude
+	}
+	return 0
+}
+
+func (x *GeoPoint) GetLimit() float64 {
+	if x != nil {
+		return x.Limit
 	}
 	return 0
 }
@@ -3508,10 +3516,11 @@ const file_poi_proto_rawDesc = "" +
 	"\x0echeck_out_time\x18\x06 \x01(\tR\fcheckOutTime\x12!\n" +
 	"\fpet_friendly\x18\a \x01(\bR\vpetFriendly\x12+\n" +
 	"\x11parking_available\x18\b \x01(\bR\x10parkingAvailable\x12#\n" +
-	"\rproperty_type\x18\t \x01(\tR\fpropertyType\"D\n" +
+	"\rproperty_type\x18\t \x01(\tR\fpropertyType\"Z\n" +
 	"\bGeoPoint\x12\x1a\n" +
 	"\blatitude\x18\x01 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x02 \x01(\x01R\tlongitude\"\xdc\x02\n" +
+	"\tlongitude\x18\x02 \x01(\x01R\tlongitude\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x01R\x05limit\"\xdc\x02\n" +
 	"\tPOIFilter\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x123\n" +
 	"\blocation\x18\x02 \x01(\v2\x17.ai_poi.poi.v1.GeoPointR\blocation\x12#\n" +
