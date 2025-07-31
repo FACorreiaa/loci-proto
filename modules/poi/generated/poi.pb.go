@@ -2372,6 +2372,7 @@ type AddToFavoritesResponse struct {
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	PoiId         string                 `protobuf:"bytes,3,opt,name=poi_id,json=poiId,proto3" json:"poi_id,omitempty"` // Actual POI ID after processing
+	FavoriteId    string                 `protobuf:"bytes,4,opt,name=favorite_id,json=favoriteId,proto3" json:"favorite_id,omitempty"`
 	Response      *BaseResponse          `protobuf:"bytes,100,opt,name=response,proto3" json:"response,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2424,6 +2425,13 @@ func (x *AddToFavoritesResponse) GetMessage() string {
 func (x *AddToFavoritesResponse) GetPoiId() string {
 	if x != nil {
 		return x.PoiId
+	}
+	return ""
+}
+
+func (x *AddToFavoritesResponse) GetFavoriteId() string {
+	if x != nil {
+		return x.FavoriteId
 	}
 	return ""
 }
@@ -3900,11 +3908,13 @@ const file_poi_proto_rawDesc = "" +
 	"\n" +
 	"is_llm_poi\x18\x03 \x01(\bR\bisLlmPoi\x129\n" +
 	"\bpoi_data\x18\x04 \x01(\v2\x1e.ai_poi.poi.v1.POIDetailedInfoR\apoiData\x124\n" +
-	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\x9c\x01\n" +
+	"\arequest\x18d \x01(\v2\x1a.ai_poi.poi.v1.BaseRequestR\arequest\"\xbd\x01\n" +
 	"\x16AddToFavoritesResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x15\n" +
-	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\x127\n" +
+	"\x06poi_id\x18\x03 \x01(\tR\x05poiId\x12\x1f\n" +
+	"\vfavorite_id\x18\x04 \x01(\tR\n" +
+	"favoriteId\x127\n" +
 	"\bresponse\x18d \x01(\v2\x1b.ai_poi.poi.v1.BaseResponseR\bresponse\"\xdb\x01\n" +
 	"\x1aRemoveFromFavoritesRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x15\n" +
